@@ -127,13 +127,33 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="arboles.cpp" />
+    <ClCompile Include="archivos.cpp" />
+    <ClCompile Include="citas.cpp" />
+    <ClCompile Include="doctores.cpp" />
+    <ClCompile Include="facturas.cpp" />
     <ClCompile Include="interfaz.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="medicamentos.cpp" />
     <ClCompile Include="metodoInterfaz.cpp" />
+    <ClCompile Include="nodos.cpp" />
+    <ClCompile Include="nodosArboles.cpp" />
+    <ClCompile Include="pacientes.cpp" />
+    <ClCompile Include="recetaMedica.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="arboles.h" />
+    <ClInclude Include="archivos.h" />
+    <ClInclude Include="citas.h" />
+    <ClInclude Include="doctores.h" />
+    <ClInclude Include="facturas.h" />
     <ClInclude Include="interfaz.h" />
+    <ClInclude Include="medicamentos.h" />
     <ClInclude Include="metodoInterfaz.h" />
+    <ClInclude Include="nodos.h" />
+    <ClInclude Include="nodosArboles.h" />
+    <ClInclude Include="pacientes.h" />
+    <ClInclude Include="recetaMedica.h" />
     <ClInclude Include="std.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

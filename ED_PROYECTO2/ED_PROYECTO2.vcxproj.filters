@@ -24,6 +24,36 @@
     <ClCompile Include="metodoInterfaz.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="archivos.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pacientes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="citas.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="facturas.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="doctores.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="recetaMedica.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="medicamentos.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="nodos.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="nodosArboles.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="arboles.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="interfaz.h">
@@ -33,6 +63,36 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="std.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="archivos.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pacientes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="citas.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="facturas.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="doctores.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="recetaMedica.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="medicamentos.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="nodos.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="nodosArboles.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="arboles.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
