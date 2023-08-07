@@ -136,7 +136,6 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="medicamentos.cpp" />
     <ClCompile Include="metodoInterfaz.cpp" />
-    <ClCompile Include="nodos.cpp" />
     <ClCompile Include="nodosArboles.cpp" />
     <ClCompile Include="pacientes.cpp" />
     <ClCompile Include="recetaMedica.cpp" />
