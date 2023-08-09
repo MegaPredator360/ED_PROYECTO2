@@ -8,7 +8,7 @@ class arboles
 {
 protected:
     nodos<T>* raiz;
-    nodosArboles _nArboles;
+    nodosArboles<T>* _nArboles;
 
 public:
 	void registrarDatos(T* _dato);
@@ -27,7 +27,7 @@ void arboles<T>::registrarDatos(T* _dato)
 {
     try
     {
-        _nArboles.registrarDatos(raiz, _dato);
+        _nArboles -> registrarDatos(raiz, _dato);
     }
     catch (exception& e)
     {
@@ -142,7 +142,7 @@ int arboles<T>::alturaArbol()
 {
     try
     {
-        return _nArboles.alturaArbol(raiz),
+        return _nArboles.alturaArbol(raiz);
     }
     catch (exception& e)
     {

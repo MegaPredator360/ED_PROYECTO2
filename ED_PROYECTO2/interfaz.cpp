@@ -59,7 +59,8 @@ void interfaz::menuPrincipal()
 
 					if (confirmacion == 'S')
 					{
-
+						_doctor = new doctores(cedula, nombre, especialidad, direccion, horaInicio, horaFinal, telefono);
+						arbolDoctor.registrarDatos(_doctor);
 					}
 				}
 			}
@@ -231,7 +232,91 @@ void interfaz::menuPrincipal()
 			break;
 
 		case 8:
-			// Salir
+			// Mostrar Arbol
+			try
+			{
+				exit(0);
+			}
+			catch (exception& e) {
+				cout << RED << "Ha ocurrido un error: " << WHITE << e.what() << endl;
+				cout << "-------------------------" << endl;
+				cout << "Volviendo al Menu Principal." << endl << endl;
+				system("pause");
+			}
+			break;
+
+		case 9:
+			// Mostrar Arbol
+			try
+			{
+				exit(0);
+			}
+			catch (exception& e) {
+				cout << RED << "Ha ocurrido un error: " << WHITE << e.what() << endl;
+				cout << "-------------------------" << endl;
+				cout << "Volviendo al Menu Principal." << endl << endl;
+				system("pause");
+			}
+			break;
+
+		case 10:
+			// Mostrar Arbol
+			try
+			{
+				exit(0);
+			}
+			catch (exception& e) {
+				cout << RED << "Ha ocurrido un error: " << WHITE << e.what() << endl;
+				cout << "-------------------------" << endl;
+				cout << "Volviendo al Menu Principal." << endl << endl;
+				system("pause");
+			}
+			break;
+
+		case 11:
+			// Mostrar Arbol
+			try
+			{
+				exit(0);
+			}
+			catch (exception& e) {
+				cout << RED << "Ha ocurrido un error: " << WHITE << e.what() << endl;
+				cout << "-------------------------" << endl;
+				cout << "Volviendo al Menu Principal." << endl << endl;
+				system("pause");
+			}
+			break;
+
+		case 12:
+			// Mostrar Arbol
+			try
+			{
+				exit(0);
+			}
+			catch (exception& e) {
+				cout << RED << "Ha ocurrido un error: " << WHITE << e.what() << endl;
+				cout << "-------------------------" << endl;
+				cout << "Volviendo al Menu Principal." << endl << endl;
+				system("pause");
+			}
+			break;
+
+		case 13:
+			// Mostrar Arbol
+			try
+			{
+				exit(0);
+			}
+			catch (exception& e) {
+				cout << RED << "Ha ocurrido un error: " << WHITE << e.what() << endl;
+				cout << "-------------------------" << endl;
+				cout << "Volviendo al Menu Principal." << endl << endl;
+				system("pause");
+			}
+			break;
+
+		case 14:
+			// Mostrar Arbol
 			try
 			{
 				exit(0);
@@ -245,7 +330,18 @@ void interfaz::menuPrincipal()
 			break;
 
 		default:
-
+			// Opcion por defecto
+			try
+			{
+				exit(0);
+			}
+			catch (exception& e) {
+				cout << RED << "Ha ocurrido un error: " << WHITE << e.what() << endl;
+				cout << "-------------------------" << endl;
+				cout << "Volviendo al Menu Principal." << endl << endl;
+				system("pause");
+			}
+			break;
 		}
 	}
 }

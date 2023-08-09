@@ -28,10 +28,13 @@ public:
     // Obtendrá los datos del nodo de la derecha
     virtual nodos<T>* obtenerDerecha() const;
 
-    // Fijará el nodo de la izquierda
+    // Guardará el dato del nodo
+    virtual void fijarNodo(T* _datos);
+
+    // Guardará el dato del nodo de la izquierda
     virtual void fijarIzquierda(nodos<T>* _izquierda);
 
-    // Fijará el nodo de la derecha
+    // Guardará el dato del nodo de la derecha
     virtual void fijarDerecha(nodos<T>* _derecha);
 };
 
@@ -62,6 +65,12 @@ template <class T>
 nodos<T>* nodos<T>::obtenerDerecha() const 
 {
     return derecha;
+}
+
+template<class T>
+void nodos<T>::fijarNodo(T* _datos)
+{
+    dato = _datos;
 }
 
 template <class T>

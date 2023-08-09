@@ -14,11 +14,9 @@ public:
     void recorridoProfundidad(nodos<T>* _nodo);
     nodos<T>* encontrarNodoMinimo(nodos<T>* _nodo);
     int alturaArbol(nodos<T>* _nodo);
-    int contarNodos(nodos<T>* _nodo);
+    int contarNodos(nodos<T>* _nodo);s
     int contarHojas(nodos<T>* _nodo);
 };
-
-#endif	/* LISTA_H */
 
 template<class T>
 void nodosArboles<T>::registrarDatos(nodos<T>*& _nodo, T* _dato)
@@ -27,18 +25,32 @@ void nodosArboles<T>::registrarDatos(nodos<T>*& _nodo, T* _dato)
     {
         if (_nodo == nullptr) 
         {
-            _nodo = new nodos(_dato);
+            _nodo = new nodos<T>(_dato, nullptr, nullptr);
         }
-        else if (_dato < _nodo -> dato) 
+        else if (_dato < _nodo -> obtenerDatos()) 
         {
-            registrarDatos(_nodo -> izquierda, _dato);
+            // Se crea una variable temporal que obtendrá el dato del nodo izquierda
+            nodos<T>* nodoNuevo = _nodo -> obtenerIzquierda();
+
+            // Se envia esa variable temporal ya que regresa a su vez con un dato nuevo
+            registrarDatos(nodoNuevo, _dato);
+
+            // Se guardará ese dato nuevo en la izquierda del nodo
+            _nodo->fijarIzquierda(nodoNuevo);
         }
-        else if (_dato > _nodo -> derecha) 
+        else if (_dato > _nodo -> obtenerDatos()) 
         {
-            registrarDatos(_nodo -> derecha, _dato);
+            // Se crea una variable temporal que obtendrá el dato del nodo derecha
+            nodos<T>* nodoNuevo = _nodo -> obtenerDerecha();
+
+            // Se envia esa variable temporal ya que regresa a su vez con un dato nuevo
+            registrarDatos(nodoNuevo, _dato);
+
+            // Se guardará ese dato nuevo en la derecha del nodo
+            _nodo -> fijarDerecha(nodoNuevo);
         }
     }
-    catch (excepcion& e)
+    catch (exception& e)
     {
         throw e;
     }
@@ -49,17 +61,17 @@ nodos<T>* nodosArboles<T>::buscarDatos(nodos<T>* _nodo, T* _dato)
 {
     try
     {
-        if (_nodo == nullptr || _nodo -> dato == _dato) 
+        if (_nodo == nullptr || _nodo -> obtenerDatos() == _dato)
         {
             return _nodo;
         }
-        else if (_dato < _nodo -> dato) 
+        else if (_dato < _nodo -> obtenerDatos()) 
         {
-            return buscarDatos(_nodo -> izquierda, _dato);
+            return buscarDatos(_nodo -> obtenerIzquierda(), _dato);
         }
         else 
         {
-            return buscarDatos(_nodo -> derecha, _dato);
+            return buscarDatos(_nodo -> obtenerDerecha(), _dato);
         }
     }
     catch (exception& e)
@@ -78,34 +90,34 @@ inline nodos<T>* nodosArboles<T>::eliminarDatos(nodos<T>*& _nodo, T* _dato)
             return _nodo;
         }
 
-        if (_dato < _nodo -> dato) 
+        if (_dato < _nodo -> obtenerDatos()) 
         {
-            _nodo -> izquierda = eliminarDatos(_nodo -> izquierda, _dato);
+            _nodo -> fijarIzquierda() = eliminarDatos(_nodo -> obtenerIzquierda(), _dato);
         }
-        else if (_dato > _nodo -> dato) 
+        else if (_dato > _nodo -> obtenerDatos())
         {
-            _nodo -> derecha = eliminarDatos(_nodo -> derecha, _dato);
+            _nodo -> fijarDerecha() = eliminarDatos(_nodo -> obtenerDerecha(), _dato);
         }
         else 
         {
-            if (_nodo -> izquierda == nullptr) 
+            if (_nodo -> obtenerIzquierda() == nullptr)
             {
-                nodos<T>* temp = _nodo -> derecha;
+                nodos<T>* temp = _nodo -> obtenerDerecha();
                 delete _nodo;
                 return temp;
             }
-            else if (_nodo -> derecha == nullptr) 
+            else if (_nodo -> obtenerDerecha() == nullptr)
             {
-                nodos<T>* temp = _nodo -> izquierda;
+                nodos<T>* temp = _nodo -> obtenerIzquierda();
                 delete _nodo;
                 return temp;
             }
 
-            nodos<T>* temp = encontrarNodoMinimo(_nodo -> derecha);
-            _nodo -> dato = temp -> dato;
-            _nodo -> derecha = eliminarDatos(_nodo -> derecha, temp -> dato);
+            nodos<T>* temp = encontrarNodoMinimo(_nodo -> obtenerDerecha());
+            _nodo -> fijarNodo() = temp -> obtenerDatos();
+            _nodo -> fijarDerecha() = eliminarDatos(_nodo -> obtenerDerecha(), temp -> obtenerDato());
         }
-        return nodo;
+        return _nodo;
     }
     catch (exception& e)
     {
@@ -123,8 +135,8 @@ void nodosArboles<T>::mostrarArbol(nodos<T>* _nodo)
             return 0;
         }
 
-        int alturaIzq = alturaArbol(_nodo -> izquierda);
-        int alturaDer = alturaArbol(_nodo -> derecha);
+        int alturaIzq = alturaArbol(_nodo -> obtenerIzquierda());
+        int alturaDer = alturaArbol(_nodo -> obtenerDerecha());
 
         return 1 + max(alturaIzq, alturaDer);
     }
@@ -141,9 +153,9 @@ void nodosArboles<T>::recorridoProfundidad(nodos<T>* _nodo)
     {
         if (_nodo != nullptr) 
         {
-            cout << _nodo -> dato << " ";
-            recorridoProfundidad(_nodo -> izquierda);
-            recorridoProfundidad(_nodo -> derecha);
+            cout << _nodo -> obtenerDatos() << " ";
+            recorridoProfundidad(_nodo -> obtenerIzquierda());
+            recorridoProfundidad(_nodo -> obtenerDerecha());
         }
     }
     catch (exception& e)
@@ -162,9 +174,9 @@ nodos<T>* nodosArboles<T>::encontrarNodoMinimo(nodos<T>* _nodo)
             return nullptr;
         }
 
-        while (_nodo -> izquierda != nullptr)
+        while (_nodo -> obtenerIzquierda() != nullptr)
         {
-            _nodo = _nodo -> izquierda;
+            _nodo = _nodo -> obtenerIzquierda();
         }
 
         return _nodo;
@@ -206,7 +218,7 @@ int nodosArboles<T>::contarNodos(nodos<T>* _nodo)
             return 0;
         }
 
-        return 1 + contarNodos(_nodo -> izquierda) + contarNodos(_nodo -> derecha);
+        return 1 + contarNodos(_nodo -> obtenerIzquierda()) + contarNodos(_nodo -> obtenerDerecha());
     }
     catch (exception& e)
     {
@@ -224,15 +236,18 @@ int nodosArboles<T>::contarHojas(nodos<T>* _nodo)
             return 0;
         }
 
-        if (_nodo -> izquierda == nullptr && _nodo -> derecha == nullptr)
+        if (_nodo -> obtenerIzquierda() == nullptr && _nodo -> obtenerDerecha() == nullptr)
         {
             return 1;
         }
 
-        return contarHojas(_nodo -> izquierda) + contarHojas(_nodo -> derecha);
+        return contarHojas(_nodo -> obtenerIzquierda()) + contarHojas(_nodo -> obtenerDerecha());
     }
     catch (exception& e)
     {
         throw e;
     }
 }
+
+
+#endif	/* LISTA_H */

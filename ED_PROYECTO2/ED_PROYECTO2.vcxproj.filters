@@ -24,9 +24,6 @@
     <ClCompile Include="metodoInterfaz.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="archivos.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="pacientes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
