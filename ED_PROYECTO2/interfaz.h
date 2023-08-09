@@ -1,5 +1,10 @@
+// Validaciones en la interface
 #include "metodoInterfaz.h"
-#include "doctores.h"
+
+// Clases de datos
+#include "recetaMedica.h"
+
+// Arboles
 #include "arboles.h"
 
 class interfaz
@@ -25,9 +30,18 @@ protected:
 
 	// Arboles
 	arboles<doctores> arbolDoctor;
+	arboles<pacientes> arbolPaciente;
+	arboles<medicamentos> arbolMedicamento;
+	arboles<citas> arbolCita;
+	arboles<recetaMedica> arbolRecetaMedica;
 
 	// Llamados a clases
 	doctores* _doctor;
+	pacientes* _paciente;
+	medicamentos* _medicamento;
+	citas* _citas;
+	recetaMedica* _recetaMedica;
+
 public:
 	void menuPrincipal();
 };

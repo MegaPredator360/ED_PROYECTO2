@@ -1,5 +1,4 @@
-#include "doctores.h"
-#include "pacientes.h"
+#include "medicamentos.h"
 
 class citas
 {

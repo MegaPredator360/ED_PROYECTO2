@@ -1,12 +1,11 @@
-#include "medicamentos.h"
-#include "pacientes.h"
+#include "citas.h"
 
 class recetaMedica
 {
 protected:
 	string codigo;
-	pacientes paciente;
-	medicamentos medicamento;
+	pacientes* paciente;
+	medicamentos* medicamento;
 	int cantidad;
 	float dosis;
 	string frecuencia;
@@ -18,8 +17,8 @@ public:
 	// Constructor lleno
 	recetaMedica(
 		string _codigo,
-		pacientes _paciente,
-		medicamentos _medicamento,
+		pacientes* _paciente,
+		medicamentos* _medicamento,
 		int _cantidad,
 		float _dosis,
 		string _frecuencia
@@ -30,16 +29,16 @@ public:
 
 	// Getters
 	string getCodigo();
-	pacientes getPaciente();
-	medicamentos getMedicamento();
+	pacientes* getPaciente();
+	medicamentos* getMedicamento();
 	int getCantidad();
 	float getDosis();
 	string getFrecuencia();
 
 	// Setters
 	void setCodigo(string _codigo);
-	void setPaciente(pacientes _paciente);
-	void setMedicamento(medicamentos _medicamento);
+	void setPaciente(pacientes* _paciente);
+	void setMedicamento(medicamentos* _medicamento);
 	void setCantidad(int _cantidad);
 	void setDosis(float _dosis);
 	void setFrecuencia(string _frecuencia);

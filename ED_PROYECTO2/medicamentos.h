@@ -1,4 +1,4 @@
-#include "std.h"
+#include "pacientes.h"
 
 class medicamentos
 {
