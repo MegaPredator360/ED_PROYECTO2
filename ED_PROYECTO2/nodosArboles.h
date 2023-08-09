@@ -14,7 +14,7 @@ public:
     void recorridoProfundidad(nodos<T>* _nodo);
     nodos<T>* encontrarNodoMinimo(nodos<T>* _nodo);
     int alturaArbol(nodos<T>* _nodo);
-    int contarNodos(nodos<T>* _nodo);s
+    int contarNodos(nodos<T>* _nodo);
     int contarHojas(nodos<T>* _nodo);
 };
 
