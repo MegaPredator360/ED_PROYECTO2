@@ -127,7 +127,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="arboles.cpp" />
     <ClCompile Include="archivos.cpp" />
     <ClCompile Include="citas.cpp" />
     <ClCompile Include="doctores.cpp" />
@@ -136,7 +135,6 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="medicamentos.cpp" />
     <ClCompile Include="metodoInterfaz.cpp" />
-    <ClCompile Include="nodosArboles.cpp" />
     <ClCompile Include="pacientes.cpp" />
     <ClCompile Include="recetaMedica.cpp" />
   </ItemGroup>

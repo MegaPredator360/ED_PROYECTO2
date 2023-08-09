@@ -45,12 +45,6 @@
     <ClCompile Include="medicamentos.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="nodosArboles.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="arboles.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="interfaz.h">

@@ -7,3 +7,9 @@
 #include <Windows.h>		// Libreria de C++ exclusiva para Windows
 
 using namespace std;
+
+// Colores para consola
+#define RED     "\033[31m"
+#define WHITE   "\033[0m"
+#define YELLOW	"\x1B[33m"
+#define GREEN	"\x1B[32m"

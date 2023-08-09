@@ -2,11 +2,11 @@
 
 int main()
 {
-	/*
-	----------------- Detalles Importantes --------------
+	// Llamado a la clase interfaz
+	interfaz _interfaz;
 
-	*/
+	// Menú Principal
+	_interfaz.menuPrincipal();
 
-	// Hola Mundo
 	return 0;
 }
