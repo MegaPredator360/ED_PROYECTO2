@@ -4,7 +4,7 @@ void interfaz::menuPrincipal()
 {
 	while (1)
 	{
-		cout << "1. Ingresar Doctor" << endl;
+		cout << "1. Ingresar Doctora" << endl;
 		cout << "2. Ingresar Paciente" << endl;
 		cout << "3. Ingresar Medicamento" << endl;
 		cout << "4. Registrar Cita" << endl;
