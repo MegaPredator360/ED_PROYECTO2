@@ -2,5 +2,10 @@
 
 class interfaz
 {
+protected:
+	int opcion;
+
+public:
+	void menuPrincipal();
 };
 
