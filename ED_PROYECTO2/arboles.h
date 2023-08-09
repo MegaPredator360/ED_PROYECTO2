@@ -27,6 +27,7 @@ void arboles<T>::registrarDatos(T* _dato)
 {
     try
     {
+        // Se registra el arbol, y raiz contendrá los nuevos datos del arbol
         _nArboles -> registrarDatos(raiz, _dato);
     }
     catch (exception& e)
