@@ -12,7 +12,7 @@ class interfaz
 protected:
 	// Variables del menú
 	int opcion;
-	char confirmacion;
+	string confirmacion;
 
 	// Variables para llenar datos
 	string cedula;

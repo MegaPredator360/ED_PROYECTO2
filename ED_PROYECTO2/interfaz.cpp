@@ -2,22 +2,29 @@
 
 void interfaz::menuPrincipal()
 {
-	// Contador para averiguar la opción seleccionada
+	// Opción seleccionada
 	opcion = 1;				
 	// Se coloca a todas las opciones con el color por defecto
 	int Set[] = { 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128 };
-	Set[0] = 71;					// Colocar la primera opción como seleccionada
-	int key = 0;					// Encargada de recibir el valor de la tecla pulsada en ASCII
+	// Se marcará la primera opción como seleccionada
+	Set[0] = 71;
+	// Encargada de recibir el valor de la tecla pulsada en ASCII
+	int key = 0;
+
+	int oEspecialidad[] = { 128, 128, 128, 128 };
+	int oConfirmacion[] = { 128, 128 };
 
 	while (1)
 	{
 		system("cls");
+
 		string espacios(120, ' ');
 		string cuadroLado(20, ' ');
 		string cuadroFinal(18, ' ');
 		string cuadroBorde(76, '_');
 		string cuadroRelleno(76, ' ');
 		string cuadroMenuTexto(31, ' ');
+		string cuadroIngresarTexto(50, ' ');
 		string cuadroOpcion(21, ' ');
 
 		cout << "\033[44m\033[30m" << espacios << endl << espacios << endl;
@@ -165,41 +172,303 @@ void interfaz::menuPrincipal()
 				case 1:
 					try
 					{
-						confirmacion = 'N';
-
-						while (confirmacion == 'N')
+						while (1)
 						{
 							system("cls");
-							cout << "Ingresar Doctor" << endl;
+							cout << "\033[44m\033[30m" << espacios << endl << espacios << endl;
+							cout << cuadroLado << "\033[100m ." << cuadroBorde << ". \033[44m" << cuadroLado << endl;
+							cout << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << cuadroLado << "\033[100m |" << cuadroOpcion << "          Ingresar Doctor         " << cuadroOpcion << "| \033[40m  \033[44m" << cuadroFinal << endl;
 
-							cout << endl << "Ingresa el número de cedula del doctor:" << endl;
-							cin >> cedula;
+							for (int i = 0; i < 7; i++)
+							{
+								cout << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
+							}
+							cout << cuadroLado << "\033[100m |" << cuadroBorde << "| \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << cuadroLado << "\033[100m  " << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << cuadroLado << "  \033[40m" << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << "\033[44m\033[30m" << espacios << espacios << espacios;
 
-							cout << endl << "Ingresa el nombre del doctor:" << endl;
-							cin >> nombre;
+							cout << "\033[100m\033[30m";
+							_mInterfaz.moverXY(25, 7);
+							cout << "Ingresa el número de cedula del doctor:";
+							_mInterfaz.moverXY(25, 8);
+							cout << "\033[40m\033[37m" << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 8);
+							getline(cin, cedula);
 
-							cout << endl << "Ingresa la especialidad del doctor:" << endl;
-							cin >> especialidad;
+							_mInterfaz.moverXY(25, 7);
+							cout << "\033[100m\033[30m" << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 7);
+							cout << "Ingresa el nombre completo del doctor:";
+							_mInterfaz.moverXY(25, 8);
+							cout << "\033[40m\033[37m" << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 8);
+							getline(cin, nombre);
 
-							cout << endl << "Ingresa la direccion del doctor:" << endl;
-							cin >> direccion;
+							_mInterfaz.moverXY(25, 7);
+							cout << "\033[100m\033[30m" << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 7);
+							cout << "Selecciona la especialidad del doctor:";
+							_mInterfaz.moverXY(25, 8);
+							cout << cuadroIngresarTexto;
 
-							cout << endl << "Ingresa la hora de inicio:" << endl;
-							cin >> horaInicio;
+							int nEspecialidad = 1;
+							oEspecialidad[0] = { 71 };
 
-							cout << endl << "Ingresa la hora de salida:" << endl;
-							cin >> horaFinal;
+							while (1)
+							{
+								_mInterfaz.moverXY(25, 8);
+								_mInterfaz.color(oEspecialidad[0]);
+								cout << "Cardiólogo ";
 
-							cout << endl << "Ingresa el número de telefono del doctor:" << endl;
-							cin >> telefono;
+								_mInterfaz.moverXY(25, 9);
+								_mInterfaz.color(oEspecialidad[1]);
+								cout << "Pediatra   ";
 
-							cout << endl << "¿Los datos ingresados son correctos?" << endl;
-							cin >> confirmacion;
+								_mInterfaz.moverXY(25, 10);
+								_mInterfaz.color(oEspecialidad[2]);
+								cout << "Ginecólogo ";
 
-							if (confirmacion == 'S')
+								_mInterfaz.moverXY(25, 11);
+								_mInterfaz.color(oEspecialidad[3]);
+								cout << "Dermatólogo";
+
+								key = _getch();
+
+								if (key == 72 && (nEspecialidad >= 1 && nEspecialidad <= 4))		// Validar si la flecha arriba es pulsada	|| 72 es el valor de la flecha arriba en ASCII
+								{
+									nEspecialidad--;
+
+									if (nEspecialidad == 0)
+									{
+										nEspecialidad = 4;
+									}
+								}
+								else if (key == 80 && (nEspecialidad >= 1 && nEspecialidad <= 4))	// Validar si la flecha abajo es pulsada	|| 80 es el valor de la flecha abajo en ASCII
+								{
+									nEspecialidad++;
+
+									if (nEspecialidad == 5)
+									{
+										nEspecialidad = 1;
+									}
+								}
+								else if (key == '\r')
+								{
+									break;
+								}
+
+								oEspecialidad[0] = 128;
+								oEspecialidad[1] = 128;
+								oEspecialidad[2] = 128;
+								oEspecialidad[3] = 128;
+
+								switch (nEspecialidad)
+								{
+								case 1:
+									oEspecialidad[0] = 71;
+									break;
+
+								case 2:
+									oEspecialidad[1] = 71;
+									break;
+
+								case 3:
+									oEspecialidad[2] = 71;
+									break;
+
+								case 4:
+									oEspecialidad[3] = 71;
+									break;
+								}
+							}
+
+							switch (nEspecialidad)
+							{
+							case 1:
+								especialidad = "Cardiólogo";
+								break;
+
+							case 2:
+								especialidad = "Pediatra";
+								break;
+
+							case 3:
+								especialidad = "Ginecólogo";
+								break;
+
+							case 4:
+								especialidad = "Dermatólogo";
+								break;
+							}
+
+							_mInterfaz.moverXY(25, 8);
+							cout << "\033[100m\033[30m" << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 9);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 10);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 11);
+							cout << cuadroIngresarTexto;
+
+							_mInterfaz.moverXY(25, 7);
+							cout << "\033[100m\033[30m" << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 7);
+							cout << "Ingresa la dirección del doctor:";
+							_mInterfaz.moverXY(25, 8);
+							cout << "\033[40m\033[37m" << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 8);
+							getline(cin, direccion);
+
+							_mInterfaz.moverXY(25, 7);
+							cout << "\033[100m\033[30m" << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 7);
+							cout << "Ingresa la hora de entrada del doctor:";
+							_mInterfaz.moverXY(25, 8);
+							cout << "\033[40m\033[37m" << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 8);
+							getline(cin, horaInicio);
+
+							_mInterfaz.moverXY(25, 7);
+							cout << "\033[100m\033[30m" << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 7);
+							cout << "Ingresa la hora de salida del doctor:";
+							_mInterfaz.moverXY(25, 8);
+							cout << "\033[40m\033[37m" << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 8);
+							getline(cin, horaFinal);
+
+							_mInterfaz.moverXY(25, 7);
+							cout << "\033[100m\033[30m" << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 7);
+							cout << "Ingresa el número de telefono del doctor:";
+							_mInterfaz.moverXY(25, 8);
+							cout << "\033[40m\033[37m" << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 8);
+							getline(cin, telefono);
+
+							_mInterfaz.moverXY(0, 7);
+							for (int i = 0; i < 22; i++)
+							{
+								cout << "\033[44m" << cuadroLado << "\033[100m\033[30m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
+							}
+							cout << cuadroLado << "\033[100m |" << cuadroBorde << "| \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << cuadroLado << "\033[100m  " << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << cuadroLado << "  \033[40m" << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << "\033[44m\033[30m" << espacios;
+
+							cout << "\033[100m\033[30m";
+							_mInterfaz.moverXY(25, 3);
+							cout << "Número de cedula:";
+							_mInterfaz.moverXY(25, 4);
+							cout << cedula;
+
+							cout << "\033[100m\033[30m";
+							_mInterfaz.moverXY(25, 6);
+							cout << "Nombre Completo:";
+							_mInterfaz.moverXY(25, 7);
+							cout << nombre;
+
+							cout << "\033[100m\033[30m";
+							_mInterfaz.moverXY(25, 9);
+							cout << "Tipo de Especialidad:";
+							_mInterfaz.moverXY(25, 10);
+							cout << especialidad;
+
+							cout << "\033[100m\033[30m";
+							_mInterfaz.moverXY(25, 12);
+							cout << "Dirección:";
+							_mInterfaz.moverXY(25, 13);
+							cout << direccion;
+
+							cout << "\033[100m\033[30m";
+							_mInterfaz.moverXY(25, 15);
+							cout << "Hora de Entrada:";
+							_mInterfaz.moverXY(25, 16);
+							cout << horaInicio;
+
+							cout << "\033[100m\033[30m";
+							_mInterfaz.moverXY(25, 18);
+							cout << "Hora de Salida:";
+							_mInterfaz.moverXY(25, 19);
+							cout << horaFinal;
+
+							cout << "\033[100m\033[30m";
+							_mInterfaz.moverXY(25, 21);
+							cout << "Telefono:";
+							_mInterfaz.moverXY(25, 22);
+							cout << telefono;
+
+							_mInterfaz.moverXY(25, 24);
+							cout << "¿Los datos ingresados son correctos?" << endl;
+							_mInterfaz.moverXY(28, 25);
+							cout << "/";
+
+							int nConfirmacion = 1;
+							oConfirmacion[0] = 71;
+
+							while (1)
+							{
+								_mInterfaz.moverXY(25, 25);
+								_mInterfaz.color(oConfirmacion[0]);
+								cout << "Sí";
+
+								_mInterfaz.moverXY(30, 25);
+								_mInterfaz.color(oConfirmacion[1]);
+								cout << "No";
+
+								key = _getch();
+
+								// Valida si la flecha izquierda fue pulsada, valor 77 en ASCII
+								if (key == 77)
+								{
+									nConfirmacion--;
+
+									if (nConfirmacion == 0)
+									{
+										nConfirmacion = 2;
+									}
+								}
+								// Valida si la flecha izquierda fue pulsada, valor 224 en ASCII
+								else if (key == 224)
+								{
+									nConfirmacion++;
+
+									if (nConfirmacion == 3)
+									{
+										nConfirmacion = 1;
+									}
+
+									// Se invoca al _getch() porque por alguna razón retorna un segundo valor que es el 77
+									_getch();
+								}
+								else if (key == '\r')
+								{
+									break;
+								}
+
+								oConfirmacion[0] = 128;
+								oConfirmacion[1] = 128;
+
+								switch (nConfirmacion)
+								{
+								case 1:
+									oConfirmacion[0] = 71;
+									break;
+
+								case 2:
+									oConfirmacion[1] = 71;
+									break;
+								}
+							}
+							cout << "\033[44m";
+
+							if (nConfirmacion == 1)
 							{
 								_doctor = new doctores(cedula, nombre, especialidad, direccion, horaInicio, horaFinal, telefono);
 								arbolDoctor.registrarDatos(_doctor);
+								break;
 							}
 						}
 					}
@@ -215,9 +484,9 @@ void interfaz::menuPrincipal()
 					// Ingresar Paciente
 					try
 					{
-						confirmacion = 'N';
+						confirmacion = "N";
 
-						while (confirmacion == 'N')
+						while (confirmacion == "N")
 						{
 							system("cls");
 							cout << "Ingresar Paciente" << endl << endl;
@@ -237,7 +506,7 @@ void interfaz::menuPrincipal()
 							cout << "¿Los datos ingresados son correctos?" << endl;
 							cin >> confirmacion;
 
-							if (confirmacion == 'S')
+							if (confirmacion == "S")
 							{
 
 							}
@@ -255,9 +524,9 @@ void interfaz::menuPrincipal()
 					// Ingresar Medicamento
 					try
 					{
-						confirmacion = 'N';
+						confirmacion = "N";
 
-						while (confirmacion == 'N')
+						while (confirmacion == "N")
 						{
 							system("cls");
 							cout << "Ingresar Medicamento" << endl << endl;
@@ -274,7 +543,7 @@ void interfaz::menuPrincipal()
 							cout << "¿Los datos ingresados son correctos?" << endl;
 							cin >> confirmacion;
 
-							if (confirmacion == 'S')
+							if (confirmacion == "S")
 							{
 
 							}
@@ -292,9 +561,9 @@ void interfaz::menuPrincipal()
 					// Registrar Cita
 					try
 					{
-						confirmacion = 'N';
+						confirmacion = "N";
 
-						while (confirmacion == 'N')
+						while (confirmacion == "N")
 						{
 							system("cls");
 							cout << "Ingresar Cita" << endl << endl;
@@ -314,7 +583,7 @@ void interfaz::menuPrincipal()
 							cout << "¿Los datos ingresados son correctos?" << endl;
 							cin >> confirmacion;
 
-							if (confirmacion == 'S')
+							if (confirmacion == "S")
 							{
 
 							}
