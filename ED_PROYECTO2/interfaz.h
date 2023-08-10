@@ -41,6 +41,7 @@ protected:
 	medicamentos* _medicamento;
 	citas* _citas;
 	recetaMedica* _recetaMedica;
+	metodoInterfaz _mInterfaz;
 
 public:
 	void menuPrincipal();

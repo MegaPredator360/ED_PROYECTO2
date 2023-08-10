@@ -2,6 +2,9 @@
 
 int main()
 {
+	// Para mostrar caracteres especiales
+	setlocale(LC_ALL, "");
+
 	// Llamado a la clase interfaz
 	interfaz _interfaz;
 
