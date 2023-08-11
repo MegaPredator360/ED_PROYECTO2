@@ -4,7 +4,7 @@
 #include "std.h"
 
 template <class T>
-class nodos 
+class nodos
 {
 protected:
     // Los tipos de dato que contedrán los nodos
@@ -12,15 +12,21 @@ protected:
     nodos<T>* izquierda;
     nodos<T>* derecha;
 
+    // Contenedor de cedula o codigo
+    string codigo;
+
 public:
     // Constructor
-    nodos(T* _datos, nodos<T>* _izquierda, nodos<T>* _derecha);
+    nodos(T* _datos);
 
     // Destructor
     virtual ~nodos();
 
     //Obtendrá los datos del nodo
     virtual T* obtenerDatos() const;
+
+    // Obtendrá ya sea la cedula o el codigo
+    virtual string obtenerCodigo();
 
     // Obtendrá los datos del nodo de la izquierda
     virtual nodos<T>* obtenerIzquierda() const;
@@ -38,13 +44,8 @@ public:
     virtual void fijarDerecha(nodos<T>* _derecha);
 };
 
-template <class T>
-nodos<T>::nodos(T* _datos, nodos<T>* _izquierda, nodos<T>* _derecha)
-{
-    dato = _datos;
-    this -> izquierda = _izquierda;
-    this -> derecha = _derecha;
-}
+template<class T>
+nodos<T>::nodos(T* _datos) : dato(_datos), izquierda(nullptr), derecha(nullptr) { }
 
 template <class T>
 nodos<T>::~nodos() { }
@@ -53,6 +54,19 @@ template <class T>
 T* nodos<T>::obtenerDatos() const 
 {
     return dato;
+}
+
+template<class T>
+string nodos<T>::obtenerCodigo()
+{
+    // Verificamos si dato es de la clase doctores
+    if (typeid(dato) == typeid(doctores*))
+    {
+        doctores* _doctor = dato;
+        codigo = _doctor -> getCedula();
+    }
+
+    return codigo;
 }
 
 template <class T>

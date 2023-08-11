@@ -11,7 +11,7 @@ protected:
     nodosArboles<T>* _nArboles;
 
 public:
-	void registrarDatos(T* _dato);
+	void registrarDatos(T* _dato, string _numero);
 	void buscarDatos(T* _dato);
 	void eliminarDatos(T* _dato);
     void mostrarArbol();
@@ -23,12 +23,12 @@ public:
 };
 
 template<class T>
-void arboles<T>::registrarDatos(T* _dato)
+void arboles<T>::registrarDatos(T* _dato, string _numero)
 {
     try
     {
         // Se registra el arbol, y raiz contendrá los nuevos datos del arbol
-        _nArboles -> registrarDatos(raiz, _dato);
+        _nArboles -> registrarDatos(raiz, _dato, _numero);
     }
     catch (exception& e)
     {

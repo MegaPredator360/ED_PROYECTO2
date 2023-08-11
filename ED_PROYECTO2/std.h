@@ -5,6 +5,7 @@
 #include <conio.h>			// Para obtener caracter en formato ASCII
 #include <queue>			// Para poder realizar listas en colas
 #include <Windows.h>		// Libreria de C++ exclusiva para Windows
+#include <typeinfo>			// Para verificar las clases en la clase nodos
 
 using namespace std;
 

@@ -38,7 +38,7 @@ void interfaz::menuPrincipal()
 		for (int i = 0;;)
 		{
 			// Opcion 1
-			// Indica la posicion de donde se escribirá el texto
+			// Indica donde se va a posicionar el cursor en la consola
 			_mInterfaz.moverXY(44, 7);
 			// Inidicará el color a ingresar marcar si la opcion es seleccionada
 			_mInterfaz.color(Set[0]);
@@ -467,7 +467,7 @@ void interfaz::menuPrincipal()
 							if (nConfirmacion == 1)
 							{
 								_doctor = new doctores(cedula, nombre, especialidad, direccion, horaInicio, horaFinal, telefono);
-								arbolDoctor.registrarDatos(_doctor);
+								arbolDoctor.registrarDatos(_doctor, cedula);
 								break;
 							}
 						}

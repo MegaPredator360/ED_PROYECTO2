@@ -7,7 +7,7 @@ template <class T>
 class nodosArboles
 {
 public:
-    void registrarDatos(nodos<T>*& _nodo, T* _dato);
+    void registrarDatos(nodos<T>*& _nodo, T* _dato, string _numero);
     nodos<T>* buscarDatos(nodos<T>* _nodo, T* _dato);
     nodos<T>* eliminarDatos(nodos<T>*& _nodo, T* _dato);
     void mostrarArbol(nodos<T>* _nodo);
@@ -19,32 +19,34 @@ public:
 };
 
 template<class T>
-void nodosArboles<T>::registrarDatos(nodos<T>*& _nodo, T* _dato)
+void nodosArboles<T>::registrarDatos(nodos<T>*& _nodo, T* _dato, string _numero)
 {
     try
     {
         if (_nodo == nullptr) 
         {
-            _nodo = new nodos<T>(_dato, nullptr, nullptr);
+            _nodo = new nodos<T>(_dato);
         }
-        else if (_dato < _nodo -> obtenerDatos()) 
+        else if (_numero < _nodo -> obtenerCodigo()) 
         {
+
             // Se crea una variable temporal que obtendrá el dato del nodo izquierda
             nodos<T>* nodoNuevo = _nodo -> obtenerIzquierda();
 
             // Se envia esa variable temporal ya que regresa a su vez con un dato nuevo
-            registrarDatos(nodoNuevo, _dato);
+            registrarDatos(nodoNuevo, _dato, _numero);
 
             // Se guardará ese dato nuevo en la izquierda del nodo
-            _nodo->fijarIzquierda(nodoNuevo);
+            _nodo -> fijarIzquierda(nodoNuevo);
         }
-        else if (_dato > _nodo -> obtenerDatos()) 
+        else if (_numero > _nodo -> obtenerCodigo())
         {
+
             // Se crea una variable temporal que obtendrá el dato del nodo derecha
             nodos<T>* nodoNuevo = _nodo -> obtenerDerecha();
 
             // Se envia esa variable temporal ya que regresa a su vez con un dato nuevo
-            registrarDatos(nodoNuevo, _dato);
+            registrarDatos(nodoNuevo, _dato, _numero);
 
             // Se guardará ese dato nuevo en la derecha del nodo
             _nodo -> fijarDerecha(nodoNuevo);
