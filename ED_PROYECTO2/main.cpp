@@ -8,14 +8,11 @@ int main()
 	// Llamado a la clase interfaz
 	interfaz _interfaz;
 
-	// Obtener el handle de la consola actual
-	HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+	HWND console = GetConsoleWindow();
+	RECT r;
+	GetWindowRect(console, &r); // Guarda las dimensiones actuales de la ventana de la consola
 
-	// Definir la nueva posición y tamaño de la ventana
-	SMALL_RECT windowSize = { 0, 0, 130, 35 };  // Cambia los valores según tus necesidades
-
-	// Establecer el nuevo tamaño de la ventana
-	SetConsoleWindowInfo(consoleHandle, TRUE, &windowSize);
+	MoveWindow(console, r.left, r.top, 800, 100, TRUE); // 800 width, 100 height
 
 	// Menú Principal
 	_interfaz.menuPrincipal();
