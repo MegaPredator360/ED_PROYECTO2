@@ -23,126 +23,100 @@ void interfaz::menuPrincipal()
 		string cuadroFinal(18, ' ');
 		string cuadroBorde(76, '_');
 		string cuadroRelleno(76, ' ');
-		string cuadroMenuTexto(31, ' ');
 		string cuadroIngresarTexto(50, ' ');
-		string cuadroOpcion(21, ' ');
 
-		cout << "\033[44m\033[30m" << espacios << endl << espacios << endl;
+
+		// Se genera el cuadro del menú principal
+		cout << "\033[44m\033[30m" << espacios << endl;
 		cout << cuadroLado << "\033[100m ." << cuadroBorde << ". \033[44m" << cuadroLado << endl;
-		cout << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
-		cout << cuadroLado << "\033[100m |" << cuadroMenuTexto << "Menú Principal" << cuadroMenuTexto << "| \033[40m  \033[44m" << cuadroFinal << endl;
-		cout << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
-		cout << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
-		cout << cuadroLado << "\033[100m | " << cuadroOpcion;
+
+		for (int i = 0; i < 20; i++)
+		{
+			cout << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
+		}
+
+		cout << cuadroLado << "\033[100m |" << cuadroBorde << "| \033[40m  \033[44m" << cuadroFinal << endl;
+		cout << cuadroLado << "\033[100m  " << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+		cout << cuadroLado << "  \033[40m" << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+		cout << "\033[44m\033[30m" << espacios << espacios << espacios;
+
+		_mInterfaz.moverXY(53, 4);
+		cout << "\033[100mMenú Principal";
 
 		for (int i = 0;;)
 		{
 			// Opcion 1
 			// Indica donde se va a posicionar el cursor en la consola
-			_mInterfaz.moverXY(44, 7);
+			_mInterfaz.moverXY(44, 6);
 			// Inidicará el color a ingresar marcar si la opcion es seleccionada
 			_mInterfaz.color(Set[0]);
 			// Texto de la opción
 			cout << "         Ingresar Doctor         ";
-			cout << "\033[100m\033[30m" << cuadroOpcion << "| \033[40m  \033[44m" << cuadroFinal << endl;
 
 			// Opcion 2
-			cout << cuadroLado << "\033[100m | " << cuadroOpcion;
-			_mInterfaz.moverXY(44, 8);
+			_mInterfaz.moverXY(44, 7);
 			_mInterfaz.color(Set[1]);
 			cout << "        Ingresar Paciente        ";
-			cout << "\033[100m\033[30m" << cuadroOpcion << "| \033[40m  \033[44m" << cuadroFinal << endl;
 
 			// Opcion 3
-			cout << cuadroLado << "\033[100m | " << cuadroOpcion;
-			_mInterfaz.moverXY(44, 9);
+			_mInterfaz.moverXY(44, 8);
 			_mInterfaz.color(Set[2]);
 			cout << "      Ingresar Medicamentos      ";
-			cout << "\033[100m\033[30m" << cuadroOpcion << "| \033[40m  \033[44m" << cuadroFinal << endl;
 
 			// Opcion 4
-			cout << cuadroLado << "\033[100m | " << cuadroOpcion;
-			_mInterfaz.moverXY(44, 10);
+			_mInterfaz.moverXY(44, 9);
 			_mInterfaz.color(Set[3]);
 			cout << "          Registrar Cita         ";
-			cout << "\033[100m\033[30m" << cuadroOpcion << "| \033[40m  \033[44m" << cuadroFinal << endl;
 
 			// Opcion 5
-			cout << cuadroLado << "\033[100m | " << cuadroOpcion;
-			_mInterfaz.moverXY(44, 11);
+			_mInterfaz.moverXY(44, 10);
 			_mInterfaz.color(Set[4]);
 			cout << "          Modificar Cita         ";
-			cout << "\033[100m\033[30m" << cuadroOpcion << "| \033[40m  \033[44m" << cuadroFinal << endl;
 
 			// Opcion 6
-			cout << cuadroLado << "\033[100m | " << cuadroOpcion;
-			_mInterfaz.moverXY(44, 12);
+			_mInterfaz.moverXY(44, 11);
 			_mInterfaz.color(Set[5]);
 			cout << "          Eliminar Cita          ";
-			cout << "\033[100m\033[30m" << cuadroOpcion << "| \033[40m  \033[44m" << cuadroFinal << endl;
 
 			// Opcion 7
-			cout << cuadroLado << "\033[100m | " << cuadroOpcion;
-			_mInterfaz.moverXY(44, 13);
+			_mInterfaz.moverXY(44, 12);
 			_mInterfaz.color(Set[6]);
 			cout << "     Consultar Receta Medica     ";
-			cout << "\033[100m\033[30m" << cuadroOpcion << "| \033[40m  \033[44m" << cuadroFinal << endl;
 
 			// Opcion 8
-			cout << cuadroLado << "\033[100m | " << cuadroOpcion;
-			_mInterfaz.moverXY(44, 14);
+			_mInterfaz.moverXY(44, 13);
 			_mInterfaz.color(Set[7]);
 			cout << "          Mostrar Arbol          ";
-			cout << "\033[100m\033[30m" << cuadroOpcion << "| \033[40m  \033[44m" << cuadroFinal << endl;
 
 			// Opcion 9
-			cout << cuadroLado << "\033[100m | " << cuadroOpcion;
-			_mInterfaz.moverXY(44, 15);
+			_mInterfaz.moverXY(44, 14);
 			_mInterfaz.color(Set[8]);
 			cout << "        Recorrido Profundo       ";
-			cout << "\033[100m\033[30m" << cuadroOpcion << "| \033[40m  \033[44m" << cuadroFinal << endl;
 
 			// Opcion 10
-			cout << cuadroLado << "\033[100m | " << cuadroOpcion;
-			_mInterfaz.moverXY(44, 16);
+			_mInterfaz.moverXY(44, 15);
 			_mInterfaz.color(Set[9]);
 			cout << "      Recorrido por niveles      ";
-			cout << "\033[100m\033[30m" << cuadroOpcion << "| \033[40m  \033[44m" << cuadroFinal << endl;
 
 			// Opcion 11
-			cout << cuadroLado << "\033[100m | " << cuadroOpcion;
-			_mInterfaz.moverXY(44, 17);
+			_mInterfaz.moverXY(44, 16);
 			_mInterfaz.color(Set[10]);
 			cout << "         Altura del arbol        ";
-			cout << "\033[100m\033[30m" << cuadroOpcion << "| \033[40m  \033[44m" << cuadroFinal << endl;
 
 			// Opcion 12
-			cout << cuadroLado << "\033[100m | " << cuadroOpcion;
-			_mInterfaz.moverXY(44, 18);
+			_mInterfaz.moverXY(44, 17);
 			_mInterfaz.color(Set[11]);
 			cout << "           Contar Nodos          ";
-			cout << "\033[100m\033[30m" << cuadroOpcion << "| \033[40m  \033[44m" << cuadroFinal << endl;
 
 			// Opcion 13
-			cout << cuadroLado << "\033[100m | " << cuadroOpcion;
-			_mInterfaz.moverXY(44, 19);
+			_mInterfaz.moverXY(44, 18);
 			_mInterfaz.color(Set[12]);
 			cout << "           Contar Hojas          ";
-			cout << "\033[100m\033[30m" << cuadroOpcion << "| \033[40m  \033[44m" << cuadroFinal << endl;
 
 			// Opcion 14
-			cout << cuadroLado << "\033[100m | " << cuadroOpcion;
-			_mInterfaz.moverXY(44, 20);
+			_mInterfaz.moverXY(44, 19);
 			_mInterfaz.color(Set[13]);
 			cout << "              Salir              ";
-			cout << "\033[100m\033[30m" << cuadroOpcion << "| \033[40m  \033[44m" << cuadroFinal << endl;
-
-			cout << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
-			cout << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
-			cout << cuadroLado << "\033[100m |" << cuadroBorde << "| \033[40m  \033[44m" << cuadroFinal << endl;
-			cout << cuadroLado << "\033[100m  " << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
-			cout << cuadroLado << "  \033[40m" << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
-			cout << "\033[44m\033[30m" << espacios << espacios << espacios;
 
 			key = _getch();
 
@@ -167,6 +141,9 @@ void interfaz::menuPrincipal()
 			// Identifica si la tecla ENTER fue pulsada
 			else if (key == '\r')
 			{
+
+				cout << "\033[44m\033[30m";
+
 				switch (opcion)
 				{
 				case 1:
@@ -175,42 +152,43 @@ void interfaz::menuPrincipal()
 						while (1)
 						{
 							system("cls");
-							cout << "\033[44m\033[30m" << espacios << endl << espacios << endl;
+							cout << "\033[44m\033[30m" << espacios << endl;
 							cout << cuadroLado << "\033[100m ." << cuadroBorde << ". \033[44m" << cuadroLado << endl;
-							cout << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
-							cout << cuadroLado << "\033[100m |" << cuadroOpcion << "          Ingresar Doctor         " << cuadroOpcion << "| \033[40m  \033[44m" << cuadroFinal << endl;
 
-							for (int i = 0; i < 7; i++)
+							for (int i = 0; i < 9; i++)
 							{
 								cout << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
 							}
+
 							cout << cuadroLado << "\033[100m |" << cuadroBorde << "| \033[40m  \033[44m" << cuadroFinal << endl;
 							cout << cuadroLado << "\033[100m  " << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
 							cout << cuadroLado << "  \033[40m" << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
-							cout << "\033[44m\033[30m" << espacios << espacios << espacios;
+							cout << "\033[44m\033[30m" << espacios;
 
-							cout << "\033[100m\033[30m";
-							_mInterfaz.moverXY(25, 7);
+							_mInterfaz.moverXY(52, 4);
+							cout << "\033[100mIngresar Doctor";
+
+							_mInterfaz.moverXY(25, 6);
 							cout << "Ingresa el número de cedula del doctor:";
-							_mInterfaz.moverXY(25, 8);
+							_mInterfaz.moverXY(25, 7);
 							cout << "\033[40m\033[37m" << cuadroIngresarTexto;
-							_mInterfaz.moverXY(25, 8);
+							_mInterfaz.moverXY(25, 7);
 							getline(cin, cedula);
 
-							_mInterfaz.moverXY(25, 7);
+							_mInterfaz.moverXY(25, 6);
 							cout << "\033[100m\033[30m" << cuadroIngresarTexto;
-							_mInterfaz.moverXY(25, 7);
+							_mInterfaz.moverXY(25, 6);
 							cout << "Ingresa el nombre completo del doctor:";
-							_mInterfaz.moverXY(25, 8);
+							_mInterfaz.moverXY(25, 7);
 							cout << "\033[40m\033[37m" << cuadroIngresarTexto;
-							_mInterfaz.moverXY(25, 8);
+							_mInterfaz.moverXY(25, 7);
 							getline(cin, nombre);
 
-							_mInterfaz.moverXY(25, 7);
+							_mInterfaz.moverXY(25, 6);
 							cout << "\033[100m\033[30m" << cuadroIngresarTexto;
-							_mInterfaz.moverXY(25, 7);
+							_mInterfaz.moverXY(25, 6);
 							cout << "Selecciona la especialidad del doctor:";
-							_mInterfaz.moverXY(25, 8);
+							_mInterfaz.moverXY(25, 7);
 							cout << cuadroIngresarTexto;
 
 							int nEspecialidad = 1;
@@ -218,19 +196,19 @@ void interfaz::menuPrincipal()
 
 							while (1)
 							{
-								_mInterfaz.moverXY(25, 8);
+								_mInterfaz.moverXY(25, 7);
 								_mInterfaz.color(oEspecialidad[0]);
 								cout << "Cardiólogo ";
 
-								_mInterfaz.moverXY(25, 9);
+								_mInterfaz.moverXY(25, 8);
 								_mInterfaz.color(oEspecialidad[1]);
 								cout << "Pediatra   ";
 
-								_mInterfaz.moverXY(25, 10);
+								_mInterfaz.moverXY(25, 9);
 								_mInterfaz.color(oEspecialidad[2]);
 								cout << "Ginecólogo ";
 
-								_mInterfaz.moverXY(25, 11);
+								_mInterfaz.moverXY(25, 10);
 								_mInterfaz.color(oEspecialidad[3]);
 								cout << "Dermatólogo";
 
@@ -303,56 +281,60 @@ void interfaz::menuPrincipal()
 								break;
 							}
 
-							_mInterfaz.moverXY(25, 8);
+							_mInterfaz.moverXY(25, 7);
 							cout << "\033[100m\033[30m" << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 8);
+							cout << cuadroIngresarTexto;
 							_mInterfaz.moverXY(25, 9);
 							cout << cuadroIngresarTexto;
 							_mInterfaz.moverXY(25, 10);
 							cout << cuadroIngresarTexto;
-							_mInterfaz.moverXY(25, 11);
-							cout << cuadroIngresarTexto;
 
-							_mInterfaz.moverXY(25, 7);
+							_mInterfaz.moverXY(25, 6);
 							cout << "\033[100m\033[30m" << cuadroIngresarTexto;
-							_mInterfaz.moverXY(25, 7);
+							_mInterfaz.moverXY(25, 6);
 							cout << "Ingresa la dirección del doctor:";
-							_mInterfaz.moverXY(25, 8);
+							_mInterfaz.moverXY(25, 7);
 							cout << "\033[40m\033[37m" << cuadroIngresarTexto;
-							_mInterfaz.moverXY(25, 8);
+							_mInterfaz.moverXY(25, 7);
 							getline(cin, direccion);
 
-							_mInterfaz.moverXY(25, 7);
+							_mInterfaz.moverXY(25, 6);
 							cout << "\033[100m\033[30m" << cuadroIngresarTexto;
-							_mInterfaz.moverXY(25, 7);
+							_mInterfaz.moverXY(25, 6);
 							cout << "Ingresa la hora de entrada del doctor:";
-							_mInterfaz.moverXY(25, 8);
+							_mInterfaz.moverXY(25, 7);
 							cout << "\033[40m\033[37m" << cuadroIngresarTexto;
-							_mInterfaz.moverXY(25, 8);
+							_mInterfaz.moverXY(25, 7);
 							getline(cin, horaInicio);
 
-							_mInterfaz.moverXY(25, 7);
+							_mInterfaz.moverXY(25, 6);
 							cout << "\033[100m\033[30m" << cuadroIngresarTexto;
-							_mInterfaz.moverXY(25, 7);
+							_mInterfaz.moverXY(25, 6);
 							cout << "Ingresa la hora de salida del doctor:";
-							_mInterfaz.moverXY(25, 8);
+							_mInterfaz.moverXY(25, 7);
 							cout << "\033[40m\033[37m" << cuadroIngresarTexto;
-							_mInterfaz.moverXY(25, 8);
+							_mInterfaz.moverXY(25, 7);
 							getline(cin, horaFinal);
 
-							_mInterfaz.moverXY(25, 7);
+							_mInterfaz.moverXY(25, 6);
 							cout << "\033[100m\033[30m" << cuadroIngresarTexto;
-							_mInterfaz.moverXY(25, 7);
+							_mInterfaz.moverXY(25, 6);
 							cout << "Ingresa el número de telefono del doctor:";
-							_mInterfaz.moverXY(25, 8);
+							_mInterfaz.moverXY(25, 7);
 							cout << "\033[40m\033[37m" << cuadroIngresarTexto;
-							_mInterfaz.moverXY(25, 8);
+							_mInterfaz.moverXY(25, 7);
 							getline(cin, telefono);
 
-							_mInterfaz.moverXY(0, 7);
-							for (int i = 0; i < 22; i++)
+							system("cls");
+							cout << "\033[44m\033[30m" << espacios << endl;
+							cout << cuadroLado << "\033[100m ." << cuadroBorde << ". \033[44m" << cuadroLado << endl;
+
+							for (int i = 0; i < 24; i++)
 							{
-								cout << "\033[44m" << cuadroLado << "\033[100m\033[30m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
+								cout << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
 							}
+
 							cout << cuadroLado << "\033[100m |" << cuadroBorde << "| \033[40m  \033[44m" << cuadroFinal << endl;
 							cout << cuadroLado << "\033[100m  " << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
 							cout << cuadroLado << "  \033[40m" << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;

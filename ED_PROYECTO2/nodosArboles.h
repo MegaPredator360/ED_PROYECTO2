@@ -29,7 +29,6 @@ void nodosArboles<T>::registrarDatos(nodos<T>*& _nodo, T* _dato, string _numero)
         }
         else if (_numero < _nodo -> obtenerCodigo()) 
         {
-
             // Se crea una variable temporal que obtendrá el dato del nodo izquierda
             nodos<T>* nodoNuevo = _nodo -> obtenerIzquierda();
 
