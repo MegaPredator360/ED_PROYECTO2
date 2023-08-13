@@ -11,7 +11,7 @@ void interfaz::menuPrincipal()
 	// Encargada de recibir el valor de la tecla pulsada en ASCII
 	int key = 0;
 
-	int oEspecialidad[] = { 128, 128, 128, 128 };
+	
 	int oConfirmacion[] = { 128, 128 };
 
 	while (1)
@@ -38,7 +38,7 @@ void interfaz::menuPrincipal()
 		cout << cuadroLado << "\033[100m |" << cuadroBorde << "| \033[40m  \033[44m" << cuadroFinal << endl;
 		cout << cuadroLado << "\033[100m  " << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
 		cout << cuadroLado << "  \033[40m" << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
-		cout << "\033[44m\033[30m" << espacios << espacios << espacios;
+		cout << "\033[44m\033[30m" << espacios << espacios << espacios << espacios << espacios;
 
 		_mInterfaz.moverXY(53, 4);
 		cout << "\033[100mMenú Principal";
@@ -169,16 +169,31 @@ void interfaz::menuPrincipal()
 							cout << "\033[100mIngresar Doctor";
 
 							_mInterfaz.moverXY(25, 6);
-							cout << "Ingresa el número de cedula del doctor:";
+							cout << "Ingresa el número de cedula del doctor: (9 digitos, incluir los 0)";
 							_mInterfaz.moverXY(25, 7);
 							cout << "\033[40m\033[37m" << cuadroIngresarTexto;
 							_mInterfaz.moverXY(25, 7);
-							getline(cin, cedula);
+							cedula = _mInterfaz.ingresarNumeros();
 
+							while (cedula.length() != 9 || cedula.at(1) != '0' || cedula.at(5) != '0')
+							{
+								_mInterfaz.moverXY(25, 8);
+								cout << "\033[100m\033[31mLo ingresado no coincide con el formato solicitado o ya existe.";
+								_mInterfaz.moverXY(25, 9);
+								cout << "Por favor vuelve a ingresar el número de cedula.";
+								_mInterfaz.moverXY(25, 7);
+								cout << "\033[40m\033[37m" << cuadroIngresarTexto;
+								_mInterfaz.moverXY(25, 7);
+								cedula = _mInterfaz.ingresarNumeros();
+							}
+
+							_mInterfaz.moverXY(0, 8);
+							cout << "\033[44m\033[30m" << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal;
+							_mInterfaz.moverXY(0, 6);
+							cout << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal;
 							_mInterfaz.moverXY(25, 6);
-							cout << "\033[100m\033[30m" << cuadroIngresarTexto;
-							_mInterfaz.moverXY(25, 6);
-							cout << "Ingresa el nombre completo del doctor:";
+							cout << "\033[100mIngresa el nombre completo del doctor:";
 							_mInterfaz.moverXY(25, 7);
 							cout << "\033[40m\033[37m" << cuadroIngresarTexto;
 							_mInterfaz.moverXY(25, 7);
@@ -191,6 +206,7 @@ void interfaz::menuPrincipal()
 							_mInterfaz.moverXY(25, 7);
 							cout << cuadroIngresarTexto;
 
+							int oEspecialidad[] = { 128, 128, 128, 128 };
 							int nEspecialidad = 1;
 							oEspecialidad[0] = { 71 };
 
@@ -304,18 +320,20 @@ void interfaz::menuPrincipal()
 							_mInterfaz.moverXY(25, 6);
 							cout << "Ingresa la hora de entrada del doctor:";
 							_mInterfaz.moverXY(25, 7);
-							cout << "\033[40m\033[37m" << cuadroIngresarTexto;
-							_mInterfaz.moverXY(25, 7);
-							getline(cin, horaInicio);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(27, 7);
+							cout << ":";
+							horaInicio = _mInterfaz.ingresarHora();
 
 							_mInterfaz.moverXY(25, 6);
 							cout << "\033[100m\033[30m" << cuadroIngresarTexto;
 							_mInterfaz.moverXY(25, 6);
 							cout << "Ingresa la hora de salida del doctor:";
 							_mInterfaz.moverXY(25, 7);
-							cout << "\033[40m\033[37m" << cuadroIngresarTexto;
-							_mInterfaz.moverXY(25, 7);
-							getline(cin, horaFinal);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(27, 7);
+							cout << ":";
+							horaFinal = _mInterfaz.ingresarHora();
 
 							_mInterfaz.moverXY(25, 6);
 							cout << "\033[100m\033[30m" << cuadroIngresarTexto;
@@ -324,10 +342,24 @@ void interfaz::menuPrincipal()
 							_mInterfaz.moverXY(25, 7);
 							cout << "\033[40m\033[37m" << cuadroIngresarTexto;
 							_mInterfaz.moverXY(25, 7);
-							getline(cin, telefono);
+							telefono = _mInterfaz.ingresarNumeros();
+
+							while (telefono.length() != 8)
+							{
+								_mInterfaz.moverXY(25, 8);
+								cout << "\033[100m\033[31mLo ingresado no coincide con el formato solicitado.";
+								_mInterfaz.moverXY(25, 9);
+								cout << "Por favor vuelve a ingresar el número de telefono.";
+								_mInterfaz.moverXY(25, 7);
+								cout << "\033[40m\033[37m" << cuadroIngresarTexto;
+								_mInterfaz.moverXY(25, 7);
+								telefono = _mInterfaz.ingresarNumeros();
+							}
+
+							cout << "\033[44m\033[30m";
 
 							system("cls");
-							cout << "\033[44m\033[30m" << espacios << endl;
+							cout << espacios << endl;
 							cout << cuadroLado << "\033[100m ." << cuadroBorde << ". \033[44m" << cuadroLado << endl;
 
 							for (int i = 0; i < 24; i++)
@@ -450,15 +482,15 @@ void interfaz::menuPrincipal()
 							{
 								_doctor = new doctores(cedula, nombre, especialidad, direccion, horaInicio, horaFinal, telefono);
 								arbolDoctor.registrarDatos(_doctor, cedula);
+								_mInterfaz.mostrarMensajeExito("¡El doctor fue ingresado con exito!");
+
 								break;
 							}
 						}
 					}
-					catch (exception& e) {
-						cout << RED << "Ha ocurrido un error: " << WHITE << e.what() << endl;
-						cout << "-------------------------" << endl;
-						cout << "Volviendo al Menu Principal." << endl << endl;
-						system("pause");
+					catch (exception& e) 
+					{
+						_mInterfaz.mostrarMensajeFallido(e.what());
 					}
 					break;
 

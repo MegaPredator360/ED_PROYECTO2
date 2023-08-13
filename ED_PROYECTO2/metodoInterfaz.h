@@ -8,5 +8,17 @@ public:
 
 	// Indicará la posición del texto al mostrarse en la consola
 	void moverXY(int _x, int _y);
+
+	// Permitirá al usuario solo ingresar números en tiempo real
+	string ingresarNumeros();
+
+	// Permitirá al usuario ingresar una hora
+	string ingresarHora();
+
+	// Mostrará un cuadro de mensaje cuando una acción se realiza con exito
+	void mostrarMensajeExito(string _mensaje);
+
+	// Mostrará un cuadro de mensaje cuando ocurre un error durante la realización de una accion
+	void mostrarMensajeFallido(string _mensaje);
 };
 
