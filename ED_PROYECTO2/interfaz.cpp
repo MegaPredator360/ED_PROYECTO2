@@ -585,7 +585,7 @@ void interfaz::menuPrincipal()
 							cout << espacios << endl;
 							cout << cuadroLado << "\033[100m ." << cuadroBorde << ". \033[44m" << cuadroLado << endl;
 
-							for (int i = 0; i < 18; i++)
+							for (int i = 0; i < 15; i++)
 							{
 								cout << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
 							}
@@ -756,7 +756,7 @@ void interfaz::menuPrincipal()
 							cout << espacios << endl;
 							cout << cuadroLado << "\033[100m ." << cuadroBorde << ". \033[44m" << cuadroLado << endl;
 
-							for (int i = 0; i < 18; i++)
+							for (int i = 0; i < 12; i++)
 							{
 								cout << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
 							}
@@ -770,7 +770,7 @@ void interfaz::menuPrincipal()
 							_mInterfaz.moverXY(25, 3);
 							cout << "Codigo del medicamento:";
 							_mInterfaz.moverXY(25, 4);
-							cout << cedula;
+							cout << codigo;
 
 							cout << "\033[100m\033[30m";
 							_mInterfaz.moverXY(25, 6);
