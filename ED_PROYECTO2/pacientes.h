@@ -21,13 +21,13 @@ public:
 	);
 
 	// Destructor
-	~pacientes();
+	virtual ~pacientes();
 
 	// Getters
-	string getCedula();
-	string getNombre();
-	string getDireccion();
-	string getTelefono();
+	virtual string getCedula();
+	virtual string getNombre();
+	virtual string getDireccion();
+	virtual string getTelefono();
 
 	// Setters
 	void setCedula(string _cedula);

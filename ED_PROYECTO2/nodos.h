@@ -60,10 +60,17 @@ template<class T>
 string nodos<T>::obtenerCodigo()
 {
     // Verificamos si dato es de la clase doctores
-    if (typeid(dato) == typeid(doctores*))
+    if (doctores* _doctor = dynamic_cast<doctores*>(dato))
     {
-        doctores* _doctor = dato;
         codigo = _doctor -> getCedula();
+    }
+    else if (pacientes* _paciente = dynamic_cast<pacientes*>(dato))
+    {
+        codigo = _paciente -> getCedula();
+    }
+    else if (medicamentos* _medicamento = dynamic_cast<medicamentos*>(dato))
+    {
+        codigo = _medicamento -> getCodigo();
     }
 
     return codigo;

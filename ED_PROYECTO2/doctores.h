@@ -27,16 +27,16 @@ public:
 	);
 
 	// Destructor
-	~doctores();
+	virtual ~doctores();
 
 	// Getters
-	string getCedula();
-	string getNombre();
-	string getEspecialidad();
-	string getDireccion();
-	string getHoraInicio();
-	string getHoraFin();
-	string getTelefono();
+	virtual string getCedula();
+	virtual string getNombre();
+	virtual string getEspecialidad();
+	virtual string getDireccion();
+	virtual string getHoraInicio();
+	virtual string getHoraFin();
+	virtual string getTelefono();
 
 	// Setters
 	void setCedula(string _cedula);

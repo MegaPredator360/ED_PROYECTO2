@@ -27,6 +27,7 @@ protected:
 	string doctor;
 	string fecha;
 	string hora;
+	int cantidad;
 
 	// Arboles
 	arboles<doctores> arbolDoctor;

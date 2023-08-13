@@ -23,14 +23,14 @@ public:
 	);
 
 	//Destructor
-	~citas();
+	virtual ~citas();
 
 	// Getters
-	string getCodigo();
-	string getFecha();
-	string getHora();
-	doctores getDoctor();
-	pacientes getPaciente();
+	virtual string getCodigo();
+	virtual string getFecha();
+	virtual string getHora();
+	virtual doctores getDoctor();
+	virtual pacientes getPaciente();
 
 	// Setters
 	void setCodigo(string _codigo);

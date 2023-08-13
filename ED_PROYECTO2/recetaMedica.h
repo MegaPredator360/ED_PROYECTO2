@@ -25,15 +25,15 @@ public:
 	);
 
 	// Destructor
-	~recetaMedica();
+	virtual ~recetaMedica();
 
 	// Getters
-	string getCodigo();
-	pacientes* getPaciente();
-	medicamentos* getMedicamento();
-	int getCantidad();
-	float getDosis();
-	string getFrecuencia();
+	virtual string getCodigo();
+	virtual pacientes* getPaciente();
+	virtual medicamentos* getMedicamento();
+	virtual int getCantidad();
+	virtual float getDosis();
+	virtual string getFrecuencia();
 
 	// Setters
 	void setCodigo(string _codigo);

@@ -19,12 +19,12 @@ public:
 	);
 
 	// Destructor
-	~medicamentos();
+	virtual ~medicamentos();
 
 	// Getters
-	string getCodigo();
-	string getNombre();
-	int getCantidadInventario();
+	virtual string getCodigo();
+	virtual string getNombre();
+	virtual int getCantidadInventario();
 
 	// Setters
 	void setCodigo(string _codigo);
