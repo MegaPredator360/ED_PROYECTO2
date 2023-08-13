@@ -8,7 +8,7 @@ class nodosArboles
 {
 public:
     void registrarDatos(nodos<T>*& _nodo, T* _dato, string _numero);
-    nodos<T>* buscarDatos(nodos<T>* _nodo, T* _dato);
+    nodos<T>* buscarDatos(nodos<T>* _nodo, string _numero);
     nodos<T>* eliminarDatos(nodos<T>*& _nodo, T* _dato);
     void mostrarArbol(nodos<T>* _nodo);
     void recorridoProfundidad(nodos<T>* _nodo);
@@ -58,21 +58,21 @@ void nodosArboles<T>::registrarDatos(nodos<T>*& _nodo, T* _dato, string _numero)
 }
 
 template<class T>
-nodos<T>* nodosArboles<T>::buscarDatos(nodos<T>* _nodo, T* _dato)
+nodos<T>* nodosArboles<T>::buscarDatos(nodos<T>* _nodo, string _numero)
 {
     try
     {
-        if (_nodo == nullptr || _nodo -> obtenerDatos() == _dato)
+        if (_nodo == nullptr || _nodo -> obtenerCodigo() == _numero)
         {
             return _nodo;
         }
-        else if (_dato < _nodo -> obtenerDatos()) 
+        else if (_numero < _nodo -> obtenerCodigo())
         {
-            return buscarDatos(_nodo -> obtenerIzquierda(), _dato);
+            return buscarDatos(_nodo -> obtenerIzquierda(), _numero);
         }
         else 
         {
-            return buscarDatos(_nodo -> obtenerDerecha(), _dato);
+            return buscarDatos(_nodo -> obtenerDerecha(), _numero);
         }
     }
     catch (exception& e)

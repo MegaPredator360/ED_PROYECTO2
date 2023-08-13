@@ -176,7 +176,7 @@ void interfaz::menuPrincipal()
 							_mInterfaz.moverXY(25, 7);
 							cedula = _mInterfaz.ingresarNumeros();
 
-							while (cedula.length() != 9 || cedula.at(1) != '0' || cedula.at(5) != '0')
+							while (cedula.length() != 9 || cedula.at(1) != '0' || cedula.at(5) != '0' || arbolDoctor.verificarDatos(cedula))
 							{
 								_mInterfaz.moverXY(25, 8);
 								cout << "\033[100m\033[31mLo ingresado no coincide con el formato solicitado o ya existe.";
@@ -525,7 +525,7 @@ void interfaz::menuPrincipal()
 							_mInterfaz.moverXY(25, 7);
 							cedula = _mInterfaz.ingresarNumeros();
 
-							while (cedula.length() != 9 || cedula.at(1) != '0' || cedula.at(5) != '0')
+							while (cedula.length() != 9 || cedula.at(1) != '0' || cedula.at(5) != '0' || arbolPaciente.verificarDatos(cedula))
 							{
 								_mInterfaz.moverXY(25, 8);
 								cout << "\033[100m\033[31mLo ingresado no coincide con el formato solicitado o ya existe.";
@@ -728,6 +728,18 @@ void interfaz::menuPrincipal()
 							cout << "\033[40m\033[37m" << cuadroIngresarTexto;
 							_mInterfaz.moverXY(25, 7);
 							codigo = _mInterfaz.ingresarNumeros();
+
+							while (arbolMedicamento.verificarDatos(codigo))
+							{
+								_mInterfaz.moverXY(25, 8);
+								cout << "\033[100m\033[31mEl codigo ingresado ya está registrado.";
+								_mInterfaz.moverXY(25, 9);
+								cout << "Por favor ingresa otro codigo de medicamento.";
+								_mInterfaz.moverXY(25, 7);
+								cout << "\033[40m\033[37m" << cuadroIngresarTexto;
+								_mInterfaz.moverXY(25, 7);
+								codigo = _mInterfaz.ingresarNumeros();
+							}
 
 							_mInterfaz.moverXY(0, 8);
 							cout << "\033[44m\033[30m" << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;

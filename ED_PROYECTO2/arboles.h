@@ -12,7 +12,8 @@ protected:
 
 public:
 	void registrarDatos(T* _dato, string _numero);
-	void buscarDatos(T* _dato);
+    bool verificarDatos(string _numero);
+	void buscarDatos(string _numero);
 	void eliminarDatos(T* _dato);
     void mostrarArbol();
     void recorridoProfundidad();
@@ -37,19 +38,41 @@ void arboles<T>::registrarDatos(T* _dato, string _numero)
 }
 
 template<class T>
-void arboles<T>::buscarDatos(T* _dato)
+bool arboles<T>::verificarDatos(string _numero)
 {
     try
     {
-        nodos<T>* resultado = _nArboles.buscarDatos(raiz, _dato);
+        nodos<T>* resultado = _nArboles -> buscarDatos(raiz, _numero);
+
+        if (resultado != nullptr)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    catch (exception& e)
+    {
+        throw e;
+    }
+}
+
+template<class T>
+void arboles<T>::buscarDatos(string _numero)
+{
+    try
+    {
+        nodos<T>* resultado = _nArboles.buscarDatos(raiz, _numero);
 
         if (resultado != nullptr) 
         {
-            cout << "El elemento " << _dato << " se encuentra en el Arbol." << endl;
+            cout << "El elemento " << _numero << " se encuentra en el Arbol." << endl;
         }
         else 
         {
-            cout << "El elemento " << _dato << " no se encuentra en el Arbol." << endl;
+            cout << "El elemento " << _numero << " no se encuentra en el Arbol." << endl;
         }
     }
     catch (exception& e)
