@@ -310,3 +310,56 @@ void metodoInterfaz::mostrarMensajeFallido(string _mensaje)
 
 	cout << "\033[44m\033[30m";
 }
+
+void metodoInterfaz::verificarVacio(arboles<doctores> _arbolDoctor, arboles<pacientes> _arbolPaciente, arboles<medicamentos> _arbolMedicamento)
+{
+	try
+	{
+		string mensajeError = "No hay registros de los siguientes datos: ";
+		bool doctor = false;
+		bool paciente = false;
+		bool medicamento = false;
+
+		if (!_arbolDoctor.verificarVacio())
+		{
+			doctor = true;
+		}
+
+		if (!_arbolPaciente.verificarVacio())
+		{
+			paciente = true;
+		}
+
+		if (!_arbolMedicamento.verificarVacio())
+		{
+			medicamento = true;
+		}
+
+		if (doctor || paciente || medicamento)
+		{
+			if (doctor)
+			{
+				mensajeError = mensajeError + "doctores ";
+			}
+
+			if (paciente)
+			{
+				mensajeError = mensajeError + "pacientes ";
+			}
+
+			if (medicamento)
+			{
+				mensajeError = mensajeError + "medicamentos";
+			}
+
+			// Se convierte el string a char ya que los mensajes de excepcion solo reciben char
+			const char* mensaje = mensajeError.c_str();
+
+			throw exception(mensaje);
+		}
+	}
+	catch (exception& e)
+	{
+		throw e;
+	}
+}

@@ -1,5 +1,11 @@
 #include "std.h"
 
+// Clases de datos
+#include "recetaMedica.h"
+
+// Arboles
+#include "arboles.h"
+
 class metodoInterfaz
 {
 public:
@@ -20,5 +26,8 @@ public:
 
 	// Mostrará un cuadro de mensaje cuando ocurre un error durante la realización de una accion
 	void mostrarMensajeFallido(string _mensaje);
+
+	// Se verificará si hay doctores, pacientes y medicamentos registrados
+	void verificarVacio(arboles<doctores> _arbolDoctor, arboles<pacientes> _arbolPaciente, arboles<medicamentos> _arbolMedicamento);
 };
 

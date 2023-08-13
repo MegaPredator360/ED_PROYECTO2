@@ -1,12 +1,6 @@
 // Validaciones en la interface
 #include "metodoInterfaz.h"
 
-// Clases de datos
-#include "recetaMedica.h"
-
-// Arboles
-#include "arboles.h"
-
 class interfaz
 {
 protected:

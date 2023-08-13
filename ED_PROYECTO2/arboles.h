@@ -13,6 +13,7 @@ protected:
 public:
 	void registrarDatos(T* _dato, string _numero);
     bool verificarDatos(string _numero);
+    bool verificarVacio();
 	void buscarDatos(string _numero);
 	void eliminarDatos(T* _dato);
     void mostrarArbol();
@@ -56,6 +57,19 @@ bool arboles<T>::verificarDatos(string _numero)
     catch (exception& e)
     {
         throw e;
+    }
+}
+
+template<class T>
+bool arboles<T>::verificarVacio()
+{
+    if (raiz == nullptr)
+    {
+        return false;
+    }
+    else
+    {
+        return true;
     }
 }
 

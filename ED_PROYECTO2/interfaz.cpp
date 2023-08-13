@@ -880,39 +880,12 @@ void interfaz::menuPrincipal()
 					// Registrar Cita
 					try
 					{
-						confirmacion = "N";
-
-						while (confirmacion == "N")
-						{
-							system("cls");
-							cout << "Ingresar Cita" << endl << endl;
-
-							cout << "Ingresa el nombre del paciente:" << endl;
-							cin >> paciente;
-
-							cout << "Ingresa el nombre del doctor:" << endl;
-							cin >> doctor;
-
-							cout << "Ingresa la fecha de la cita:" << endl;
-							cin >> fecha;
-
-							cout << "Ingresa la hora de la cita:" << endl;
-							cin >> hora;
-
-							cout << "¿Los datos ingresados son correctos?" << endl;
-							cin >> confirmacion;
-
-							if (confirmacion == "S")
-							{
-
-							}
-						}
+						// Se verificará si hay doctores, pacientes y medicamentos registrados en el sistema
+						_mInterfaz.verificarVacio(arbolDoctor, arbolPaciente, arbolMedicamento);
 					}
-					catch (exception& e) {
-						cout << RED << "Ha ocurrido un error: " << WHITE << e.what() << endl;
-						cout << "-------------------------" << endl;
-						cout << "Volviendo al Menu Principal." << endl << endl;
-						system("pause");
+					catch (exception& e)
+					{
+						_mInterfaz.mostrarMensajeFallido(e.what());
 					}
 					break;
 
