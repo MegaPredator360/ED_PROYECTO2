@@ -4,8 +4,8 @@ class recetaMedica
 {
 protected:
 	string codigo;
-	pacientes paciente;
-	medicamentos medicamento;
+	pacientes* paciente;
+	medicamentos* medicamento;
 	int cantidad;
 	float dosis;
 	string frecuencia;
