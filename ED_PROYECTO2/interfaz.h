@@ -23,6 +23,12 @@ protected:
 	string hora;
 	int cantidad;
 
+	// Nodos
+	nodos<doctores>* nodoDoctor;
+	nodos<pacientes>* nodoPaciente;
+	nodos<medicamentos>* nodoMedicamento;
+	nodos<citas>* nodoCita;
+
 	// Arboles
 	arboles<doctores> arbolDoctor;
 	arboles<pacientes> arbolPaciente;

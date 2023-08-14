@@ -56,27 +56,19 @@ string metodoInterfaz::ingresarNumeros()
 
 string metodoInterfaz::ingresarHora()
 {
-	string hora = "12";
-	string minuto = "00";
-	string sufijo = "a.m";
-	int selector[] = { 128, 128, 128 };
-	selector[0] = 71;
+	string hora = "12:00";
+	int selector[] = { 71 };
 	int marcador = 1;
 	int key = 0;
+
+	moverXY(27, 7);
+	cout << ":";
 
 	while (1)
 	{
 		moverXY(25, 7);
 		color(selector[0]);
 		cout << hora;
-
-		moverXY(28, 7);
-		color(selector[1]);
-		cout << minuto;
-
-		moverXY(31, 7);
-		color(selector[2]);
-		cout << sufijo;
 
 		key = _getch();
 
@@ -88,44 +80,144 @@ string metodoInterfaz::ingresarHora()
 
 			if (key == 72)
 			{
+				int horaNum = stoi(hora.substr(0, 2));
+				horaNum++;
+
+				if (horaNum == 24)
+				{
+					horaNum = 0;
+				}
+
+				hora = to_string(horaNum);
+
+				if (hora.size() == 1)
+				{
+					hora = "0" + hora + ":00";
+				}
+				else
+				{
+					hora = hora + ":00";
+				}
+			}
+			else if (key == 80)
+			{
+				int horaNum = stoi(hora.substr(0, 2));
+				horaNum--;
+
+				if (horaNum == -1)
+				{
+					horaNum = 23;
+				}
+
+				hora = to_string(horaNum);
+
+				if (hora.size() == 1)
+				{
+					hora = "0" + hora + ":00";
+				}
+				else
+				{
+					hora = hora + ":00";
+				}
+			}
+		}
+		else if (key == '\r')
+		{
+			break;
+		}
+	}
+
+	return hora;
+}
+
+string metodoInterfaz::ingresarFecha()
+{
+	string dia = "01";
+	string mes = "01";
+	string año = "2023";
+
+	int key;
+	int selector[] = { 71, 128, 128 };
+	int marcador = 1;
+
+	moverXY(25, 7);
+	cout << "Dia: ";
+
+	moverXY(33, 7);
+	cout << "- Mes: ";
+
+	moverXY(43, 7);
+	cout << "- Año: ";
+
+	while (1)
+	{
+		moverXY(30, 7);
+		color(selector[0]);
+		cout << dia;
+
+		moverXY(40, 7);
+		color(selector[1]);
+		cout << mes;
+
+		moverXY(50, 7);
+		color(selector[2]);
+		cout << año;
+
+		key = _getch();
+
+		if (key == 224)
+		{
+			key = _getch();
+
+			if (key == 72)
+			{
 				if (marcador == 1)
 				{
-					int horaNum = stoi(hora);
+					int diaNum = stoi(dia);
 
-					horaNum++;
+					diaNum++;
 
-					if (horaNum == 13)
+					if (diaNum == 32)
 					{
-						horaNum = 1;
+						diaNum = 1;
 					}
 
-					hora = to_string(horaNum);
+					dia = to_string(diaNum);
 
-					if (hora.size() == 1)
+					if (dia.size() == 1)
 					{
-						hora = "0" + hora;
+						dia = "0" + dia;
 					}
 				}
 				else if (marcador == 2)
 				{
-					if (minuto == "00")
+					int mesNum = stoi(mes);
+
+					mesNum++;
+
+					if (mesNum == 13)
 					{
-						minuto = "30";
+						mesNum = 1;
 					}
-					else if (minuto == "30")
+
+					mes = to_string(mesNum);
+
+					if (mes.size() == 1)
 					{
-						minuto = "00";
+						mes = "0" + mes;
 					}
 				}
 				else if (marcador == 3)
 				{
-					if (sufijo == "a.m")
+					int añoNum = stoi(año);
+
+					añoNum++;
+
+					año = to_string(añoNum);
+
+					if (año.size() == 1)
 					{
-						sufijo = "p.m";
-					}
-					else if (sufijo == "p.m")
-					{
-						sufijo = "a.m";
+						año = "0" + año;
 					}
 				}
 			}
@@ -133,41 +225,51 @@ string metodoInterfaz::ingresarHora()
 			{
 				if (marcador == 1)
 				{
-					int horaNum = stoi(hora);
-					horaNum--;
+					int diaNum = stoi(dia);
 
-					if (horaNum == 0)
+					diaNum--;
+
+					if (diaNum == 0)
 					{
-						horaNum = 12;
+						diaNum = 31;
 					}
 
-					hora = to_string(horaNum);
+					dia = to_string(diaNum);
 
-					if (hora.size() == 1)
+					if (dia.size() == 1)
 					{
-						hora = "0" + hora;
+						dia = "0" + dia;
 					}
 				}
 				else if (marcador == 2)
 				{
-					if (minuto == "00")
+					int mesNum = stoi(mes);
+
+					mesNum--;
+
+					if (mesNum == 0)
 					{
-						minuto = "30";
+						mesNum = 12;
 					}
-					else if (minuto == "30")
+
+					mes = to_string(mesNum);
+
+					if (mes.size() == 1)
 					{
-						minuto = "00";
+						mes = "0" + mes;
 					}
 				}
-				else if (marcador == 3)
+				else if (marcador == 3 && año != "2023")
 				{
-					if (sufijo == "a.m")
+					int añoNum = stoi(año);
+
+					añoNum--;
+
+					año = to_string(añoNum);
+
+					if (año.size() == 1)
 					{
-						sufijo = "p.m";
-					}
-					else if (sufijo == "p.m")
-					{
-						sufijo = "a.m";
+						año = "0" + año;
 					}
 				}
 			}
@@ -215,8 +317,7 @@ string metodoInterfaz::ingresarHora()
 		}
 	}
 
-	string horaFinal = hora + ":" + minuto + " " + sufijo;
-	return horaFinal;
+	return dia + mes + año;
 }
 
 void metodoInterfaz::mostrarMensajeExito(string _mensaje)
@@ -357,6 +458,20 @@ void metodoInterfaz::verificarVacio(arboles<doctores> _arbolDoctor, arboles<paci
 
 			throw exception(mensaje);
 		}
+	}
+	catch (exception& e)
+	{
+		throw e;
+	}
+}
+
+int metodoInterfaz::generarCodigo()
+{
+	try
+	{
+		random_device rd;										// Se crea el dispositivo que se utilizará para generar números aleatorios
+		uniform_int_distribution<int> dist(10000, 99999);		// Se define tipo de dato y el rango de números
+		return dist(rd);
 	}
 	catch (exception& e)
 	{

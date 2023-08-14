@@ -21,6 +21,9 @@ public:
 	// Permitirá al usuario ingresar una hora
 	string ingresarHora();
 
+	// Permitirá al usuario ingresar una fecha
+	string ingresarFecha();
+
 	// Mostrará un cuadro de mensaje cuando una acción se realiza con exito
 	void mostrarMensajeExito(string _mensaje);
 
@@ -29,5 +32,8 @@ public:
 
 	// Se verificará si hay doctores, pacientes y medicamentos registrados
 	void verificarVacio(arboles<doctores> _arbolDoctor, arboles<pacientes> _arbolPaciente, arboles<medicamentos> _arbolMedicamento);
+
+	// Se encargará de generar un codigo aleatorio que será dado al codigo de citas y recetas medicas
+	int generarCodigo();
 };
 

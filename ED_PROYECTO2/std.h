@@ -6,6 +6,8 @@
 #include <queue>			// Para poder realizar listas en colas
 #include <Windows.h>		// Libreria de C++ exclusiva para Windows
 #include <typeinfo>			// Para verificar las clases en la clase nodos
+#include <random>			// Para generar números aleatorios
+
 
 #pragma comment (lib, "winmm.lib") // Vinculará las funciones multimedia de Windows con el programa
 
