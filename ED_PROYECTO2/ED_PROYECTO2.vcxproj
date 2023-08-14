@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="archivos.cpp" />
     <ClCompile Include="citas.cpp" />
     <ClCompile Include="doctores.cpp" />
     <ClCompile Include="facturas.cpp" />

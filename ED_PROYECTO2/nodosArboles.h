@@ -10,6 +10,7 @@ public:
     void registrarDatos(nodos<T>*& _nodo, T* _dato, string _numero);
     nodos<T>* buscarDatos(nodos<T>* _nodo, string _numero);
     nodos<T>* eliminarDatos(nodos<T>*& _nodo, T* _dato);
+    queue<T*> colaDatos(nodos<T>* _nodo, queue<T*>& _cola);
     void mostrarArbol(nodos<T>* _nodo);
     void recorridoProfundidad(nodos<T>* _nodo);
     nodos<T>* encontrarNodoMinimo(nodos<T>* _nodo);
@@ -127,19 +128,40 @@ inline nodos<T>* nodosArboles<T>::eliminarDatos(nodos<T>*& _nodo, T* _dato)
 }
 
 template<class T>
+queue<T*> nodosArboles<T>::colaDatos(nodos<T>* _nodo, queue<T*>& _cola)
+{
+    try
+    {
+        if (_nodo != nullptr)
+        {
+            _cola.push(_nodo -> obtenerDatos());
+
+            colaDatos(_nodo -> obtenerIzquierda(), _cola);
+
+            colaDatos(_nodo -> obtenerDerecha(), _cola);
+        }
+
+        return _cola;
+    }
+    catch (exception& e)
+    {
+        throw e;
+    }
+}
+
+template<class T>
 void nodosArboles<T>::mostrarArbol(nodos<T>* _nodo)
 {
     try
     {
-        if (_nodo == nullptr) 
+        if (_nodo != nullptr) 
         {
-            return 0;
+            mostrarArbol(_nodo -> obtenerIzquierda());
+
+            cout << _nodo -> obtenerCodigo() << " ";
+
+            mostrarArbol(_nodo -> obtenerDerecha());
         }
-
-        int alturaIzq = alturaArbol(_nodo -> obtenerIzquierda());
-        int alturaDer = alturaArbol(_nodo -> obtenerDerecha());
-
-        return 1 + max(alturaIzq, alturaDer);
     }
     catch (exception& e)
     {

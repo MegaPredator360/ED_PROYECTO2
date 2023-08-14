@@ -11,8 +11,8 @@ void interfaz::menuPrincipal()
 	// Encargada de recibir el valor de la tecla pulsada en ASCII
 	int key = 0;
 
-	
-	int oConfirmacion[] = { 128, 128 };
+	// Cargar Archivos
+	arbolDoctor = _archivo.cargarDoctor();
 
 	while (1)
 	{
@@ -429,6 +429,7 @@ void interfaz::menuPrincipal()
 							{
 								_doctor = new doctores(cedula, nombre, especialidad, direccion, horaInicio, horaFinal, telefono);
 								arbolDoctor.registrarDatos(_doctor, cedula);
+								_archivo.guardarDoctor(arbolDoctor);
 								_mInterfaz.mostrarMensajeExito("¡El doctor fue ingresado con exito!");
 
 								break;

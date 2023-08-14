@@ -1,10 +1,7 @@
 #include "std.h"
 
-// Clases de datos
-#include "recetaMedica.h"
-
-// Arboles
-#include "arboles.h"
+// Archivos
+#include "archivos.h"
 
 class metodoInterfaz
 {

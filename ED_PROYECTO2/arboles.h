@@ -7,13 +7,14 @@ template <class T>
 class arboles
 {
 protected:
-    nodos<T>* raiz;
+    nodos<T>* raiz = nullptr;
     nodosArboles<T>* _nArboles;
 
 public:
 	void registrarDatos(T* _dato, string _numero);
     bool verificarDatos(string _numero);
     bool verificarVacio();
+    queue<T*> colaDatos();
 	void buscarDatos(string _numero);
 	void eliminarDatos(T* _dato);
     void mostrarArbol();
@@ -70,6 +71,20 @@ bool arboles<T>::verificarVacio()
     else
     {
         return true;
+    }
+}
+
+template<class T>
+queue<T*> arboles<T>::colaDatos()
+{
+    try
+    {
+        queue<T*> cola;
+        return _nArboles -> colaDatos(raiz, cola);
+    }
+    catch (exception& e)
+    {
+        throw e;
     }
 }
 
