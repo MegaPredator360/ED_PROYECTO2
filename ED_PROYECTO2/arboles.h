@@ -15,6 +15,7 @@ public:
     bool verificarDatos(string _numero);
     bool verificarVacio();
     queue<T*> colaDatos();
+    T* obtenerDatos(string _numero);
 	void buscarDatos(string _numero);
 	void eliminarDatos(T* _dato);
     void mostrarArbol();
@@ -86,6 +87,12 @@ queue<T*> arboles<T>::colaDatos()
     {
         throw e;
     }
+}
+
+template<class T>
+T* arboles<T>::obtenerDatos(string _numero)
+{
+    return nullptr;
 }
 
 template<class T>

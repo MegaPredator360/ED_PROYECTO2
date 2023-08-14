@@ -72,6 +72,14 @@ string nodos<T>::obtenerCodigo()
     {
         codigo = _medicamento -> getCodigo();
     }
+    else if (citas* _cita = dynamic_cast<citas*>(dato))
+    {
+        codigo = _cita -> getCodigo();
+    }
+    else if (recetaMedica* _recetaMedica = dynamic_cast<recetaMedica*>(dato))
+    {
+        codigo = _recetaMedica -> getCodigo();
+    }
 
     return codigo;
 }

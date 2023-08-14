@@ -14,8 +14,16 @@ public:
 
 	// Guardar Datos
 	void guardarDoctor(arboles<doctores> _arbolDoctor);
+	void guardarPaciente(arboles<pacientes> _arbolPaciente);
+	void guardarMedicamento(arboles<medicamentos> _arbolMedicamentos);
+	void guardarCita(arboles<citas> _arbolCita);
+	void guardarRecetaMedica(arboles<recetaMedica> _arbolReceta);
 
 	// Cargar Datos
 	arboles<doctores> cargarDoctor();
+	arboles<pacientes> cargarPaciente();
+	arboles<medicamentos> cargarMedicamento();
+	arboles<citas> cargarCita(arboles<doctores> _arbolDoctor, arboles<pacientes> _arbolPaciente);
+	arboles<recetaMedica> cargarReceta(arboles<pacientes> _arbolPaciente, arboles<medicamentos> _arbolMedicamento);
 };
 

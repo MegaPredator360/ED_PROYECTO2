@@ -11,6 +11,7 @@ public:
     nodos<T>* buscarDatos(nodos<T>* _nodo, string _numero);
     nodos<T>* eliminarDatos(nodos<T>*& _nodo, T* _dato);
     queue<T*> colaDatos(nodos<T>* _nodo, queue<T*>& _cola);
+    T* obtenerDatos(nodos<T>*& _nodo, string _numero);
     void mostrarArbol(nodos<T>* _nodo);
     void recorridoProfundidad(nodos<T>* _nodo);
     nodos<T>* encontrarNodoMinimo(nodos<T>* _nodo);
@@ -142,6 +143,30 @@ queue<T*> nodosArboles<T>::colaDatos(nodos<T>* _nodo, queue<T*>& _cola)
         }
 
         return _cola;
+    }
+    catch (exception& e)
+    {
+        throw e;
+    }
+}
+
+template<class T>
+T* nodosArboles<T>::obtenerDatos(nodos<T>*& _nodo, string _numero)
+{
+    try
+    {
+        if (_nodo == nullptr || _nodo -> obtenerCodigo() == _numero)
+        {
+            return _nodo -> obtenerDatos();
+        }
+        else if (_numero < _nodo -> obtenerCodigo())
+        {
+            return buscarDatos(_nodo -> obtenerIzquierda(), _numero);
+        }
+        else
+        {
+            return buscarDatos(_nodo -> obtenerDerecha(), _numero);
+        }
     }
     catch (exception& e)
     {
