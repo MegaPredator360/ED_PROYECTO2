@@ -7,7 +7,7 @@
 #include <Windows.h>		// Libreria de C++ exclusiva para Windows
 #include <typeinfo>			// Para verificar las clases en la clase nodos
 #include <random>			// Para generar números aleatorios
-
+#include <fstream>			// Para intereacción con archivos
 
 #pragma comment (lib, "winmm.lib") // Vinculará las funciones multimedia de Windows con el programa
 

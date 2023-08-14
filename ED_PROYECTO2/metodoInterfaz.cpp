@@ -320,6 +320,79 @@ string metodoInterfaz::ingresarFecha()
 	return dia + mes + año;
 }
 
+int metodoInterfaz::confirmarDatos(string _texto, int _posicion)
+{
+	int key;
+	int nConfirmacion = 1;
+	int oConfirmacion[] = { 71, 128 };
+
+	moverXY(25, _posicion);
+	cout << _texto;
+	moverXY(28, _posicion + 1);
+	cout << "/";
+
+	while (1)
+	{
+		moverXY(25, _posicion + 1);
+		color(oConfirmacion[0]);
+		cout << "Sí";
+
+		moverXY(30, _posicion + 1);
+		color(oConfirmacion[1]);
+		cout << "No";
+
+		key = _getch();
+
+		if (key == 224)
+		{
+
+			key = _getch();
+
+			// Valida si la flecha izquierda fue pulsada, valor 77 en ASCII
+			if (key == 77)
+			{
+				nConfirmacion--;
+
+				if (nConfirmacion == 0)
+				{
+					nConfirmacion = 2;
+				}
+			}
+			// Valida si la flecha izquierda fue pulsada, valor 75 en ASCII
+			else if (key == 75)
+			{
+				nConfirmacion++;
+
+				if (nConfirmacion == 3)
+				{
+					nConfirmacion = 1;
+				}
+			}
+		}
+		else if (key == '\r')
+		{
+			break;
+		}
+
+		oConfirmacion[0] = 128;
+		oConfirmacion[1] = 128;
+
+		switch (nConfirmacion)
+		{
+		case 1:
+			oConfirmacion[0] = 71;
+			break;
+
+		case 2:
+			oConfirmacion[1] = 71;
+			break;
+		}
+	}
+	cout << "\033[44m";
+
+	return nConfirmacion;
+}
+
 void metodoInterfaz::mostrarMensajeExito(string _mensaje)
 {
 	int key;

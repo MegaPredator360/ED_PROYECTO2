@@ -24,6 +24,9 @@ public:
 	// Permitirá al usuario ingresar una fecha
 	string ingresarFecha();
 
+	// Hará que el usuario pueda seleccionar si desea continuar con la accion o no
+	int confirmarDatos(string _texto, int _posicion);
+
 	// Mostrará un cuadro de mensaje cuando una acción se realiza con exito
 	void mostrarMensajeExito(string _mensaje);
 

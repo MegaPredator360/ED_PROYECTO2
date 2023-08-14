@@ -425,71 +425,7 @@ void interfaz::menuPrincipal()
 							_mInterfaz.moverXY(25, 22);
 							cout << telefono;
 
-							_mInterfaz.moverXY(25, 24);
-							cout << "¿Los datos ingresados son correctos?" << endl;
-							_mInterfaz.moverXY(28, 25);
-							cout << "/";
-
-							int nConfirmacion = 1;
-							oConfirmacion[0] = 71;
-
-							while (1)
-							{
-								_mInterfaz.moverXY(25, 25);
-								_mInterfaz.color(oConfirmacion[0]);
-								cout << "Sí";
-
-								_mInterfaz.moverXY(30, 25);
-								_mInterfaz.color(oConfirmacion[1]);
-								cout << "No";
-
-								key = _getch();
-
-								// Valida si la flecha izquierda fue pulsada, valor 77 en ASCII
-								if (key == 77)
-								{
-									nConfirmacion--;
-
-									if (nConfirmacion == 0)
-									{
-										nConfirmacion = 2;
-									}
-								}
-								// Valida si la flecha izquierda fue pulsada, valor 224 en ASCII
-								else if (key == 224)
-								{
-									nConfirmacion++;
-
-									if (nConfirmacion == 3)
-									{
-										nConfirmacion = 1;
-									}
-
-									// Se invoca al _getch() porque por alguna razón retorna un segundo valor que es el 77
-									_getch();
-								}
-								else if (key == '\r')
-								{
-									break;
-								}
-
-								oConfirmacion[0] = 128;
-								oConfirmacion[1] = 128;
-
-								switch (nConfirmacion)
-								{
-								case 1:
-									oConfirmacion[0] = 71;
-									break;
-
-								case 2:
-									oConfirmacion[1] = 71;
-									break;
-								}
-							}
-							cout << "\033[44m";
-
-							if (nConfirmacion == 1)
+							if (_mInterfaz.confirmarDatos("¿Los datos ingresados son correctos?", 24) == 1)
 							{
 								_doctor = new doctores(cedula, nombre, especialidad, direccion, horaInicio, horaFinal, telefono);
 								arbolDoctor.registrarDatos(_doctor, cedula);
@@ -629,71 +565,7 @@ void interfaz::menuPrincipal()
 							_mInterfaz.moverXY(25, 13);
 							cout << telefono;
 
-							_mInterfaz.moverXY(25, 15);
-							cout << "¿Los datos ingresados son correctos?" << endl;
-							_mInterfaz.moverXY(28, 16);
-							cout << "/";
-
-							int nConfirmacion = 1;
-							oConfirmacion[0] = 71;
-
-							while (1)
-							{
-								_mInterfaz.moverXY(25, 16);
-								_mInterfaz.color(oConfirmacion[0]);
-								cout << "Sí";
-
-								_mInterfaz.moverXY(30, 16);
-								_mInterfaz.color(oConfirmacion[1]);
-								cout << "No";
-
-								key = _getch();
-
-								// Valida si la flecha izquierda fue pulsada, valor 77 en ASCII
-								if (key == 77)
-								{
-									nConfirmacion--;
-
-									if (nConfirmacion == 0)
-									{
-										nConfirmacion = 2;
-									}
-								}
-								// Valida si la flecha izquierda fue pulsada, valor 224 en ASCII
-								else if (key == 224)
-								{
-									nConfirmacion++;
-
-									if (nConfirmacion == 3)
-									{
-										nConfirmacion = 1;
-									}
-
-									// Se invoca al _getch() porque por alguna razón retorna un segundo valor que es el 77
-									_getch();
-								}
-								else if (key == '\r')
-								{
-									break;
-								}
-
-								oConfirmacion[0] = 128;
-								oConfirmacion[1] = 128;
-
-								switch (nConfirmacion)
-								{
-								case 1:
-									oConfirmacion[0] = 71;
-									break;
-
-								case 2:
-									oConfirmacion[1] = 71;
-									break;
-								}
-							}
-							cout << "\033[44m";
-
-							if (nConfirmacion == 1)
+							if (_mInterfaz.confirmarDatos("¿Los datos ingresados son correctos?", 15) == 1)
 							{
 								_paciente = new pacientes(cedula, nombre, direccion, telefono);
 								arbolPaciente.registrarDatos(_paciente, cedula);
@@ -806,71 +678,7 @@ void interfaz::menuPrincipal()
 							_mInterfaz.moverXY(25, 10);
 							cout << cantidad;
 
-							_mInterfaz.moverXY(25, 12);
-							cout << "¿Los datos ingresados son correctos?" << endl;
-							_mInterfaz.moverXY(28, 13);
-							cout << "/";
-
-							int nConfirmacion = 1;
-							oConfirmacion[0] = 71;
-
-							while (1)
-							{
-								_mInterfaz.moverXY(25, 13);
-								_mInterfaz.color(oConfirmacion[0]);
-								cout << "Sí";
-
-								_mInterfaz.moverXY(30, 13);
-								_mInterfaz.color(oConfirmacion[1]);
-								cout << "No";
-
-								key = _getch();
-
-								// Valida si la flecha izquierda fue pulsada, valor 77 en ASCII
-								if (key == 77)
-								{
-									nConfirmacion--;
-
-									if (nConfirmacion == 0)
-									{
-										nConfirmacion = 2;
-									}
-								}
-								// Valida si la flecha izquierda fue pulsada, valor 224 en ASCII
-								else if (key == 224)
-								{
-									nConfirmacion++;
-
-									if (nConfirmacion == 3)
-									{
-										nConfirmacion = 1;
-									}
-
-									// Se invoca al _getch() porque por alguna razón retorna un segundo valor que es el 77
-									_getch();
-								}
-								else if (key == '\r')
-								{
-									break;
-								}
-
-								oConfirmacion[0] = 128;
-								oConfirmacion[1] = 128;
-
-								switch (nConfirmacion)
-								{
-								case 1:
-									oConfirmacion[0] = 71;
-									break;
-
-								case 2:
-									oConfirmacion[1] = 71;
-									break;
-								}
-							}
-							cout << "\033[44m";
-
-							if (nConfirmacion == 1)
+							if (_mInterfaz.confirmarDatos("¿Los datos ingresados son correctos?", 12) == 1)
 							{
 								_medicamento = new medicamentos(codigo, nombre, cantidad);
 								arbolMedicamento.registrarDatos(_medicamento, codigo);
@@ -1029,71 +837,7 @@ void interfaz::menuPrincipal()
 							_mInterfaz.moverXY(25, 16);
 							cout << hora;
 
-							_mInterfaz.moverXY(25, 18);
-							cout << "¿Los datos ingresados son correctos?" << endl;
-							_mInterfaz.moverXY(28, 19);
-							cout << "/";
-
-							int nConfirmacion = 1;
-							oConfirmacion[0] = 71;
-
-							while (1)
-							{
-								_mInterfaz.moverXY(25, 19);
-								_mInterfaz.color(oConfirmacion[0]);
-								cout << "Sí";
-
-								_mInterfaz.moverXY(30, 19);
-								_mInterfaz.color(oConfirmacion[1]);
-								cout << "No";
-
-								key = _getch();
-
-								// Valida si la flecha izquierda fue pulsada, valor 77 en ASCII
-								if (key == 77)
-								{
-									nConfirmacion--;
-
-									if (nConfirmacion == 0)
-									{
-										nConfirmacion = 2;
-									}
-								}
-								// Valida si la flecha izquierda fue pulsada, valor 224 en ASCII
-								else if (key == 224)
-								{
-									nConfirmacion++;
-
-									if (nConfirmacion == 3)
-									{
-										nConfirmacion = 1;
-									}
-
-									// Se invoca al _getch() porque por alguna razón retorna un segundo valor que es el 77
-									_getch();
-								}
-								else if (key == '\r')
-								{
-									break;
-								}
-
-								oConfirmacion[0] = 128;
-								oConfirmacion[1] = 128;
-
-								switch (nConfirmacion)
-								{
-								case 1:
-									oConfirmacion[0] = 71;
-									break;
-
-								case 2:
-									oConfirmacion[1] = 71;
-									break;
-								}
-							}
-							cout << "\033[44m";
-
-							if (nConfirmacion == 1)
+							if (_mInterfaz.confirmarDatos("¿Los datos ingresados son correctos?", 18) == 1)
 							{
 								_medicamento = new medicamentos(codigo, nombre, cantidad);
 								arbolMedicamento.registrarDatos(_medicamento, codigo);
