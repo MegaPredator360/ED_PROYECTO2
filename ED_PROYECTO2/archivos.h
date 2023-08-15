@@ -24,6 +24,6 @@ public:
 	arboles<pacientes> cargarPaciente();
 	arboles<medicamentos> cargarMedicamento();
 	arboles<citas> cargarCita(arboles<doctores> _arbolDoctor, arboles<pacientes> _arbolPaciente);
-	arboles<recetaMedica> cargarReceta(arboles<pacientes> _arbolPaciente, arboles<medicamentos> _arbolMedicamento);
+	arboles<recetaMedica> cargarReceta(arboles<pacientes> _arbolPaciente, arboles<medicamentos> _arbolMedicamento, arboles<doctores> _arbolDoctor);
 };
 

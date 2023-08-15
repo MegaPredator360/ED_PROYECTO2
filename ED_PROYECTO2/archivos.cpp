@@ -160,7 +160,7 @@ void archivos::guardarRecetaMedica(arboles<recetaMedica> _arbolReceta)
 			while (!colaReceta.empty())
 			{
 				receta = colaReceta.front();
-				dato = receta -> getCodigo() + "/" + receta -> getPaciente() -> getCedula() + "/" + receta -> getMedicamento() -> getCodigo() + "/" + to_string(receta -> getCantidad()) + "/" + to_string(receta -> getDosis()) + "/" + receta -> getFrecuencia();
+				dato = receta -> getCodigo() + "/" + receta -> getPaciente() -> getCedula() + "/" + receta -> getDiagnostico() + "/" + receta -> getMedicamento() -> getCodigo() + "/" + to_string(receta -> getCantidad()) + "/" + receta -> getDosis() + "/" + receta -> getDoctor() -> getCedula();
 				guardarReceta << dato << "\n";
 				colaReceta.pop();
 			}
@@ -359,7 +359,7 @@ arboles<citas> archivos::cargarCita(arboles<doctores> _arbolDoctor, arboles<paci
 	}
 }
 
-arboles<recetaMedica> archivos::cargarReceta(arboles<pacientes> _arbolPaciente, arboles<medicamentos> _arbolMedicamento)
+arboles<recetaMedica> archivos::cargarReceta(arboles<pacientes> _arbolPaciente, arboles<medicamentos> _arbolMedicamento, arboles<doctores> _arbolDoctor)
 {
 	try
 	{
@@ -368,6 +368,7 @@ arboles<recetaMedica> archivos::cargarReceta(arboles<pacientes> _arbolPaciente, 
 		recetaMedica* receta;
 		string paciente;
 		string medicamento;
+		string doctor;
 
 		// Cargar datos del archivo
 		ifstream cargarReceta("datosReceta.dat");
@@ -382,19 +383,22 @@ arboles<recetaMedica> archivos::cargarReceta(arboles<pacientes> _arbolPaciente, 
 				paciente = datos.substr(0, datos.find("/"));
 				datos.erase(0, tamañoString(paciente) + 1);
 
+				_receta.setDiagnostico(datos.substr(0, datos.find("/")));
+				datos.erase(0, tamañoString(_receta.getDiagnostico()) + 1);
+
 				medicamento = datos.substr(0, datos.find("/"));
 				datos.erase(0, tamañoString(medicamento) + 1);
 
 				_receta.setCantidad(stoi(datos.substr(0, datos.find("/"))));
 				datos.erase(0, tamañoString(to_string(_receta.getCantidad())) + 1);
 
-				_receta.setDosis(stoi(datos.substr(0, datos.find("/"))));
-				datos.erase(0, tamañoString(to_string(_receta.getDosis())) + 1);
+				_receta.setDosis(datos.substr(0, datos.find("/")));
+				datos.erase(0, tamañoString(_receta.getDosis()) + 1);
 
-				_receta.setFrecuencia(datos.substr(0, datos.find("/")));
-				datos.erase(0, tamañoString(_receta.getFrecuencia()) + 1);
+				doctor = datos.substr(0, datos.find("/"));
+				datos.erase(0, tamañoString(doctor) + 1);
 
-				receta = new recetaMedica(_receta.getCodigo(), _arbolPaciente.obtenerDatos(paciente), _arbolMedicamento.obtenerDatos(medicamento), _receta.getCantidad(), _receta.getDosis(), _receta.getFrecuencia());
+				receta = new recetaMedica(_receta.getCodigo(), _arbolPaciente.obtenerDatos(paciente), _receta.getDiagnostico(), _arbolMedicamento.obtenerDatos(medicamento), _receta.getCantidad(), _receta.getDosis(), _arbolDoctor.obtenerDatos(doctor));
 
 				arbolReceta.registrarDatos(receta, _receta.getCodigo());
 			}
