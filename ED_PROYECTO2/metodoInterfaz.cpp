@@ -742,3 +742,117 @@ bool metodoInterfaz::verificarCantidadMedicamento(int _inventario, int _cantidad
 		throw e;
 	}
 }
+
+int metodoInterfaz::seleccionarArbol(string _opcion, int _posicion)
+{
+	int key;
+	string espacios(120, ' ');
+	string cuadroLado(20, ' ');
+	string cuadroFinal(18, ' ');
+	string cuadroBorde(76, '_');
+	string cuadroRelleno(76, ' ');
+	int opcion = 1;
+	int selector[] = { 71, 128, 128, 128, 128 };
+
+	system("cls");
+
+	cout << "\033[44m\033[30m" << espacios << endl;
+	cout << cuadroLado << "\033[100m ." << cuadroBorde << ". \033[44m" << cuadroLado << endl;
+
+	for (int i = 0; i < 10; i++)
+	{
+		cout << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
+	}
+
+	cout << cuadroLado << "\033[100m |" << cuadroBorde << "| \033[40m  \033[44m" << cuadroFinal << endl;
+	cout << cuadroLado << "\033[100m  " << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+	cout << cuadroLado << "  \033[40m" << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+	cout << "\033[44m\033[30m" << espacios;
+
+	moverXY(_posicion, 4);
+	cout << "\033[100m\033[30m" << _opcion;
+
+	moverXY(25, 6);
+	cout << "Selecciona un arbol:";
+
+	while (1)
+	{
+		moverXY(25, 7);
+		color(selector[0]);
+		cout << "Arbol Doctores";
+
+		moverXY(25, 8);
+		color(selector[1]);
+		cout << "Arbol Pacientes";
+
+		moverXY(25, 9);
+		color(selector[2]);
+		cout << "Arbol Medicamentos";
+
+		moverXY(25, 10);
+		color(selector[3]);
+		cout << "Arbol Citas";
+
+		moverXY(25, 11);
+		color(selector[4]);
+		cout << "Arbol Recetas Medicas";
+
+		key = _getch();
+
+		if (key == 72)		// Validar si la flecha arriba es pulsada	|| 72 es el valor de la flecha arriba en ASCII
+		{
+			opcion--;
+
+			if (opcion == 0)
+			{
+				opcion = 5;
+			}
+		}
+		else if (key == 80)	// Validar si la flecha abajo es pulsada	|| 80 es el valor de la flecha abajo en ASCII
+		{
+			opcion++;
+
+			if (opcion == 6)
+			{
+				opcion = 1;
+			}
+		}
+		else if (key == '\r')
+		{
+			break;
+		}
+
+		selector[0] = 128;
+		selector[1] = 128;
+		selector[2] = 128;
+		selector[3] = 128;
+		selector[4] = 128;
+
+		switch (opcion)
+		{
+		case 1:
+			selector[0] = 71;
+			break;
+
+		case 2:
+			selector[1] = 71;
+			break;
+
+		case 3:
+			selector[2] = 71;
+			break;
+
+		case 4:
+			selector[3] = 71;
+			break;
+
+		case 5:
+			selector[4] = 71;
+			break;
+		}
+	}
+
+	cout << "\033[44m\033[30m";
+
+	return opcion;
+}

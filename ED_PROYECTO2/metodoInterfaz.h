@@ -1,5 +1,3 @@
-#include "std.h"
-
 // Archivos
 #include "archivos.h"
 
@@ -41,5 +39,8 @@ public:
 
 	// Se encargará de verificar que no se le den más medicamentos a un paciente cuando no hay
 	bool verificarCantidadMedicamento(int _inventario, int _cantidad);
+
+	// Se encargará de seleccionar un arbol para obtener otros datos
+	int seleccionarArbol(string _opcion, int _posicion);
 };
 

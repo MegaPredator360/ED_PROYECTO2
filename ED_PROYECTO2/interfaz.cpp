@@ -1611,7 +1611,7 @@ void interfaz::menuPrincipal()
 					// Mostrar Arbol
 					try
 					{
-						exit(0);
+						int arbol = _mInterfaz.seleccionarArbol("Mostrar Arbol", 53);
 					}
 					catch (exception& e) 
 					{
