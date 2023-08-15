@@ -33,7 +33,7 @@ protected:
 	doctores* _doctor;
 	pacientes* _paciente;
 	medicamentos* _medicamento;
-	citas* _citas;
+	citas* _cita;
 	recetaMedica* _recetaMedica;
 	metodoInterfaz _mInterfaz;
 	archivos _archivo;

@@ -16,6 +16,7 @@ public:
     bool verificarVacio();
     queue<T*> colaDatos();
     T* obtenerDatos(string _numero);
+    void obtenerCita(vector<string>& _citasRealizadas, string _fecha, string _cedula);
 	void buscarDatos(string _numero);
 	void eliminarDatos(T* _dato);
     void mostrarArbol();
@@ -92,7 +93,36 @@ queue<T*> arboles<T>::colaDatos()
 template<class T>
 T* arboles<T>::obtenerDatos(string _numero)
 {
-    return nullptr;
+    try
+    {
+        T* resultado = _nArboles -> obtenerDatos(raiz, _numero);
+
+        if (resultado != nullptr)
+        {
+            return resultado;
+        }
+        else
+        {
+            throw exception("Ocurrio un error al encontrar el nodo");
+        }
+    }
+    catch (exception& e)
+    {
+        throw e;
+    }
+}
+
+template<class T>
+void arboles<T>::obtenerCita(vector<string>& _citasRealizadas, string _fecha, string _cedula)
+{
+    try
+    {
+        _nArboles -> obtenerCita(raiz, _citasRealizadas, _cedula, _fecha);
+    }
+    catch (exception& e)
+    {
+        throw e;
+    }
 }
 
 template<class T>

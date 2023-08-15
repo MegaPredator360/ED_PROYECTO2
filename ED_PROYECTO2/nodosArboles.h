@@ -11,7 +11,8 @@ public:
     nodos<T>* buscarDatos(nodos<T>* _nodo, string _numero);
     nodos<T>* eliminarDatos(nodos<T>*& _nodo, T* _dato);
     queue<T*> colaDatos(nodos<T>* _nodo, queue<T*>& _cola);
-    T* obtenerDatos(nodos<T>*& _nodo, string _numero);
+    T* obtenerDatos(nodos<T>* _nodo, string _numero);
+    void obtenerCita(nodos<T>* _nodo, vector<string>& _citaRealizada, string _cedula, string _fecha);
     void mostrarArbol(nodos<T>* _nodo);
     void recorridoProfundidad(nodos<T>* _nodo);
     nodos<T>* encontrarNodoMinimo(nodos<T>* _nodo);
@@ -151,21 +152,44 @@ queue<T*> nodosArboles<T>::colaDatos(nodos<T>* _nodo, queue<T*>& _cola)
 }
 
 template<class T>
-T* nodosArboles<T>::obtenerDatos(nodos<T>*& _nodo, string _numero)
+T* nodosArboles<T>::obtenerDatos(nodos<T>* _nodo, string _numero)
 {
     try
     {
-        if (_nodo == nullptr || _nodo -> obtenerCodigo() == _numero)
+        if (_nodo -> obtenerCodigo() == _numero)
         {
             return _nodo -> obtenerDatos();
         }
         else if (_numero < _nodo -> obtenerCodigo())
         {
-            return buscarDatos(_nodo -> obtenerIzquierda(), _numero);
+            return obtenerDatos(_nodo -> obtenerIzquierda(), _numero);
         }
         else
         {
-            return buscarDatos(_nodo -> obtenerDerecha(), _numero);
+            return obtenerDatos(_nodo -> obtenerDerecha(), _numero);
+        }
+    }
+    catch (exception& e)
+    {
+        throw e;
+    }
+}
+
+template<class T>
+void nodosArboles<T>::obtenerCita(nodos<T>* _nodo, vector<string>& _citaRealizada, string _cedula, string _fecha)
+{
+    try
+    {
+        if (_nodo != nullptr)
+        {
+            if (_nodo -> obtenerDoctorCita() == _cedula && _nodo -> obtenerFecha() == _fecha)
+            {
+                _citaRealizada.push_back(_nodo -> obtenerHora());
+            }
+
+            obtenerCita(_nodo -> obtenerIzquierda(), _citaRealizada, _cedula, _fecha);
+
+            obtenerCita(_nodo -> obtenerDerecha(), _citaRealizada, _cedula, _fecha);
         }
     }
     catch (exception& e)

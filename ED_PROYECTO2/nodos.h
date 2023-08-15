@@ -28,6 +28,15 @@ public:
     // Obtendrá ya sea la cedula o el codigo
     virtual string obtenerCodigo();
 
+    // Obtendrá la fecha de una cita realizada
+    virtual string obtenerFecha();
+
+    // Obtendrá la hora de cita realizada
+    virtual string obtenerHora();
+
+    // Obtendrá el codigo del doctor de una cita realizada
+    virtual string obtenerDoctorCita();
+
     // Obtendrá los datos del nodo de la izquierda
     virtual nodos<T>* obtenerIzquierda() const;
 
@@ -59,7 +68,7 @@ T* nodos<T>::obtenerDatos() const
 template<class T>
 string nodos<T>::obtenerCodigo()
 {
-    // Verificamos si dato es de la clase doctores
+    // El "dynamic_cast" se encargará de verificar en tiempo de ejecucion si es posible hacer una conversion de "dato" a la clase de datos que se necesite
     if (doctores* _doctor = dynamic_cast<doctores*>(dato))
     {
         codigo = _doctor -> getCedula();
@@ -80,8 +89,39 @@ string nodos<T>::obtenerCodigo()
     {
         codigo = _recetaMedica -> getCodigo();
     }
+    else
+    {
+        throw exception("Ocurrio un error al obtener codigo / cedula del nodo");
+    }
 
     return codigo;
+}
+
+template<class T>
+string nodos<T>::obtenerFecha()
+{
+    if (citas* _cita = dynamic_cast<citas*>(dato))
+    {
+        return _cita -> getFecha();
+    }
+}
+
+template<class T>
+string nodos<T>::obtenerHora()
+{
+    if (citas* _cita = dynamic_cast<citas*>(dato))
+    {
+        return _cita -> getHora();
+    }
+}
+
+template<class T>
+string nodos<T>::obtenerDoctorCita()
+{
+    if (citas* _cita = dynamic_cast<citas*>(dato))
+    {
+        return _cita -> getDoctor() -> getCedula();
+    }
 }
 
 template <class T>

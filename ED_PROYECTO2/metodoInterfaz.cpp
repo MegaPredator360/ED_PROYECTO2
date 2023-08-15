@@ -61,9 +61,6 @@ string metodoInterfaz::ingresarHora()
 	int marcador = 1;
 	int key = 0;
 
-	moverXY(27, 7);
-	cout << ":";
-
 	while (1)
 	{
 		moverXY(25, 7);
@@ -545,6 +542,179 @@ int metodoInterfaz::generarCodigo()
 		random_device rd;										// Se crea el dispositivo que se utilizará para generar números aleatorios
 		uniform_int_distribution<int> dist(10000, 99999);		// Se define tipo de dato y el rango de números
 		return dist(rd);
+	}
+	catch (exception& e)
+	{
+		throw e;
+	}
+}
+
+void metodoInterfaz::mostrarHoraCita(arboles<citas> _arbolCita, doctores* _doctor, string& _fecha, string& _hora)
+{
+	try
+	{
+		vector<string> horasDisponibles;
+		vector<string> citasRealizadas;
+		string espacios(120, ' ');
+		string cuadroLado(20, ' ');
+		string cuadroFinal(18, ' ');
+		string cuadroBorde(76, '_');
+		string cuadroRelleno(76, ' ');
+		string cuadroIngresarTexto(50, ' ');
+		string hora1;
+		int horaInicio;
+		int horaFinal;
+		int horaTrabajo;
+		int confirmacion;
+		string horaCita;
+		int key;
+		int selector[] = { 71 };
+		int opcion;
+
+		while (1)
+		{
+			horasDisponibles.clear();
+			citasRealizadas.clear();
+
+			moverXY(0, 6);
+			cout << "\033[44m\033[30m" << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal;
+			moverXY(25, 6);
+			cout << "\033[100mIngresa la fecha de la cita:";
+			moverXY(25, 7);
+			cout << cuadroIngresarTexto;
+			_fecha = ingresarFecha();
+
+			horaInicio = stoi(_doctor -> getHoraInicio().substr(0, 2));
+			horaFinal = stoi(_doctor -> getHoraFin().substr(0, 2));
+			horaTrabajo = horaFinal - horaInicio;
+
+			for (int i = 0; i < horaTrabajo; i++)
+			{
+				hora1 = to_string(horaInicio + i);
+
+				if (hora1.size() == 1)
+				{
+					hora1 = "0" + hora1 + ":00";
+				}
+				else
+				{
+					hora1 = hora1 + ":00";
+				}
+
+				horasDisponibles.push_back(hora1);
+			}
+
+			_arbolCita.obtenerCita(citasRealizadas, _fecha, _doctor -> getCedula());
+
+			while (!citasRealizadas.empty())
+			{
+				for (int i = 0; i < horasDisponibles.size(); i++)
+				{
+					if (citasRealizadas.empty())
+					{
+						break;
+					}
+
+					if (horasDisponibles[i] == citasRealizadas[0])
+					{
+						horasDisponibles.erase(horasDisponibles.begin() + i);
+						citasRealizadas.erase(citasRealizadas.begin());
+					}
+				}
+			}
+
+			moverXY(25, 6);
+			cout << "\033[100m\033[30m" << cuadroIngresarTexto;
+			moverXY(25, 6);
+			cout << "Estas son las horas disponibles para la fecha: " << _fecha.substr(0, 2) << "/" << _fecha.substr(2, 2) << "/" << _fecha.substr(4, 4);
+			moverXY(0, 7);
+			
+			for (int i = 0; i < horasDisponibles.size() + 3; i++)
+			{
+				cout << "\033[44m\033[30m" << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
+			}
+
+			cout << cuadroLado << "\033[100m |" << cuadroBorde << "| \033[40m  \033[44m" << cuadroFinal << endl;
+			cout << cuadroLado << "\033[100m  " << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+			cout << cuadroLado << "  \033[40m" << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+			cout << "\033[44m\033[30m" << espacios;
+			
+			for (int i = 0; i < horasDisponibles.size(); i++)
+			{
+				moverXY(25, 7 + i);
+				cout << "\033[100m" << horasDisponibles[i];
+			}
+
+			confirmacion = confirmarDatos("¿Deseas programar una cita en esta fecha?", 8 + horasDisponibles.size());
+
+			moverXY(0, 6);
+
+			for (int i = 0; i < 5; i++)
+			{
+				cout << "\033[44m\033[30m" << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
+			}
+			cout << cuadroLado << "\033[100m |" << cuadroBorde << "| \033[40m  \033[44m" << cuadroFinal << endl;
+			cout << cuadroLado << "\033[100m  " << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+			cout << cuadroLado << "  \033[40m" << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+
+			for (int i = 0; i < horasDisponibles.size(); i++)
+			{
+				cout << "\033[44m\033[30m" << espacios << endl;
+			}
+
+			if (confirmacion == 1)
+			{
+				moverXY(25, 6);
+				cout << "\033[100mSelecciona la hora de la cita";
+				moverXY(25, 7);
+				opcion = 0;
+				int tamaño = horasDisponibles.size() - 1;
+
+				while (1)
+				{
+					moverXY(25, 7);
+					color(selector[0]);
+					cout << horasDisponibles[opcion];
+
+					key = _getch();
+
+
+					// Valida si la flecha izquierda fue pulsada, valor 224 en ASCII
+					if (key == 224)
+					{
+						key = _getch();
+
+						if (key == 72)
+						{
+							opcion++;
+
+							if (opcion > tamaño)
+							{
+								opcion = 0;
+							}
+						}
+						else if (key == 80)
+						{
+							opcion--;
+
+							if (opcion == -1)
+							{
+								opcion = tamaño;
+							}
+						}
+					}
+					else if (key == '\r')
+					{
+						break;
+					}
+				}
+
+				// Pasa salir del while del la fecha ya que la fecha y hora fueron seleccionadas
+				break;
+			}
+		}
+
+		_hora = horasDisponibles[opcion];
 	}
 	catch (exception& e)
 	{

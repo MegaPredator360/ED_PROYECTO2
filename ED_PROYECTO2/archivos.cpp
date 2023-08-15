@@ -72,7 +72,7 @@ void archivos::guardarMedicamento(arboles<medicamentos> _arbolMedicamentos)
 	{
 		if (_arbolMedicamentos.verificarVacio())
 		{
-			ofstream guardarMedicamentos("datosMedicamentos.dat");
+			ofstream guardarMedicamentos("datosMedicamento.dat");
 			medicamentos* medicamento;
 			queue<medicamentos*> colaMedicamento = _arbolMedicamentos.colaDatos();
 			string dato;
@@ -306,7 +306,7 @@ arboles<citas> archivos::cargarCita(arboles<doctores> _arbolDoctor, arboles<paci
 				datos.erase(0, tamañoString(_cita.getFecha()) + 1);
 
 				_cita.setHora(datos.substr(0, datos.find("/")));
-				datos.erase(0, tamañoString(_cita.getFecha()) + 1);
+				datos.erase(0, tamañoString(_cita.getHora()) + 1);
 
 				doctor = datos.substr(0, datos.find("/"));
 				datos.erase(0, tamañoString(doctor) + 1);

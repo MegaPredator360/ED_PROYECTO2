@@ -11,20 +11,23 @@ void interfaz::menuPrincipal()
 	// Encargada de recibir el valor de la tecla pulsada en ASCII
 	int key = 0;
 
+	string espacios(120, ' ');
+	string cuadroLado(20, ' ');
+	string cuadroFinal(18, ' ');
+	string cuadroBorde(76, '_');
+	string cuadroRelleno(76, ' ');
+	string cuadroIngresarTexto(50, ' ');
+
 	// Cargar Archivos
 	arbolDoctor = _archivo.cargarDoctor();
+	arbolPaciente = _archivo.cargarPaciente();
+	arbolMedicamento = _archivo.cargarMedicamento();
+	arbolCita = _archivo.cargarCita(arbolDoctor, arbolPaciente);
+	arbolRecetaMedica = _archivo.cargarReceta(arbolPaciente, arbolMedicamento);
 
 	while (1)
 	{
 		system("cls");
-
-		string espacios(120, ' ');
-		string cuadroLado(20, ' ');
-		string cuadroFinal(18, ' ');
-		string cuadroBorde(76, '_');
-		string cuadroRelleno(76, ' ');
-		string cuadroIngresarTexto(50, ' ');
-
 
 		// Se genera el cuadro del menú principal
 		cout << "\033[44m\033[30m" << espacios << endl;
@@ -570,6 +573,7 @@ void interfaz::menuPrincipal()
 							{
 								_paciente = new pacientes(cedula, nombre, direccion, telefono);
 								arbolPaciente.registrarDatos(_paciente, cedula);
+								_archivo.guardarPaciente(arbolPaciente);
 								_mInterfaz.mostrarMensajeExito("¡El paciente fue ingresado con exito!");
 
 								break;
@@ -683,6 +687,7 @@ void interfaz::menuPrincipal()
 							{
 								_medicamento = new medicamentos(codigo, nombre, cantidad);
 								arbolMedicamento.registrarDatos(_medicamento, codigo);
+								_archivo.guardarMedicamento(arbolMedicamento);
 								_mInterfaz.mostrarMensajeExito("¡El medicamento fue ingresado con exito!");
 
 								break;
@@ -773,24 +778,13 @@ void interfaz::menuPrincipal()
 								nombre = _mInterfaz.ingresarNumeros();
 							}
 
+							_doctor = arbolDoctor.obtenerDatos(nombre);
+
 							_mInterfaz.moverXY(0, 8);
 							cout << "\033[44m\033[30m" << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
 							cout << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal;
-							_mInterfaz.moverXY(25, 6);
-							cout << "\033[100m" << cuadroIngresarTexto;
-							_mInterfaz.moverXY(25, 6);
-							cout << "Ingresa la fecha de la cita:";
-							_mInterfaz.moverXY(25, 7);
-							cout << cuadroIngresarTexto;
-							fecha = _mInterfaz.ingresarFecha();
 
-							_mInterfaz.moverXY(25, 6);
-							cout << "\033[100m\033[30m" << cuadroIngresarTexto;
-							_mInterfaz.moverXY(25, 6);
-							cout << "Ingresa la hora de la cita:";
-							_mInterfaz.moverXY(25, 7);
-							cout << cuadroIngresarTexto;
-							hora = _mInterfaz.ingresarHora();
+							_mInterfaz.mostrarHoraCita(arbolCita, _doctor, fecha, hora);
 
 							cout << "\033[44m\033[30m";
 
@@ -808,6 +802,8 @@ void interfaz::menuPrincipal()
 							cout << cuadroLado << "  \033[40m" << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
 							cout << "\033[44m\033[30m" << espacios;
 
+							_paciente = arbolPaciente.obtenerDatos(cedula);
+
 							cout << "\033[100m\033[30m";
 							_mInterfaz.moverXY(25, 3);
 							cout << "Codigo de la cita:";
@@ -816,15 +812,15 @@ void interfaz::menuPrincipal()
 
 							cout << "\033[100m\033[30m";
 							_mInterfaz.moverXY(25, 6);
-							cout << "Cedula del paciente:";
+							cout << "Nombre del paciente:";
 							_mInterfaz.moverXY(25, 7);
-							cout << cedula;
+							cout << _paciente -> getNombre();
 
 							cout << "\033[100m\033[30m";
 							_mInterfaz.moverXY(25, 9);
-							cout << "Cedula del doctor:";
+							cout << "Nombre del doctor:";
 							_mInterfaz.moverXY(25, 10);
-							cout << nombre;
+							cout << _doctor -> getNombre();
 
 							cout << "\033[100m\033[30m";
 							_mInterfaz.moverXY(25, 12);
@@ -840,9 +836,10 @@ void interfaz::menuPrincipal()
 
 							if (_mInterfaz.confirmarDatos("¿Los datos ingresados son correctos?", 18) == 1)
 							{
-								_medicamento = new medicamentos(codigo, nombre, cantidad);
-								arbolMedicamento.registrarDatos(_medicamento, codigo);
-								_mInterfaz.mostrarMensajeExito("¡El medicamento fue ingresado con exito!");
+								_cita = new citas(codigo, fecha, hora, _doctor, _paciente);
+								arbolCita.registrarDatos(_cita, codigo);
+								_archivo.guardarCita(arbolCita);
+								_mInterfaz.mostrarMensajeExito("¡La cita fue registrada con exito!");
 
 								break;
 							}

@@ -35,5 +35,8 @@ public:
 
 	// Se encargará de generar un codigo aleatorio que será dado al codigo de citas y recetas medicas
 	int generarCodigo();
+
+	// Se encargará de mostrar las horas disponibles de una fecha especifica de la cita
+	void mostrarHoraCita(arboles<citas> _arbolCita, doctores* _doctor, string& _fecha, string& _hora);
 };
 
