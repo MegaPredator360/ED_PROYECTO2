@@ -18,7 +18,7 @@ public:
     T* obtenerDatos(string _numero);
     void obtenerCita(vector<string>& _citasRealizadas, string _fecha, string _cedula);
 	void buscarDatos(string _numero);
-	void eliminarDatos(T* _dato);
+	void eliminarDatos(T* _dato, string _numero);
     void mostrarArbol();
     void recorridoProfundidad();
     void recorridoPorNiveles();
@@ -148,11 +148,11 @@ void arboles<T>::buscarDatos(string _numero)
 }
 
 template<class T>
-void arboles<T>::eliminarDatos(T* _dato)
+void arboles<T>::eliminarDatos(T* _dato, string _numero)
 {
     try
     {
-        raiz = _nArboles.eliminarDatos(raiz, _dato);
+        raiz = _nArboles -> eliminarDatos(raiz, _dato, _numero);
     }
     catch (exception& e)
     {

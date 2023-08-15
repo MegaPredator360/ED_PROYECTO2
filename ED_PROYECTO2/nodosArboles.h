@@ -9,7 +9,7 @@ class nodosArboles
 public:
     void registrarDatos(nodos<T>*& _nodo, T* _dato, string _numero);
     nodos<T>* buscarDatos(nodos<T>* _nodo, string _numero);
-    nodos<T>* eliminarDatos(nodos<T>*& _nodo, T* _dato);
+    nodos<T>* eliminarDatos(nodos<T>* _nodo, T* _dato, string _numero);
     queue<T*> colaDatos(nodos<T>* _nodo, queue<T*>& _cola);
     T* obtenerDatos(nodos<T>* _nodo, string _numero);
     void obtenerCita(nodos<T>* _nodo, vector<string>& _citaRealizada, string _cedula, string _fecha);
@@ -85,7 +85,7 @@ nodos<T>* nodosArboles<T>::buscarDatos(nodos<T>* _nodo, string _numero)
 }
 
 template<class T>
-inline nodos<T>* nodosArboles<T>::eliminarDatos(nodos<T>*& _nodo, T* _dato)
+nodos<T>* nodosArboles<T>::eliminarDatos(nodos<T>* _nodo, T* _dato, string _numero)
 {
     try
     {
@@ -94,13 +94,13 @@ inline nodos<T>* nodosArboles<T>::eliminarDatos(nodos<T>*& _nodo, T* _dato)
             return _nodo;
         }
 
-        if (_dato < _nodo -> obtenerDatos()) 
+        if (_numero < _nodo -> obtenerCodigo()) 
         {
-            _nodo -> fijarIzquierda() = eliminarDatos(_nodo -> obtenerIzquierda(), _dato);
+            _nodo -> fijarIzquierda(eliminarDatos(_nodo -> obtenerIzquierda(), _dato, _numero));
         }
-        else if (_dato > _nodo -> obtenerDatos())
+        else if (_numero > _nodo -> obtenerCodigo())
         {
-            _nodo -> fijarDerecha() = eliminarDatos(_nodo -> obtenerDerecha(), _dato);
+            _nodo -> fijarDerecha(eliminarDatos(_nodo -> obtenerDerecha(), _dato, _numero));
         }
         else 
         {
@@ -118,8 +118,8 @@ inline nodos<T>* nodosArboles<T>::eliminarDatos(nodos<T>*& _nodo, T* _dato)
             }
 
             nodos<T>* temp = encontrarNodoMinimo(_nodo -> obtenerDerecha());
-            _nodo -> fijarNodo() = temp -> obtenerDatos();
-            _nodo -> fijarDerecha() = eliminarDatos(_nodo -> obtenerDerecha(), temp -> obtenerDato());
+            _nodo -> fijarNodo(temp -> obtenerDatos());
+            _nodo -> fijarDerecha(eliminarDatos(_nodo -> obtenerDerecha(), temp -> obtenerDatos(), _numero));
         }
         return _nodo;
     }

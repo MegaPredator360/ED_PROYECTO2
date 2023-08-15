@@ -79,7 +79,7 @@ void interfaz::menuPrincipal()
 			// Opcion 6
 			_mInterfaz.moverXY(44, 11);
 			_mInterfaz.color(Set[5]);
-			cout << "          Eliminar Cita          ";
+			cout << "          Cancelar Cita          ";
 
 			// Opcion 7
 			_mInterfaz.moverXY(44, 12);
@@ -745,7 +745,7 @@ void interfaz::menuPrincipal()
 							while (!arbolPaciente.verificarDatos(cedula))
 							{
 								_mInterfaz.moverXY(25, 8);
-								cout << "\033[100m\033[31mEl cedula ingresada no está registrada.";
+								cout << "\033[100m\033[31mLa cedula ingresada no está registrada.";
 								_mInterfaz.moverXY(25, 9);
 								cout << "Por favor ingresa un número de cedula registrada.";
 								_mInterfaz.moverXY(25, 7);
@@ -769,7 +769,7 @@ void interfaz::menuPrincipal()
 							while (!arbolDoctor.verificarDatos(nombre))
 							{
 								_mInterfaz.moverXY(25, 8);
-								cout << "\033[100m\033[31mEl cedula ingresada no está registrada.";
+								cout << "\033[100m\033[31mLa cedula ingresada no está registrada.";
 								_mInterfaz.moverXY(25, 9);
 								cout << "Por favor ingresa un número de cedula registrada.";
 								_mInterfaz.moverXY(25, 7);
@@ -855,13 +855,239 @@ void interfaz::menuPrincipal()
 					// Modificar Cita
 					try
 					{
+						if (!arbolCita.verificarVacio())
+						{
+							throw exception("!No hay citas registradas en el sistema!");
+						}
 
+						while (1)
+						{
+							system("cls");
+							cout << "\033[44m\033[30m" << espacios << endl;
+							cout << cuadroLado << "\033[100m ." << cuadroBorde << ". \033[44m" << cuadroLado << endl;
+
+							for (int i = 0; i < 9; i++)
+							{
+								cout << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
+							}
+
+							cout << cuadroLado << "\033[100m |" << cuadroBorde << "| \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << cuadroLado << "\033[100m  " << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << cuadroLado << "  \033[40m" << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << "\033[44m\033[30m" << espacios;
+
+							_mInterfaz.moverXY(52, 4);
+							cout << "\033[100mModificar Cita";
+
+							_mInterfaz.moverXY(25, 6);
+							cout << "\033[100mIngresa el codigo de cita registrada:";
+							_mInterfaz.moverXY(25, 7);
+							cout << "\033[40m\033[37m" << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 7);
+							codigo = _mInterfaz.ingresarNumeros();
+
+							while (!arbolCita.verificarDatos(codigo))
+							{
+								_mInterfaz.moverXY(25, 8);
+								cout << "\033[100m\033[31mEl codigo ingresada no está registrada.";
+								_mInterfaz.moverXY(25, 9);
+								cout << "Por favor ingresa el codigo de cita registrado.";
+								_mInterfaz.moverXY(25, 7);
+								cout << "\033[40m\033[37m" << cuadroIngresarTexto;
+								_mInterfaz.moverXY(25, 7);
+								codigo = _mInterfaz.ingresarNumeros();
+							}
+
+							_cita = arbolCita.obtenerDatos(codigo);
+
+							cout << "\033[44m\033[30m";
+
+							system("cls");
+							cout << espacios << endl;
+							cout << cuadroLado << "\033[100m ." << cuadroBorde << ". \033[44m" << cuadroLado << endl;
+
+							for (int i = 0; i < 18; i++)
+							{
+								cout << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
+							}
+
+							cout << cuadroLado << "\033[100m |" << cuadroBorde << "| \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << cuadroLado << "\033[100m  " << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << cuadroLado << "  \033[40m" << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << "\033[44m\033[30m" << espacios;
+
+							cout << "\033[100m\033[30m";
+							_mInterfaz.moverXY(25, 3);
+							cout << "Codigo de la cita:";
+							_mInterfaz.moverXY(25, 4);
+							cout << _cita -> getCodigo();
+
+							cout << "\033[100m\033[30m";
+							_mInterfaz.moverXY(25, 6);
+							cout << "Nombre del paciente:";
+							_mInterfaz.moverXY(25, 7);
+							cout << _cita -> getPaciente() -> getNombre();
+
+							cout << "\033[100m\033[30m";
+							_mInterfaz.moverXY(25, 9);
+							cout << "Nombre del doctor:";
+							_mInterfaz.moverXY(25, 10);
+							cout << _cita -> getDoctor() -> getNombre();
+
+							cout << "\033[100m\033[30m";
+							_mInterfaz.moverXY(25, 12);
+							cout << "Fecha de la cita:";
+							_mInterfaz.moverXY(25, 13);
+							cout << "Dia: " << _cita -> getFecha().substr(0, 2) << " - Mes: " << _cita -> getFecha().substr(2, 2) << " - Año: " << _cita -> getFecha().substr(4, 4);
+
+							cout << "\033[100m\033[30m";
+							_mInterfaz.moverXY(25, 15);
+							cout << "Hora de la cita:";
+							_mInterfaz.moverXY(25, 16);
+							cout << _cita -> getHora();
+
+							if (_mInterfaz.confirmarDatos("¿Deseas modificar esta cita?", 18) == 1)
+							{
+								while (1)
+								{
+									system("cls");
+									cout << "\033[44m\033[30m" << espacios << endl;
+									cout << cuadroLado << "\033[100m ." << cuadroBorde << ". \033[44m" << cuadroLado << endl;
+
+									for (int i = 0; i < 9; i++)
+									{
+										cout << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
+									}
+
+									cout << cuadroLado << "\033[100m |" << cuadroBorde << "| \033[40m  \033[44m" << cuadroFinal << endl;
+									cout << cuadroLado << "\033[100m  " << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+									cout << cuadroLado << "  \033[40m" << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+									cout << "\033[44m\033[30m" << espacios;
+
+									_mInterfaz.moverXY(52, 4);
+									cout << "\033[100mModificar Cita";
+
+									_mInterfaz.moverXY(25, 6);
+									cout << "\033[100mIngresa el número de cedula del paciente registrado:";
+									_mInterfaz.moverXY(25, 7);
+									cout << "\033[40m\033[37m" << cuadroIngresarTexto;
+									_mInterfaz.moverXY(25, 7);
+									cedula = _mInterfaz.ingresarNumeros();
+
+									while (!arbolPaciente.verificarDatos(cedula))
+									{
+										_mInterfaz.moverXY(25, 8);
+										cout << "\033[100m\033[31mLa cedula ingresada no está registrada.";
+										_mInterfaz.moverXY(25, 9);
+										cout << "Por favor ingresa un número de cedula registrada.";
+										_mInterfaz.moverXY(25, 7);
+										cout << "\033[40m\033[37m" << cuadroIngresarTexto;
+										_mInterfaz.moverXY(25, 7);
+										cedula = _mInterfaz.ingresarNumeros();
+									}
+
+									_mInterfaz.moverXY(0, 8);
+									cout << "\033[44m\033[30m" << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
+									cout << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal;
+									_mInterfaz.moverXY(0, 6);
+									cout << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal;
+									_mInterfaz.moverXY(25, 6);
+									cout << "\033[100mIngresa la cedula del doctor registrado:";
+									_mInterfaz.moverXY(25, 7);
+									cout << "\033[40m\033[37m" << cuadroIngresarTexto;
+									_mInterfaz.moverXY(25, 7);
+									getline(cin, nombre);
+
+									while (!arbolDoctor.verificarDatos(nombre))
+									{
+										_mInterfaz.moverXY(25, 8);
+										cout << "\033[100m\033[31mLa cedula ingresada no está registrada.";
+										_mInterfaz.moverXY(25, 9);
+										cout << "Por favor ingresa un número de cedula registrada.";
+										_mInterfaz.moverXY(25, 7);
+										cout << "\033[40m\033[37m" << cuadroIngresarTexto;
+										_mInterfaz.moverXY(25, 7);
+										nombre = _mInterfaz.ingresarNumeros();
+									}
+
+									_doctor = arbolDoctor.obtenerDatos(nombre);
+
+									_mInterfaz.moverXY(0, 8);
+									cout << "\033[44m\033[30m" << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
+									cout << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal;
+
+									_mInterfaz.mostrarHoraCita(arbolCita, _doctor, fecha, hora);
+
+									cout << "\033[44m\033[30m";
+
+									system("cls");
+									cout << espacios << endl;
+									cout << cuadroLado << "\033[100m ." << cuadroBorde << ". \033[44m" << cuadroLado << endl;
+
+									for (int i = 0; i < 18; i++)
+									{
+										cout << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
+									}
+
+									cout << cuadroLado << "\033[100m |" << cuadroBorde << "| \033[40m  \033[44m" << cuadroFinal << endl;
+									cout << cuadroLado << "\033[100m  " << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+									cout << cuadroLado << "  \033[40m" << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+									cout << "\033[44m\033[30m" << espacios;
+
+									_paciente = arbolPaciente.obtenerDatos(cedula);
+
+									cout << "\033[100m\033[30m";
+									_mInterfaz.moverXY(25, 3);
+									cout << "Codigo de la cita:";
+									_mInterfaz.moverXY(25, 4);
+									cout << _cita -> getCodigo();
+
+									cout << "\033[100m\033[30m";
+									_mInterfaz.moverXY(25, 6);
+									cout << "Nombre del paciente:";
+									_mInterfaz.moverXY(25, 7);
+									cout << _paciente -> getNombre();
+
+									cout << "\033[100m\033[30m";
+									_mInterfaz.moverXY(25, 9);
+									cout << "Nombre del doctor:";
+									_mInterfaz.moverXY(25, 10);
+									cout << _doctor -> getNombre();
+
+									cout << "\033[100m\033[30m";
+									_mInterfaz.moverXY(25, 12);
+									cout << "Fecha de la cita:";
+									_mInterfaz.moverXY(25, 13);
+									cout << "Dia: " << fecha.substr(0, 2) << " - Mes: " << fecha.substr(2, 2) << " - Año: " << fecha.substr(4, 4);
+
+									cout << "\033[100m\033[30m";
+									_mInterfaz.moverXY(25, 15);
+									cout << "Hora de la cita:";
+									_mInterfaz.moverXY(25, 16);
+									cout << hora;
+
+									if (_mInterfaz.confirmarDatos("¿Los datos ingresados son correctos?", 18) == 1)
+									{
+										_cita -> setFecha(fecha);
+										_cita -> setHora(hora);
+										_cita -> setDoctor(_doctor);
+										_cita -> setPaciente(_paciente);
+
+										_archivo.guardarCita(arbolCita);
+										_mInterfaz.mostrarMensajeExito("¡La cita fue actualizada con exito!");
+
+										break;
+									}
+								}
+
+								// Salir del ciclo de Modificar Citas
+								break;
+							}
+						}
 					}
-					catch (exception& e) {
-						cout << RED << "Ha ocurrido un error: " << WHITE << e.what() << endl;
-						cout << "-------------------------" << endl;
-						cout << "Volviendo al Menu Principal." << endl << endl;
-						system("pause");
+					catch (exception& e)
+					{
+						_mInterfaz.mostrarMensajeFallido(e.what());
 					}
 					break;
 
@@ -869,13 +1095,110 @@ void interfaz::menuPrincipal()
 					// Eliminar Cita
 					try
 					{
+						if (!arbolCita.verificarVacio())
+						{
+							throw exception("!No hay citas registradas en el sistema!");
+						}
 
+						while (1)
+						{
+							system("cls");
+							cout << "\033[44m\033[30m" << espacios << endl;
+							cout << cuadroLado << "\033[100m ." << cuadroBorde << ". \033[44m" << cuadroLado << endl;
+
+							for (int i = 0; i < 9; i++)
+							{
+								cout << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
+							}
+
+							cout << cuadroLado << "\033[100m |" << cuadroBorde << "| \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << cuadroLado << "\033[100m  " << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << cuadroLado << "  \033[40m" << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << "\033[44m\033[30m" << espacios;
+
+							_mInterfaz.moverXY(52, 4);
+							cout << "\033[100mCancelar Cita";
+
+							_mInterfaz.moverXY(25, 6);
+							cout << "\033[100mIngresa el codigo de cita registrada:";
+							_mInterfaz.moverXY(25, 7);
+							cout << "\033[40m\033[37m" << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 7);
+							codigo = _mInterfaz.ingresarNumeros();
+
+							while (!arbolCita.verificarDatos(codigo))
+							{
+								_mInterfaz.moverXY(25, 8);
+								cout << "\033[100m\033[31mEl codigo ingresada no está registrada.";
+								_mInterfaz.moverXY(25, 9);
+								cout << "Por favor ingresa el codigo de cita registrado.";
+								_mInterfaz.moverXY(25, 7);
+								cout << "\033[40m\033[37m" << cuadroIngresarTexto;
+								_mInterfaz.moverXY(25, 7);
+								codigo = _mInterfaz.ingresarNumeros();
+							}
+
+							_cita = arbolCita.obtenerDatos(codigo);
+
+							cout << "\033[44m\033[30m";
+
+							system("cls");
+							cout << espacios << endl;
+							cout << cuadroLado << "\033[100m ." << cuadroBorde << ". \033[44m" << cuadroLado << endl;
+
+							for (int i = 0; i < 18; i++)
+							{
+								cout << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
+							}
+
+							cout << cuadroLado << "\033[100m |" << cuadroBorde << "| \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << cuadroLado << "\033[100m  " << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << cuadroLado << "  \033[40m" << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << "\033[44m\033[30m" << espacios;
+
+							cout << "\033[100m\033[30m";
+							_mInterfaz.moverXY(25, 3);
+							cout << "Codigo de la cita:";
+							_mInterfaz.moverXY(25, 4);
+							cout << _cita -> getCodigo();
+
+							cout << "\033[100m\033[30m";
+							_mInterfaz.moverXY(25, 6);
+							cout << "Nombre del paciente:";
+							_mInterfaz.moverXY(25, 7);
+							cout << _cita -> getPaciente() -> getNombre();
+
+							cout << "\033[100m\033[30m";
+							_mInterfaz.moverXY(25, 9);
+							cout << "Nombre del doctor:";
+							_mInterfaz.moverXY(25, 10);
+							cout << _cita -> getDoctor() -> getNombre();
+
+							cout << "\033[100m\033[30m";
+							_mInterfaz.moverXY(25, 12);
+							cout << "Fecha de la cita:";
+							_mInterfaz.moverXY(25, 13);
+							cout << "Dia: " << _cita -> getFecha().substr(0, 2) << " - Mes: " << _cita -> getFecha().substr(2, 2) << " - Año: " << _cita -> getFecha().substr(4, 4);
+
+							cout << "\033[100m\033[30m";
+							_mInterfaz.moverXY(25, 15);
+							cout << "Hora de la cita:";
+							_mInterfaz.moverXY(25, 16);
+							cout << _cita -> getHora();
+
+							if (_mInterfaz.confirmarDatos("¿Deseas cancelar esta cita?", 18) == 1)
+							{
+								arbolCita.eliminarDatos(_cita, _cita -> getCodigo());
+
+								_archivo.guardarCita(arbolCita);
+								_mInterfaz.mostrarMensajeExito("¡La cita fue cancelada con exito!");
+								break;
+							}
+						}
 					}
-					catch (exception& e) {
-						cout << RED << "Ha ocurrido un error: " << WHITE << e.what() << endl;
-						cout << "-------------------------" << endl;
-						cout << "Volviendo al Menu Principal." << endl << endl;
-						system("pause");
+					catch (exception& e)
+					{
+						_mInterfaz.mostrarMensajeFallido(e.what());
 					}
 					break;
 

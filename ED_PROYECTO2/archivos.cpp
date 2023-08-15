@@ -31,6 +31,12 @@ void archivos::guardarDoctor(arboles<doctores> _arbolDoctor)
 
 			guardarDoctor.close();
 		}
+		else
+		{
+			ofstream guardarDoctor("datosDoctor.dat");
+			guardarDoctor << "";
+			guardarDoctor.close();
+		}
 	}
 	catch (exception& e)
 	{
@@ -57,6 +63,12 @@ void archivos::guardarPaciente(arboles<pacientes> _arbolPaciente)
 				colaPaciente.pop();
 			}
 
+			guardarPaciente.close();
+		}
+		else
+		{
+			ofstream guardarPaciente("datosPaciente.dat");
+			guardarPaciente << "";
 			guardarPaciente.close();
 		}
 	}
@@ -87,6 +99,12 @@ void archivos::guardarMedicamento(arboles<medicamentos> _arbolMedicamentos)
 
 			guardarMedicamentos.close();
 		}
+		else
+		{
+			ofstream guardarMedicamentos("datosMedicamento.dat");
+			guardarMedicamentos << "";
+			guardarMedicamentos.close();
+		}
 	}
 	catch (exception& e)
 	{
@@ -115,6 +133,12 @@ void archivos::guardarCita(arboles<citas> _arbolCita)
 
 			guardarCitas.close();
 		}
+		else
+		{
+			ofstream guardarCitas("datosCita.dat");
+			guardarCitas << "";
+			guardarCitas.close();
+		}
 	}
 	catch (exception& e)
 	{
@@ -141,6 +165,12 @@ void archivos::guardarRecetaMedica(arboles<recetaMedica> _arbolReceta)
 				colaReceta.pop();
 			}
 
+			guardarReceta.close();
+		}
+		else
+		{
+			ofstream guardarReceta("datosReceta.dat");
+			guardarReceta << "";
 			guardarReceta.close();
 		}
 	}
