@@ -38,5 +38,8 @@ public:
 
 	// Se encargará de mostrar las horas disponibles de una fecha especifica de la cita
 	void mostrarHoraCita(arboles<citas> _arbolCita, doctores* _doctor, string& _fecha, string& _hora);
+
+	// Se encargará de verificar que no se le den más medicamentos a un paciente cuando no hay
+	bool verificarCantidadMedicamento(int _inventario, int _cantidad);
 };
 

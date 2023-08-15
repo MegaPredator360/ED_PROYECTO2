@@ -721,3 +721,24 @@ void metodoInterfaz::mostrarHoraCita(arboles<citas> _arbolCita, doctores* _docto
 		throw e;
 	}
 }
+
+bool metodoInterfaz::verificarCantidadMedicamento(int _inventario, int _cantidad)
+{
+	try
+	{
+		int resultado = _inventario - _cantidad;
+
+		if (resultado < 0)
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	}
+	catch (exception& e)
+	{
+		throw e;
+	}
+}

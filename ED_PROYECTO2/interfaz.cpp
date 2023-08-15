@@ -128,20 +128,20 @@ void interfaz::menuPrincipal()
 
 			key = _getch();
 
-			if (key == 72 && (opcion >= 1 && opcion <= 14))		// Validar si la flecha arriba es pulsada	|| 72 es el valor de la flecha arriba en ASCII
+			if (key == 72)		// Validar si la flecha arriba es pulsada	|| 72 es el valor de la flecha arriba en ASCII
 			{
 				opcion--;
 
 				if (opcion == 0)
 				{
-					opcion = 14;
+					opcion = 15;
 				}
 			}
-			else if (key == 80 && (opcion >= 1 && opcion <= 14))	// Validar si la flecha abajo es pulsada	|| 80 es el valor de la flecha abajo en ASCII
+			else if (key == 80)	// Validar si la flecha abajo es pulsada	|| 80 es el valor de la flecha abajo en ASCII
 			{
 				opcion++;
 
-				if (opcion == 15)
+				if (opcion == 16)
 				{
 					opcion = 1;
 				}
@@ -1024,8 +1024,23 @@ void interfaz::menuPrincipal()
 									_mInterfaz.moverXY(25, 7);
 									paciente = _mInterfaz.ingresarNumeros();
 
-									_mInterfaz.moverXY(0, 6);
+									while (!_mInterfaz.verificarCantidadMedicamento(_medicamento -> getCantidadInventario(), stoi(paciente)))
+									{
+										_mInterfaz.moverXY(25, 8);
+										cout << "\033[100m\033[31mNo hay suficiente cantidad en inventario de ese medicamento.";
+										_mInterfaz.moverXY(25, 9);
+										cout << "Por favor ingresa una cantidad igual a " << _medicamento->getCantidadInventario() << " o menor.";
+										_mInterfaz.moverXY(25, 7);
+										cout << "\033[40m\033[37m" << cuadroIngresarTexto;
+										_mInterfaz.moverXY(25, 7);
+										paciente = _mInterfaz.ingresarNumeros();
+									}
+
+									_mInterfaz.moverXY(0, 8);
 									cout << "\033[44m\033[30m" << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
+									cout << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal;
+									_mInterfaz.moverXY(0, 6);
+									cout << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal;
 									_mInterfaz.moverXY(25, 6);
 									cout << "\033[100mIngresa la dosis en la que el paciente debe tomar el medicamento:";
 									_mInterfaz.moverXY(25, 7);
@@ -1059,7 +1074,7 @@ void interfaz::menuPrincipal()
 									_mInterfaz.moverXY(25, 6);
 									cout << "Nombre del paciente:";
 									_mInterfaz.moverXY(25, 7);
-									cout << _cita->getPaciente()->getNombre();
+									cout << _cita->getPaciente() -> getNombre();
 
 									cout << "\033[100m\033[30m";
 									_mInterfaz.moverXY(25, 9);
@@ -1089,14 +1104,24 @@ void interfaz::menuPrincipal()
 									_mInterfaz.moverXY(25, 15);
 									cout << "Doctor encargado:";
 									_mInterfaz.moverXY(25, 16);
-									cout << _cita->getDoctor()->getNombre();
+									cout << _cita -> getDoctor() -> getNombre();
 
 									if (_mInterfaz.confirmarDatos("¿Los datos ingresados son correctos?", 18) == 1)
 									{
-										_recetaMedica = new recetaMedica(especialidad, _cita->getPaciente(), nombre, _medicamento, stoi(paciente), doctor, _cita->getDoctor());
+										// Se crea un dato de receta medica
+										_recetaMedica = new recetaMedica(especialidad, _cita -> getPaciente(), nombre, _medicamento, stoi(paciente), doctor, _cita -> getDoctor());
 										arbolRecetaMedica.registrarDatos(_recetaMedica, especialidad);
 										_archivo.guardarRecetaMedica(arbolRecetaMedica);
-										_mInterfaz.mostrarMensajeExito("¡La receta medica fue registrada con exito!");
+
+										// Se actualiza la cantidad en inventario del medicamento
+										_medicamento -> setCantidadInventario(_medicamento -> getCantidadInventario() - stoi(paciente));
+										_archivo.guardarMedicamento(arbolMedicamento);
+
+										// Se elimina la cita del sistema
+										arbolCita.eliminarDatos(_cita, _cita -> getCodigo());
+										_archivo.guardarCita(arbolCita);
+
+										_mInterfaz.mostrarMensajeExito("¡La cita fue atendida con exito!");
 
 										break;
 									}
@@ -1451,7 +1476,6 @@ void interfaz::menuPrincipal()
 							if (_mInterfaz.confirmarDatos("¿Deseas cancelar esta cita?", 18) == 1)
 							{
 								arbolCita.eliminarDatos(_cita, _cita -> getCodigo());
-
 								_archivo.guardarCita(arbolCita);
 								_mInterfaz.mostrarMensajeExito("¡La cita fue cancelada con exito!");
 								break;
@@ -1468,13 +1492,118 @@ void interfaz::menuPrincipal()
 					// Consultar Receta Medica
 					try
 					{
+						if (!arbolRecetaMedica.verificarVacio())
+						{
+							throw exception("!No hay recetas medicas registradas en el sistema!");
+						}
 
+						while (1)
+						{
+							system("cls");
+							cout << "\033[44m\033[30m" << espacios << endl;
+							cout << cuadroLado << "\033[100m ." << cuadroBorde << ". \033[44m" << cuadroLado << endl;
+
+							for (int i = 0; i < 9; i++)
+							{
+								cout << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
+							}
+
+							cout << cuadroLado << "\033[100m |" << cuadroBorde << "| \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << cuadroLado << "\033[100m  " << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << cuadroLado << "  \033[40m" << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << "\033[44m\033[30m" << espacios;
+
+							_mInterfaz.moverXY(50, 4);
+							cout << "\033[100mConsultar receta medica";
+
+							_mInterfaz.moverXY(25, 6);
+							cout << "\033[100mIngresa el codigo de la receta medica registrada:";
+							_mInterfaz.moverXY(25, 7);
+							cout << "\033[40m\033[37m" << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 7);
+							codigo = _mInterfaz.ingresarNumeros();
+
+							while (!arbolRecetaMedica.verificarDatos(codigo))
+							{
+								_mInterfaz.moverXY(25, 8);
+								cout << "\033[100m\033[31mEl codigo ingresado no está registrado.";
+								_mInterfaz.moverXY(25, 9);
+								cout << "Por favor ingresa el codigo de la receta medica registrada.";
+								_mInterfaz.moverXY(25, 7);
+								cout << "\033[40m\033[37m" << cuadroIngresarTexto;
+								_mInterfaz.moverXY(25, 7);
+								codigo = _mInterfaz.ingresarNumeros();
+							}
+
+							_recetaMedica = arbolRecetaMedica.obtenerDatos(codigo);
+
+							cout << "\033[44m\033[30m";
+
+							system("cls");
+							cout << espacios << endl;
+							cout << cuadroLado << "\033[100m ." << cuadroBorde << ". \033[44m" << cuadroLado << endl;
+
+							for (int i = 0; i < 18; i++)
+							{
+								cout << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
+							}
+
+							cout << cuadroLado << "\033[100m |" << cuadroBorde << "| \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << cuadroLado << "\033[100m  " << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << cuadroLado << "  \033[40m" << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << "\033[44m\033[30m" << espacios;
+
+							cout << "\033[100m\033[30m";
+							_mInterfaz.moverXY(25, 3);
+							cout << "Codigo de la receta medica:";
+							_mInterfaz.moverXY(25, 4);
+							cout << _recetaMedica -> getCodigo();
+
+							cout << "\033[100m\033[30m";
+							_mInterfaz.moverXY(25, 6);
+							cout << "Nombre del paciente:";
+							_mInterfaz.moverXY(25, 7);
+							cout << _recetaMedica -> getPaciente() -> getNombre();
+
+							cout << "\033[100m\033[30m";
+							_mInterfaz.moverXY(25, 9);
+							cout << "Diagnostico del paciente:";
+							_mInterfaz.moverXY(25, 10);
+							cout << _recetaMedica -> getDiagnostico();
+
+							cout << "\033[100m\033[30m";
+							_mInterfaz.moverXY(25, 12);
+							cout << "Nombre del medicamento:";
+							_mInterfaz.moverXY(25, 13);
+							cout << _recetaMedica -> getMedicamento() -> getNombre();
+
+							cout << "\033[100m\033[30m";
+							_mInterfaz.moverXY(25, 15);
+							cout << "Cantidad de medicamentos:";
+							_mInterfaz.moverXY(25, 16);
+							cout << _recetaMedica -> getCantidad();
+
+							cout << "\033[100m\033[30m";
+							_mInterfaz.moverXY(25, 15);
+							cout << "Dosis del medicamento:";
+							_mInterfaz.moverXY(25, 16);
+							cout << _recetaMedica -> getDosis();
+
+							cout << "\033[100m\033[30m";
+							_mInterfaz.moverXY(25, 15);
+							cout << "Doctor encargado:";
+							_mInterfaz.moverXY(25, 16);
+							cout << _recetaMedica -> getDoctor() -> getNombre();
+
+							if (_mInterfaz.confirmarDatos("¿Deseas consultar otra receta medica?", 18) == 0)
+							{
+								break;
+							}
+						}
 					}
-					catch (exception& e) {
-						cout << RED << "Ha ocurrido un error: " << WHITE << e.what() << endl;
-						cout << "-------------------------" << endl;
-						cout << "Volviendo al Menu Principal." << endl << endl;
-						system("pause");
+					catch (exception& e) 
+					{
+						_mInterfaz.mostrarMensajeFallido(e.what());
 					}
 					break;
 
@@ -1484,11 +1613,9 @@ void interfaz::menuPrincipal()
 					{
 						exit(0);
 					}
-					catch (exception& e) {
-						cout << RED << "Ha ocurrido un error: " << WHITE << e.what() << endl;
-						cout << "-------------------------" << endl;
-						cout << "Volviendo al Menu Principal." << endl << endl;
-						system("pause");
+					catch (exception& e) 
+					{
+						_mInterfaz.mostrarMensajeFallido(e.what());
 					}
 					break;
 
@@ -1498,11 +1625,9 @@ void interfaz::menuPrincipal()
 					{
 						exit(0);
 					}
-					catch (exception& e) {
-						cout << RED << "Ha ocurrido un error: " << WHITE << e.what() << endl;
-						cout << "-------------------------" << endl;
-						cout << "Volviendo al Menu Principal." << endl << endl;
-						system("pause");
+					catch (exception& e) 
+					{
+						_mInterfaz.mostrarMensajeFallido(e.what());
 					}
 					break;
 
@@ -1512,11 +1637,9 @@ void interfaz::menuPrincipal()
 					{
 						exit(0);
 					}
-					catch (exception& e) {
-						cout << RED << "Ha ocurrido un error: " << WHITE << e.what() << endl;
-						cout << "-------------------------" << endl;
-						cout << "Volviendo al Menu Principal." << endl << endl;
-						system("pause");
+					catch (exception& e) 
+					{
+						_mInterfaz.mostrarMensajeFallido(e.what());
 					}
 					break;
 
@@ -1526,11 +1649,9 @@ void interfaz::menuPrincipal()
 					{
 						exit(0);
 					}
-					catch (exception& e) {
-						cout << RED << "Ha ocurrido un error: " << WHITE << e.what() << endl;
-						cout << "-------------------------" << endl;
-						cout << "Volviendo al Menu Principal." << endl << endl;
-						system("pause");
+					catch (exception& e) 
+					{
+						_mInterfaz.mostrarMensajeFallido(e.what());
 					}
 					break;
 
@@ -1540,11 +1661,9 @@ void interfaz::menuPrincipal()
 					{
 						exit(0);
 					}
-					catch (exception& e) {
-						cout << RED << "Ha ocurrido un error: " << WHITE << e.what() << endl;
-						cout << "-------------------------" << endl;
-						cout << "Volviendo al Menu Principal." << endl << endl;
-						system("pause");
+					catch (exception& e) 
+					{
+						_mInterfaz.mostrarMensajeFallido(e.what());
 					}
 					break;
 
@@ -1554,11 +1673,9 @@ void interfaz::menuPrincipal()
 					{
 						exit(0);
 					}
-					catch (exception& e) {
-						cout << RED << "Ha ocurrido un error: " << WHITE << e.what() << endl;
-						cout << "-------------------------" << endl;
-						cout << "Volviendo al Menu Principal." << endl << endl;
-						system("pause");
+					catch (exception& e) 
+					{
+						_mInterfaz.mostrarMensajeFallido(e.what());
 					}
 					break;
 
@@ -1566,13 +1683,33 @@ void interfaz::menuPrincipal()
 					// Salir
 					try
 					{
-						exit(0);
+						system("cls");
+						cout << "\033[44m\033[30m" << espacios << endl;
+						cout << cuadroLado << "\033[100m ." << cuadroBorde << ". \033[44m" << cuadroLado << endl;
+
+						for (int i = 0; i < 9; i++)
+						{
+							cout << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
+						}
+
+						cout << cuadroLado << "\033[100m |" << cuadroBorde << "| \033[40m  \033[44m" << cuadroFinal << endl;
+						cout << cuadroLado << "\033[100m  " << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+						cout << cuadroLado << "  \033[40m" << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+						cout << "\033[44m\033[30m" << espacios;
+
+						_mInterfaz.moverXY(55, 4);
+						cout << "\033[100mSalir";
+
+						if (_mInterfaz.confirmarDatos("¿Deseas salir del programa?", 6) == 1)
+						{
+							cout << "\033[40m\033[37m";
+							system("cls");
+							exit(0);
+						}
 					}
-					catch (exception& e) {
-						cout << RED << "Ha ocurrido un error: " << WHITE << e.what() << endl;
-						cout << "-------------------------" << endl;
-						cout << "Volviendo al Menu Principal." << endl << endl;
-						system("pause");
+					catch (exception& e) 
+					{
+						_mInterfaz.mostrarMensajeFallido(e.what());
 					}
 					break;
 
@@ -1580,13 +1717,11 @@ void interfaz::menuPrincipal()
 					// Opcion por defecto
 					try
 					{
-						exit(0);
+						throw exception("Ocurrio un error al seleccionar una opción");
 					}
-					catch (exception& e) {
-						cout << RED << "Ha ocurrido un error: " << WHITE << e.what() << endl;
-						cout << "-------------------------" << endl;
-						cout << "Volviendo al Menu Principal." << endl << endl;
-						system("pause");
+					catch (exception& e) 
+					{
+						_mInterfaz.mostrarMensajeFallido(e.what());
 					}
 					break;
 				}
@@ -1674,7 +1809,7 @@ void interfaz::menuPrincipal()
 				break;
 
 			case 15:
-				Set[13] = 71;
+				Set[14] = 71;
 				break;
 			}
 		}
