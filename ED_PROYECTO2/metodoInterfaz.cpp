@@ -415,13 +415,13 @@ void metodoInterfaz::mostrarMensajeExito(string _mensaje)
 	cout << "\033[44m\033[30m" << espacios;
 
 	moverXY(55, 4);
-	cout << "\033[100m\033[30m¡Exito!";
+	cout << "\033[100m\033[30m" << "¡Exito!";
 
 	moverXY(25, 6);
 	cout << _mensaje;
 
 	moverXY(55, 8);
-	cout << "\033[41m\033[37mAceptar";
+	cout << "\033[41m\033[37m" << "Aceptar";
 
 	while (1)
 	{
@@ -461,13 +461,13 @@ void metodoInterfaz::mostrarMensajeFallido(string _mensaje)
 	cout << "\033[44m\033[30m" << espacios;
 
 	moverXY(55, 4);
-	cout << "\033[100m\033[30m¡Error!";
+	cout << "\033[100m\033[30m" << "¡Error!";
 
 	moverXY(25, 6);
 	cout << _mensaje;
 
 	moverXY(55, 8);
-	cout << "\033[41m\033[37mAceptar";
+	cout << "\033[41m\033[37m" << "Aceptar";
 
 	while (1)
 	{
@@ -579,7 +579,7 @@ void metodoInterfaz::mostrarHoraCita(arboles<citas> _arbolCita, doctores* _docto
 			moverXY(0, 6);
 			cout << "\033[44m\033[30m" << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal;
 			moverXY(25, 6);
-			cout << "\033[100mIngresa la fecha de la cita:";
+			cout << "\033[100m" << "Ingresa la fecha de la cita:";
 			moverXY(25, 7);
 			cout << cuadroIngresarTexto;
 			_fecha = ingresarFecha();
@@ -665,7 +665,7 @@ void metodoInterfaz::mostrarHoraCita(arboles<citas> _arbolCita, doctores* _docto
 			if (confirmacion == 1)
 			{
 				moverXY(25, 6);
-				cout << "\033[100mSelecciona la hora de la cita";
+				cout << "\033[100m" << "Selecciona la hora de la cita";
 				moverXY(25, 7);
 				opcion = 0;
 				int tamaño = horasDisponibles.size() - 1;
