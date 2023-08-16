@@ -21,6 +21,7 @@ protected:
 	string fecha;
 	string hora;
 	int cantidad;
+	vector<string> listaCodigos;
 
 	// Arboles
 	arboles<doctores> arbolDoctor;

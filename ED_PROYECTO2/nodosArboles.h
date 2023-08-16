@@ -13,8 +13,8 @@ public:
     queue<T*> colaDatos(nodos<T>* _nodo, queue<T*>& _cola);
     T* obtenerDatos(nodos<T>* _nodo, string _numero);
     void obtenerCita(nodos<T>* _nodo, vector<string>& _citaRealizada, string _cedula, string _fecha);
-    void mostrarArbol(nodos<T>* _nodo);
-    void recorridoProfundidad(nodos<T>* _nodo);
+    void mostrarArbol(nodos<T>* _nodo, vector<string>& _listaCodigos);
+    void recorridoProfundidad(nodos<T>* _nodo, vector<string>& _listaCodigos);
     nodos<T>* encontrarNodoMinimo(nodos<T>* _nodo);
     int alturaArbol(nodos<T>* _nodo);
     int contarNodos(nodos<T>* _nodo);
@@ -118,7 +118,9 @@ nodos<T>* nodosArboles<T>::eliminarDatos(nodos<T>* _nodo, T* _dato, string _nume
             }
 
             nodos<T>* temp = encontrarNodoMinimo(_nodo -> obtenerDerecha());
+
             _nodo -> fijarNodo(temp -> obtenerDatos());
+
             _nodo -> fijarDerecha(eliminarDatos(_nodo -> obtenerDerecha(), temp -> obtenerDatos(), _numero));
         }
         return _nodo;
@@ -199,17 +201,17 @@ void nodosArboles<T>::obtenerCita(nodos<T>* _nodo, vector<string>& _citaRealizad
 }
 
 template<class T>
-void nodosArboles<T>::mostrarArbol(nodos<T>* _nodo)
+void nodosArboles<T>::mostrarArbol(nodos<T>* _nodo, vector<string>& _listaCodigos)
 {
     try
     {
         if (_nodo != nullptr) 
         {
-            mostrarArbol(_nodo -> obtenerIzquierda());
+            mostrarArbol(_nodo -> obtenerIzquierda(), _listaCodigos);
 
-            cout << _nodo -> obtenerCodigo() << " ";
+            _listaCodigos.push_back(_nodo -> obtenerCodigo());
 
-            mostrarArbol(_nodo -> obtenerDerecha());
+            mostrarArbol(_nodo -> obtenerDerecha(), _listaCodigos);
         }
     }
     catch (exception& e)
@@ -219,15 +221,17 @@ void nodosArboles<T>::mostrarArbol(nodos<T>* _nodo)
 }
 
 template<class T>
-void nodosArboles<T>::recorridoProfundidad(nodos<T>* _nodo)
+void nodosArboles<T>::recorridoProfundidad(nodos<T>* _nodo, vector<string>& _listaCodigos)
 {
     try
     {
         if (_nodo != nullptr) 
         {
-            cout << _nodo -> obtenerDatos() << " ";
-            recorridoProfundidad(_nodo -> obtenerIzquierda());
-            recorridoProfundidad(_nodo -> obtenerDerecha());
+            _listaCodigos.push_back(_nodo -> obtenerCodigo());
+
+            recorridoProfundidad(_nodo -> obtenerIzquierda(), _listaCodigos);
+
+            recorridoProfundidad(_nodo -> obtenerDerecha(), _listaCodigos);
         }
     }
     catch (exception& e)

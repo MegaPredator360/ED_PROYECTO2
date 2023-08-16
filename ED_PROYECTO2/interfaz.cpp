@@ -1612,6 +1612,239 @@ void interfaz::menuPrincipal()
 					try
 					{
 						int arbol = _mInterfaz.seleccionarArbol("Mostrar Arbol", 53);
+
+						switch (arbol)
+						{
+						case 1:
+							// Arbol Doctores
+							if (!arbolDoctor.verificarVacio())
+							{
+								throw exception("No hay doctores registrados en el sistema.");
+							}
+
+							listaCodigos.clear();
+
+							arbolDoctor.mostrarArbol(listaCodigos);
+							cantidad = listaCodigos.size();
+
+							_mInterfaz.moverXY(0, 6);
+							for (int i = 0; i < cantidad + 3; i++)
+							{
+								cout << "\033[44m\033[30m" << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
+							}
+							cout << cuadroLado << "\033[100m |" << cuadroBorde << "| \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << cuadroLado << "\033[100m  " << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << cuadroLado << "  \033[40m" << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << "\033[44m\033[30m" << espacios;
+
+							_mInterfaz.moverXY(25, 6);
+							cout << "\033[100mMostrando arbol de doctores:";
+
+							for (int i = 0; i < cantidad; i++)
+							{
+								_mInterfaz.moverXY(25, 7 + i);
+								cout << listaCodigos[i];
+							}
+
+							_mInterfaz.moverXY(55, cantidad + 8);
+							cout << "\033[41m\033[37mContinuar";
+
+							while (1)
+							{
+								key = _getch();
+
+								if (key == '\r')
+								{
+									break;
+								}
+							}
+							cout << "\033[44m\033[30m";
+							break;
+
+						case 2:
+							// Arbol Pacientes
+							if (!arbolPaciente.verificarVacio())
+							{
+								throw exception("No hay pacientes registrados en el sistema.");
+							}
+
+							listaCodigos.clear();
+
+							arbolPaciente.mostrarArbol(listaCodigos);
+							cantidad = listaCodigos.size();
+
+							_mInterfaz.moverXY(0, 6);
+							for (int i = 0; i < cantidad + 3; i++)
+							{
+								cout << "\033[44m\033[30m" << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
+							}
+							cout << cuadroLado << "\033[100m |" << cuadroBorde << "| \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << cuadroLado << "\033[100m  " << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << cuadroLado << "  \033[40m" << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << "\033[44m\033[30m" << espacios;
+
+							_mInterfaz.moverXY(25, 6);
+							cout << "\033[100mMostrando arbol de pacientes:";
+
+							for (int i = 0; i < cantidad; i++)
+							{
+								_mInterfaz.moverXY(25, 7 + i);
+								cout << listaCodigos[i];
+							}
+
+							_mInterfaz.moverXY(55, cantidad + 8);
+							cout << "\033[41m\033[37mContinuar";
+
+							while (1)
+							{
+								key = _getch();
+
+								if (key == '\r')
+								{
+									break;
+								}
+							}
+							cout << "\033[44m\033[30m";
+							break;
+
+						case 3:
+							// Arbol Medicamentos
+							if (!arbolMedicamento.verificarVacio())
+							{
+								throw exception("No hay medicamentos registrados en el sistema.");
+							}
+
+							listaCodigos.clear();
+
+							arbolMedicamento.mostrarArbol(listaCodigos);
+							cantidad = listaCodigos.size();
+
+							_mInterfaz.moverXY(0, 6);
+							for (int i = 0; i < cantidad + 3; i++)
+							{
+								cout << "\033[44m\033[30m" << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
+							}
+							cout << cuadroLado << "\033[100m |" << cuadroBorde << "| \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << cuadroLado << "\033[100m  " << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << cuadroLado << "  \033[40m" << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << "\033[44m\033[30m" << espacios;
+
+							_mInterfaz.moverXY(25, 6);
+							cout << "\033[100mMostrando arbol de medicamentos:";
+
+							for (int i = 0; i < cantidad; i++)
+							{
+								_mInterfaz.moverXY(25, 7 + i);
+								cout << listaCodigos[i];
+							}
+
+							_mInterfaz.moverXY(55, cantidad + 8);
+							cout << "\033[41m\033[37mContinuar";
+
+							while (1)
+							{
+								key = _getch();
+
+								if (key == '\r')
+								{
+									break;
+								}
+							}
+							cout << "\033[44m\033[30m";
+							break;
+
+						case 4:
+							// Arbol Citas
+							if (!arbolCita.verificarVacio())
+							{
+								throw exception("No hay cita registrados en el sistema.");
+							}
+
+							listaCodigos.clear();
+
+							arbolCita.mostrarArbol(listaCodigos);
+							cantidad = listaCodigos.size();
+
+							_mInterfaz.moverXY(0, 6);
+							for (int i = 0; i < cantidad + 3; i++)
+							{
+								cout << "\033[44m\033[30m" << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
+							}
+							cout << cuadroLado << "\033[100m |" << cuadroBorde << "| \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << cuadroLado << "\033[100m  " << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << cuadroLado << "  \033[40m" << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << "\033[44m\033[30m" << espacios;
+
+							_mInterfaz.moverXY(25, 6);
+							cout << "\033[100mMostrando arbol de citas:";
+
+							for (int i = 0; i < cantidad; i++)
+							{
+								_mInterfaz.moverXY(25, 7 + i);
+								cout << listaCodigos[i];
+							}
+
+							_mInterfaz.moverXY(55, cantidad + 8);
+							cout << "\033[41m\033[37mContinuar";
+
+							while (1)
+							{
+								key = _getch();
+
+								if (key == '\r')
+								{
+									break;
+								}
+							}
+							cout << "\033[44m\033[30m";
+							break;
+
+						case 5:
+							// Arbol Recetas Medicas
+							if (!arbolRecetaMedica.verificarVacio())
+							{
+								throw exception("No hay recetas medicas registrados en el sistema.");
+							}
+
+							listaCodigos.clear();
+
+							arbolRecetaMedica.mostrarArbol(listaCodigos);
+							cantidad = listaCodigos.size();
+
+							_mInterfaz.moverXY(0, 6);
+							for (int i = 0; i < cantidad + 3; i++)
+							{
+								cout << "\033[44m\033[30m" << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
+							}
+							cout << cuadroLado << "\033[100m |" << cuadroBorde << "| \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << cuadroLado << "\033[100m  " << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << cuadroLado << "  \033[40m" << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << "\033[44m\033[30m" << espacios;
+
+							_mInterfaz.moverXY(25, 6);
+							cout << "\033[100mMostrando arbol de receta medica:";
+
+							for (int i = 0; i < cantidad; i++)
+							{
+								_mInterfaz.moverXY(25, 7 + i);
+								cout << listaCodigos[i];
+							}
+
+							_mInterfaz.moverXY(55, cantidad + 8);
+							cout << "\033[41m\033[37mContinuar";
+
+							while (1)
+							{
+								key = _getch();
+
+								if (key == '\r')
+								{
+									break;
+								}
+							}
+							cout << "\033[44m\033[30m";
+							break;
+						}
 					}
 					catch (exception& e) 
 					{
@@ -1623,7 +1856,240 @@ void interfaz::menuPrincipal()
 					// Recorrido Profundo
 					try
 					{
-						exit(0);
+						int arbol = _mInterfaz.seleccionarArbol("Mostrar Arbol", 53);
+
+						switch (arbol)
+						{
+						case 1:
+							// Arbol Doctores
+							if (!arbolDoctor.verificarVacio())
+							{
+								throw exception("No hay doctores registrados en el sistema.");
+							}
+
+							listaCodigos.clear();
+
+							arbolDoctor.recorridoProfundidad(listaCodigos);
+							cantidad = listaCodigos.size();
+
+							_mInterfaz.moverXY(0, 6);
+							for (int i = 0; i < cantidad + 3; i++)
+							{
+								cout << "\033[44m\033[30m" << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
+							}
+							cout << cuadroLado << "\033[100m |" << cuadroBorde << "| \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << cuadroLado << "\033[100m  " << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << cuadroLado << "  \033[40m" << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << "\033[44m\033[30m" << espacios;
+
+							_mInterfaz.moverXY(25, 6);
+							cout << "\033[100mMostrando arbol de doctores:";
+
+							for (int i = 0; i < cantidad; i++)
+							{
+								_mInterfaz.moverXY(25, 7 + i);
+								cout << listaCodigos[i];
+							}
+
+							_mInterfaz.moverXY(55, cantidad + 8);
+							cout << "\033[41m\033[37mContinuar";
+
+							while (1)
+							{
+								key = _getch();
+
+								if (key == '\r')
+								{
+									break;
+								}
+							}
+							cout << "\033[44m\033[30m";
+							break;
+
+						case 2:
+							// Arbol Pacientes
+							if (!arbolPaciente.verificarVacio())
+							{
+								throw exception("No hay pacientes registrados en el sistema.");
+							}
+
+							listaCodigos.clear();
+
+							arbolPaciente.recorridoProfundidad(listaCodigos);
+							cantidad = listaCodigos.size();
+
+							_mInterfaz.moverXY(0, 6);
+							for (int i = 0; i < cantidad + 3; i++)
+							{
+								cout << "\033[44m\033[30m" << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
+							}
+							cout << cuadroLado << "\033[100m |" << cuadroBorde << "| \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << cuadroLado << "\033[100m  " << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << cuadroLado << "  \033[40m" << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << "\033[44m\033[30m" << espacios;
+
+							_mInterfaz.moverXY(25, 6);
+							cout << "\033[100mMostrando arbol de pacientes:";
+
+							for (int i = 0; i < cantidad; i++)
+							{
+								_mInterfaz.moverXY(25, 7 + i);
+								cout << listaCodigos[i];
+							}
+
+							_mInterfaz.moverXY(55, cantidad + 8);
+							cout << "\033[41m\033[37mContinuar";
+
+							while (1)
+							{
+								key = _getch();
+
+								if (key == '\r')
+								{
+									break;
+								}
+							}
+							cout << "\033[44m\033[30m";
+							break;
+
+						case 3:
+							// Arbol Medicamentos
+							if (!arbolMedicamento.verificarVacio())
+							{
+								throw exception("No hay medicamentos registrados en el sistema.");
+							}
+
+							listaCodigos.clear();
+
+							arbolMedicamento.recorridoProfundidad(listaCodigos);
+							cantidad = listaCodigos.size();
+
+							_mInterfaz.moverXY(0, 6);
+							for (int i = 0; i < cantidad + 3; i++)
+							{
+								cout << "\033[44m\033[30m" << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
+							}
+							cout << cuadroLado << "\033[100m |" << cuadroBorde << "| \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << cuadroLado << "\033[100m  " << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << cuadroLado << "  \033[40m" << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << "\033[44m\033[30m" << espacios;
+
+							_mInterfaz.moverXY(25, 6);
+							cout << "\033[100mMostrando arbol de medicamentos:";
+
+							for (int i = 0; i < cantidad; i++)
+							{
+								_mInterfaz.moverXY(25, 7 + i);
+								cout << listaCodigos[i];
+							}
+
+							_mInterfaz.moverXY(55, cantidad + 8);
+							cout << "\033[41m\033[37mContinuar";
+
+							while (1)
+							{
+								key = _getch();
+
+								if (key == '\r')
+								{
+									break;
+								}
+							}
+							cout << "\033[44m\033[30m";
+							break;
+
+						case 4:
+							// Arbol Citas
+							if (!arbolCita.verificarVacio())
+							{
+								throw exception("No hay cita registrados en el sistema.");
+							}
+
+							listaCodigos.clear();
+
+							arbolCita.recorridoProfundidad(listaCodigos);
+							cantidad = listaCodigos.size();
+
+							_mInterfaz.moverXY(0, 6);
+							for (int i = 0; i < cantidad + 3; i++)
+							{
+								cout << "\033[44m\033[30m" << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
+							}
+							cout << cuadroLado << "\033[100m |" << cuadroBorde << "| \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << cuadroLado << "\033[100m  " << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << cuadroLado << "  \033[40m" << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << "\033[44m\033[30m" << espacios;
+
+							_mInterfaz.moverXY(25, 6);
+							cout << "\033[100mMostrando arbol de citas:";
+
+							for (int i = 0; i < cantidad; i++)
+							{
+								_mInterfaz.moverXY(25, 7 + i);
+								cout << listaCodigos[i];
+							}
+
+							_mInterfaz.moverXY(55, cantidad + 8);
+							cout << "\033[41m\033[37mContinuar";
+
+							while (1)
+							{
+								key = _getch();
+
+								if (key == '\r')
+								{
+									break;
+								}
+							}
+							cout << "\033[44m\033[30m";
+							break;
+
+						case 5:
+							// Arbol Recetas Medicas
+							if (!arbolRecetaMedica.verificarVacio())
+							{
+								throw exception("No hay recetas medicas registrados en el sistema.");
+							}
+
+							listaCodigos.clear();
+
+							arbolRecetaMedica.recorridoProfundidad(listaCodigos);
+							cantidad = listaCodigos.size();
+
+							_mInterfaz.moverXY(0, 6);
+							for (int i = 0; i < cantidad + 3; i++)
+							{
+								cout << "\033[44m\033[30m" << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
+							}
+							cout << cuadroLado << "\033[100m |" << cuadroBorde << "| \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << cuadroLado << "\033[100m  " << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << cuadroLado << "  \033[40m" << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << "\033[44m\033[30m" << espacios;
+
+							_mInterfaz.moverXY(25, 6);
+							cout << "\033[100mMostrando arbol de receta medica:";
+
+							for (int i = 0; i < cantidad; i++)
+							{
+								_mInterfaz.moverXY(25, 7 + i);
+								cout << listaCodigos[i];
+							}
+
+							_mInterfaz.moverXY(55, cantidad + 8);
+							cout << "\033[41m\033[37mContinuar";
+
+							while (1)
+							{
+								key = _getch();
+
+								if (key == '\r')
+								{
+									break;
+								}
+							}
+							cout << "\033[44m\033[30m";
+							break;
+						}
 					}
 					catch (exception& e) 
 					{
@@ -1635,7 +2101,240 @@ void interfaz::menuPrincipal()
 					// Recorrido por Niveles
 					try
 					{
-						exit(0);
+						int arbol = _mInterfaz.seleccionarArbol("Mostrar Arbol", 53);
+
+						switch (arbol)
+						{
+						case 1:
+							// Arbol Doctores
+							if (!arbolDoctor.verificarVacio())
+							{
+								throw exception("No hay doctores registrados en el sistema.");
+							}
+
+							listaCodigos.clear();
+
+							arbolDoctor.recorridoPorNiveles(listaCodigos);
+							cantidad = listaCodigos.size();
+
+							_mInterfaz.moverXY(0, 6);
+							for (int i = 0; i < cantidad + 3; i++)
+							{
+								cout << "\033[44m\033[30m" << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
+							}
+							cout << cuadroLado << "\033[100m |" << cuadroBorde << "| \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << cuadroLado << "\033[100m  " << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << cuadroLado << "  \033[40m" << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << "\033[44m\033[30m" << espacios;
+
+							_mInterfaz.moverXY(25, 6);
+							cout << "\033[100mMostrando arbol de doctores:";
+
+							for (int i = 0; i < cantidad; i++)
+							{
+								_mInterfaz.moverXY(25, 7 + i);
+								cout << listaCodigos[i];
+							}
+
+							_mInterfaz.moverXY(55, cantidad + 8);
+							cout << "\033[41m\033[37mContinuar";
+
+							while (1)
+							{
+								key = _getch();
+
+								if (key == '\r')
+								{
+									break;
+								}
+							}
+							cout << "\033[44m\033[30m";
+							break;
+
+						case 2:
+							// Arbol Pacientes
+							if (!arbolPaciente.verificarVacio())
+							{
+								throw exception("No hay pacientes registrados en el sistema.");
+							}
+
+							listaCodigos.clear();
+
+							arbolPaciente.recorridoPorNiveles(listaCodigos);
+							cantidad = listaCodigos.size();
+
+							_mInterfaz.moverXY(0, 6);
+							for (int i = 0; i < cantidad + 3; i++)
+							{
+								cout << "\033[44m\033[30m" << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
+							}
+							cout << cuadroLado << "\033[100m |" << cuadroBorde << "| \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << cuadroLado << "\033[100m  " << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << cuadroLado << "  \033[40m" << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << "\033[44m\033[30m" << espacios;
+
+							_mInterfaz.moverXY(25, 6);
+							cout << "\033[100mMostrando arbol de pacientes:";
+
+							for (int i = 0; i < cantidad; i++)
+							{
+								_mInterfaz.moverXY(25, 7 + i);
+								cout << listaCodigos[i];
+							}
+
+							_mInterfaz.moverXY(55, cantidad + 8);
+							cout << "\033[41m\033[37mContinuar";
+
+							while (1)
+							{
+								key = _getch();
+
+								if (key == '\r')
+								{
+									break;
+								}
+							}
+							cout << "\033[44m\033[30m";
+							break;
+
+						case 3:
+							// Arbol Medicamentos
+							if (!arbolMedicamento.verificarVacio())
+							{
+								throw exception("No hay medicamentos registrados en el sistema.");
+							}
+
+							listaCodigos.clear();
+
+							arbolMedicamento.recorridoPorNiveles(listaCodigos);
+							cantidad = listaCodigos.size();
+
+							_mInterfaz.moverXY(0, 6);
+							for (int i = 0; i < cantidad + 3; i++)
+							{
+								cout << "\033[44m\033[30m" << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
+							}
+							cout << cuadroLado << "\033[100m |" << cuadroBorde << "| \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << cuadroLado << "\033[100m  " << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << cuadroLado << "  \033[40m" << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << "\033[44m\033[30m" << espacios;
+
+							_mInterfaz.moverXY(25, 6);
+							cout << "\033[100mMostrando arbol de medicamentos:";
+
+							for (int i = 0; i < cantidad; i++)
+							{
+								_mInterfaz.moverXY(25, 7 + i);
+								cout << listaCodigos[i];
+							}
+
+							_mInterfaz.moverXY(55, cantidad + 8);
+							cout << "\033[41m\033[37mContinuar";
+
+							while (1)
+							{
+								key = _getch();
+
+								if (key == '\r')
+								{
+									break;
+								}
+							}
+							cout << "\033[44m\033[30m";
+							break;
+
+						case 4:
+							// Arbol Citas
+							if (!arbolCita.verificarVacio())
+							{
+								throw exception("No hay cita registrados en el sistema.");
+							}
+
+							listaCodigos.clear();
+
+							arbolCita.recorridoPorNiveles(listaCodigos);
+							cantidad = listaCodigos.size();
+
+							_mInterfaz.moverXY(0, 6);
+							for (int i = 0; i < cantidad + 3; i++)
+							{
+								cout << "\033[44m\033[30m" << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
+							}
+							cout << cuadroLado << "\033[100m |" << cuadroBorde << "| \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << cuadroLado << "\033[100m  " << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << cuadroLado << "  \033[40m" << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << "\033[44m\033[30m" << espacios;
+
+							_mInterfaz.moverXY(25, 6);
+							cout << "\033[100mMostrando arbol de citas:";
+
+							for (int i = 0; i < cantidad; i++)
+							{
+								_mInterfaz.moverXY(25, 7 + i);
+								cout << listaCodigos[i];
+							}
+
+							_mInterfaz.moverXY(55, cantidad + 8);
+							cout << "\033[41m\033[37mContinuar";
+
+							while (1)
+							{
+								key = _getch();
+
+								if (key == '\r')
+								{
+									break;
+								}
+							}
+							cout << "\033[44m\033[30m";
+							break;
+
+						case 5:
+							// Arbol Recetas Medicas
+							if (!arbolRecetaMedica.verificarVacio())
+							{
+								throw exception("No hay recetas medicas registrados en el sistema.");
+							}
+
+							listaCodigos.clear();
+
+							arbolRecetaMedica.recorridoPorNiveles(listaCodigos);
+							cantidad = listaCodigos.size();
+
+							_mInterfaz.moverXY(0, 6);
+							for (int i = 0; i < cantidad + 3; i++)
+							{
+								cout << "\033[44m\033[30m" << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
+							}
+							cout << cuadroLado << "\033[100m |" << cuadroBorde << "| \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << cuadroLado << "\033[100m  " << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << cuadroLado << "  \033[40m" << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << "\033[44m\033[30m" << espacios;
+
+							_mInterfaz.moverXY(25, 6);
+							cout << "\033[100mMostrando arbol de receta medica:";
+
+							for (int i = 0; i < cantidad; i++)
+							{
+								_mInterfaz.moverXY(25, 7 + i);
+								cout << listaCodigos[i];
+							}
+
+							_mInterfaz.moverXY(55, cantidad + 8);
+							cout << "\033[41m\033[37mContinuar";
+
+							while (1)
+							{
+								key = _getch();
+
+								if (key == '\r')
+								{
+									break;
+								}
+							}
+							cout << "\033[44m\033[30m";
+							break;
+						}
 					}
 					catch (exception& e) 
 					{
@@ -1647,7 +2346,55 @@ void interfaz::menuPrincipal()
 					// Altura del arbol
 					try
 					{
-						exit(0);
+						int arbol = _mInterfaz.seleccionarArbol("Mostrar Arbol", 53);
+
+						switch (arbol)
+						{
+						case 1:
+							// Arbol Doctores
+							if (!arbolDoctor.verificarVacio())
+							{
+								throw exception("No hay doctores registrados en el sistema.");
+							}
+
+							break;
+
+						case 2:
+							// Arbol Pacientes
+							if (!arbolDoctor.verificarVacio())
+							{
+								throw exception("No hay doctores registrados en el sistema.");
+							}
+
+							break;
+
+						case 3:
+							// Arbol Medicamentos
+							if (!arbolDoctor.verificarVacio())
+							{
+								throw exception("No hay doctores registrados en el sistema.");
+							}
+
+							break;
+
+						case 4:
+							// Arbol Citas
+							if (!arbolDoctor.verificarVacio())
+							{
+								throw exception("No hay doctores registrados en el sistema.");
+							}
+
+							break;
+
+						case 5:
+							// Arbol Recetas Medicas
+							if (!arbolDoctor.verificarVacio())
+							{
+								throw exception("No hay doctores registrados en el sistema.");
+							}
+
+							break;
+						}
 					}
 					catch (exception& e) 
 					{
@@ -1659,7 +2406,55 @@ void interfaz::menuPrincipal()
 					// Contar Nodos
 					try
 					{
-						exit(0);
+						int arbol = _mInterfaz.seleccionarArbol("Mostrar Arbol", 53);
+
+						switch (arbol)
+						{
+						case 1:
+							// Arbol Doctores
+							if (!arbolDoctor.verificarVacio())
+							{
+								throw exception("No hay doctores registrados en el sistema.");
+							}
+
+							break;
+
+						case 2:
+							// Arbol Pacientes
+							if (!arbolDoctor.verificarVacio())
+							{
+								throw exception("No hay doctores registrados en el sistema.");
+							}
+
+							break;
+
+						case 3:
+							// Arbol Medicamentos
+							if (!arbolDoctor.verificarVacio())
+							{
+								throw exception("No hay doctores registrados en el sistema.");
+							}
+
+							break;
+
+						case 4:
+							// Arbol Citas
+							if (!arbolDoctor.verificarVacio())
+							{
+								throw exception("No hay doctores registrados en el sistema.");
+							}
+
+							break;
+
+						case 5:
+							// Arbol Recetas Medicas
+							if (!arbolDoctor.verificarVacio())
+							{
+								throw exception("No hay doctores registrados en el sistema.");
+							}
+
+							break;
+						}
 					}
 					catch (exception& e) 
 					{
@@ -1671,7 +2466,55 @@ void interfaz::menuPrincipal()
 					// Contar Hojas
 					try
 					{
-						exit(0);
+						int arbol = _mInterfaz.seleccionarArbol("Mostrar Arbol", 53);
+
+						switch (arbol)
+						{
+						case 1:
+							// Arbol Doctores
+							if (!arbolDoctor.verificarVacio())
+							{
+								throw exception("No hay doctores registrados en el sistema.");
+							}
+
+							break;
+
+						case 2:
+							// Arbol Pacientes
+							if (!arbolDoctor.verificarVacio())
+							{
+								throw exception("No hay doctores registrados en el sistema.");
+							}
+
+							break;
+
+						case 3:
+							// Arbol Medicamentos
+							if (!arbolDoctor.verificarVacio())
+							{
+								throw exception("No hay doctores registrados en el sistema.");
+							}
+
+							break;
+
+						case 4:
+							// Arbol Citas
+							if (!arbolDoctor.verificarVacio())
+							{
+								throw exception("No hay doctores registrados en el sistema.");
+							}
+
+							break;
+
+						case 5:
+							// Arbol Recetas Medicas
+							if (!arbolDoctor.verificarVacio())
+							{
+								throw exception("No hay doctores registrados en el sistema.");
+							}
+
+							break;
+						}
 					}
 					catch (exception& e) 
 					{
@@ -1704,6 +2547,9 @@ void interfaz::menuPrincipal()
 						{
 							cout << "\033[40m\033[37m";
 							system("cls");
+
+							cout << endl << endl;
+							cout << "" << endl << endl;
 							exit(0);
 						}
 					}

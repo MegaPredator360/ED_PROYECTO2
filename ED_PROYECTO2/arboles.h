@@ -19,9 +19,9 @@ public:
     void obtenerCita(vector<string>& _citasRealizadas, string _fecha, string _cedula);
 	void buscarDatos(string _numero);
 	void eliminarDatos(T* _dato, string _numero);
-    void mostrarArbol();
-    void recorridoProfundidad();
-    void recorridoPorNiveles();
+    void mostrarArbol(vector<string>& _listaCodigos);
+    void recorridoProfundidad(vector<string>& _listaCodigos);
+    void recorridoPorNiveles(vector<string>& _listaCodigos);
     int alturaArbol();
     int contarNodos();
     int contarHojas();
@@ -161,12 +161,11 @@ void arboles<T>::eliminarDatos(T* _dato, string _numero)
 }
 
 template<class T>
-void arboles<T>::mostrarArbol()
+void arboles<T>::mostrarArbol(vector<string>& _listaCodigos)
 {
     try
     {
-        _nArboles.mostrarArbol(raiz);
-        cout << endl;
+        _nArboles -> mostrarArbol(raiz, _listaCodigos);
     }
     catch (exception& e)
     {
@@ -175,12 +174,11 @@ void arboles<T>::mostrarArbol()
 }
 
 template<class T>
-void arboles<T>::recorridoProfundidad()
+void arboles<T>::recorridoProfundidad(vector<string>& _listaCodigos)
 {
     try
     {
-        _nArboles.recorridoProfundidad(raiz);
-        cout << endl;
+        _nArboles -> recorridoProfundidad(raiz, _listaCodigos);
     }
     catch (exception& e)
     {
@@ -189,7 +187,7 @@ void arboles<T>::recorridoProfundidad()
 }
 
 template<class T>
-void arboles<T>::recorridoPorNiveles()
+void arboles<T>::recorridoPorNiveles(vector<string>& _listaCodigos)
 {
     try
     {
@@ -206,16 +204,16 @@ void arboles<T>::recorridoPorNiveles()
             nodos<T>* nodo = cola.front();
             cola.pop();
 
-            cout << nodo -> dato << " ";
+            _listaCodigos.push_back(nodo -> obtenerCodigo());
 
-            if (nodo -> izquierda != nullptr) 
+            if (nodo -> obtenerIzquierda() != nullptr) 
             {
-                cola.push(nodo -> izquierda);
+                cola.push(nodo -> obtenerIzquierda());
             }
 
-            if (nodo -> derecha != nullptr) 
+            if (nodo -> obtenerDerecha() != nullptr) 
             {
-                cola.push(nodo -> derecha);
+                cola.push(nodo -> obtenerDerecha());
             }
         }
 
