@@ -184,7 +184,7 @@ void interfaz::menuPrincipal()
 							_mInterfaz.moverXY(25, 7);
 							cedula = _mInterfaz.ingresarNumeros();
 
-							while (cedula.length() != 9 || cedula.at(1) != '0' || cedula.at(5) != '0' || arbolDoctor.verificarDatos(cedula))
+							while (cedula.length() != 9 || arbolDoctor.verificarDatos(cedula))
 							{
 								_mInterfaz.moverXY(25, 8);
 								cout << "\033[100m\033[31mLo ingresado no coincide con el formato solicitado o ya existe.";
@@ -480,7 +480,7 @@ void interfaz::menuPrincipal()
 							_mInterfaz.moverXY(25, 7);
 							cedula = _mInterfaz.ingresarNumeros();
 
-							while (cedula.length() != 9 || cedula.at(1) != '0' || cedula.at(5) != '0' || arbolPaciente.verificarDatos(cedula))
+							while (cedula.length() != 9 || arbolPaciente.verificarDatos(cedula))
 							{
 								_mInterfaz.moverXY(25, 8);
 								cout << "\033[100m\033[31mLo ingresado no coincide con el formato solicitado o ya existe.";
@@ -1543,7 +1543,7 @@ void interfaz::menuPrincipal()
 							cout << espacios << endl;
 							cout << cuadroLado << "\033[100m ." << cuadroBorde << ". \033[44m" << cuadroLado << endl;
 
-							for (int i = 0; i < 18; i++)
+							for (int i = 0; i < 24; i++)
 							{
 								cout << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
 							}
@@ -1584,18 +1584,18 @@ void interfaz::menuPrincipal()
 							cout << _recetaMedica -> getCantidad();
 
 							cout << "\033[100m\033[30m";
-							_mInterfaz.moverXY(25, 15);
+							_mInterfaz.moverXY(25, 18);
 							cout << "Dosis del medicamento:";
-							_mInterfaz.moverXY(25, 16);
+							_mInterfaz.moverXY(25, 19);
 							cout << _recetaMedica -> getDosis();
 
 							cout << "\033[100m\033[30m";
-							_mInterfaz.moverXY(25, 15);
+							_mInterfaz.moverXY(25, 21);
 							cout << "Doctor encargado:";
-							_mInterfaz.moverXY(25, 16);
+							_mInterfaz.moverXY(25, 22);
 							cout << _recetaMedica -> getDoctor() -> getNombre();
 
-							if (_mInterfaz.confirmarDatos("¿Deseas consultar otra receta medica?", 18) == 0)
+							if (_mInterfaz.confirmarDatos("¿Deseas consultar otra receta medica?", 24) == 2)
 							{
 								break;
 							}
