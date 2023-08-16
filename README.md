@@ -47,7 +47,7 @@ Cuando inicies el programa serás recibido con una pantalla de inicio que despli
  - **Opción 13 - Contar Nodos:** Al seleccionar esta opción, el sistema te mostrará una pantalla donde se te solicita seleccionar el árbol al que le deseas conocer la cantidad de nodos: doctores, pacientes, medicamentos, citas o receta médica. Podrás utilizar las teclas de arriba y abajo para desplazarte entre las opciones y seleccionar la que deseas con la tecla Enter. Seguidamente el sistema mostrará la cantidad de nodos presentes de dicho árbol.
    
  - **Opción 14 - Contar Hojas:** Al seleccionar esta opción, el sistema te mostrará una pantalla donde se te solicita seleccionar el árbol al que le deseas conocer la cantidad de hojas: doctores, pacientes, medicamentos, citas o receta médica. Podrás utilizar las teclas de arriba y abajo para desplazarte entre las opciones y seleccionar la que deseas con la tecla Enter. Seguidamente el sistema mostrará la cantidad de hojas presentes de dicho árbol.
- - 
+   
  - **Opción 15 - Salir:** En caso de seleccionar la última opción se te preguntará si deseas salir del programa o deseas continuar en él.
 
 ## Instalación
