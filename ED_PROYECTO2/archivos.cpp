@@ -403,11 +403,11 @@ arboles<facturas> archivos::cargarFactura(arboles<pacientes> _arbolPaciente)
 		string paciente;
 
 		// Cargar datos del archivo
-		ifstream cargarCita("datosCita.dat");
-		if (cargarCita.is_open())
+		ifstream cargarFactura("datosFactura.dat");
+		if (cargarFactura.is_open())
 		{
 			string datos;
-			while (getline(cargarCita, datos))
+			while (getline(cargarFactura, datos))
 			{
 				_factura.setCodigo(datos.substr(0, datos.find("/")));
 				datos.erase(0, tamañoString(_factura.getCodigo()) + 1);
@@ -426,7 +426,7 @@ arboles<facturas> archivos::cargarFactura(arboles<pacientes> _arbolPaciente)
 				arbolFactura.registrarDatos(factura, _factura.getCodigo());
 			}
 		}
-		cargarCita.close();
+		cargarFactura.close();
 
 		return arbolFactura;
 	}

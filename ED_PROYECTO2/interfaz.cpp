@@ -1,12 +1,12 @@
-#include "interfaz.h"
+ï»¿#include "interfaz.h"
 
 void interfaz::menuPrincipal()
 {
-	// Opción seleccionada
+	// OpciÃ³n seleccionada
 	opcion = 1;				
 	// Se coloca a todas las opciones con el color por defecto
-	int Set[] = { 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128 };
-	// Se marcará la primera opción como seleccionada
+	int Set[] = { 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128 };
+	// Se marcarÃ¡ la primera opciÃ³n como seleccionada
 	Set[0] = 71;
 	// Encargada de recibir el valor de la tecla pulsada en ASCII
 	int key = 0;
@@ -30,11 +30,11 @@ void interfaz::menuPrincipal()
 	{
 		system("cls");
 
-		// Se genera el cuadro del menú principal
+		// Se genera el cuadro del menÃº principal
 		cout << "\033[44m\033[30m" << espacios << endl;
 		cout << cuadroLado << "\033[100m ." << cuadroBorde << ". \033[44m" << cuadroLado << endl;
 
-		for (int i = 0; i < 20; i++)
+		for (int i = 0; i < 21; i++)
 		{
 			cout << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
 		}
@@ -42,19 +42,19 @@ void interfaz::menuPrincipal()
 		cout << cuadroLado << "\033[100m |" << cuadroBorde << "| \033[40m  \033[44m" << cuadroFinal << endl;
 		cout << cuadroLado << "\033[100m  " << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
 		cout << cuadroLado << "  \033[40m" << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
-		cout << "\033[44m\033[30m" << espacios << espacios << espacios << espacios << espacios;
+		cout << "\033[44m\033[30m" << espacios << endl << espacios << endl << espacios << endl << espacios;
 
 		_mInterfaz.moverXY(53, 4);
-		cout << "\033[100mMenú Principal";
+		cout << "\033[100mMenÃº Principal";
 
 		for (int i = 0;;)
 		{
 			// Opcion 1
 			// Indica donde se va a posicionar el cursor en la consola
 			_mInterfaz.moverXY(44, 6);
-			// Inidicará el color a ingresar marcar si la opcion es seleccionada
+			// InidicarÃ¡ el color a ingresar marcar si la opcion es seleccionada
 			_mInterfaz.color(Set[0]);
-			// Texto de la opción
+			// Texto de la opciÃ³n
 			cout << "         Ingresar Doctor         ";
 
 			// Opcion 2
@@ -90,41 +90,46 @@ void interfaz::menuPrincipal()
 			// Opcion 7
 			_mInterfaz.moverXY(44, 13);
 			_mInterfaz.color(Set[7]);
+			cout << "        Consultar Factura        ";
+
+			// Opcion 7
+			_mInterfaz.moverXY(44, 14);
+			_mInterfaz.color(Set[8]);
 			cout << "     Consultar Receta Medica     ";
 
 			// Opcion 8
-			_mInterfaz.moverXY(44, 14);
-			_mInterfaz.color(Set[8]);
+			_mInterfaz.moverXY(44, 15);
+			_mInterfaz.color(Set[9]);
 			cout << "          Mostrar Arbol          ";
 
 			// Opcion 9
-			_mInterfaz.moverXY(44, 15);
-			_mInterfaz.color(Set[9]);
+			_mInterfaz.moverXY(44, 16);
+			_mInterfaz.color(Set[10]);
 			cout << "        Recorrido Profundo       ";
 
 			// Opcion 10
-			_mInterfaz.moverXY(44, 16);
-			_mInterfaz.color(Set[10]);
+			_mInterfaz.moverXY(44, 17);
+			_mInterfaz.color(Set[11]);
 			cout << "      Recorrido por niveles      ";
 
 			// Opcion 11
-			_mInterfaz.moverXY(44, 17);
-			_mInterfaz.color(Set[11]);
+			_mInterfaz.moverXY(44, 18);
+			_mInterfaz.color(Set[12]);
 			cout << "         Altura del arbol        ";
 
 			// Opcion 12
-			_mInterfaz.moverXY(44, 18);
-			_mInterfaz.color(Set[12]);
+			_mInterfaz.moverXY(44, 19);
+			_mInterfaz.color(Set[13]);
 			cout << "           Contar Nodos          ";
 
 			// Opcion 13
-			_mInterfaz.moverXY(44, 19);
-			_mInterfaz.color(Set[13]);
+			_mInterfaz.moverXY(44, 20);
+			_mInterfaz.color(Set[14]);
 			cout << "           Contar Hojas          ";
 
 			// Opcion 14
-			_mInterfaz.moverXY(44, 20);
-			_mInterfaz.color(Set[14]);
+			_mInterfaz.moverXY(44, 21);
+			_mInterfaz.color(Set[15]);
 			cout << "              Salir              ";
 
 			key = _getch();
@@ -135,14 +140,14 @@ void interfaz::menuPrincipal()
 
 				if (opcion == 0)
 				{
-					opcion = 15;
+					opcion = 16;
 				}
 			}
 			else if (key == 80)	// Validar si la flecha abajo es pulsada	|| 80 es el valor de la flecha abajo en ASCII
 			{
 				opcion++;
 
-				if (opcion == 16)
+				if (opcion == 17)
 				{
 					opcion = 1;
 				}
@@ -179,7 +184,7 @@ void interfaz::menuPrincipal()
 							cout << "\033[100mIngresar Doctor";
 
 							_mInterfaz.moverXY(25, 6);
-							cout << "Ingresa el número de cedula del doctor: (9 digitos)";
+							cout << "Ingresa el nÃºmero de cedula del doctor: (9 digitos)";
 							_mInterfaz.moverXY(25, 7);
 							cout << "\033[40m\033[37m" << cuadroIngresarTexto;
 							_mInterfaz.moverXY(25, 7);
@@ -190,7 +195,7 @@ void interfaz::menuPrincipal()
 								_mInterfaz.moverXY(25, 8);
 								cout << "\033[100m\033[31mLo ingresado no coincide con el formato solicitado o ya existe.";
 								_mInterfaz.moverXY(25, 9);
-								cout << "Por favor vuelve a ingresar el número de cedula.";
+								cout << "Por favor vuelve a ingresar el nÃºmero de cedula.";
 								_mInterfaz.moverXY(25, 7);
 								cout << "\033[40m\033[37m" << cuadroIngresarTexto;
 								_mInterfaz.moverXY(25, 7);
@@ -225,7 +230,7 @@ void interfaz::menuPrincipal()
 							{
 								_mInterfaz.moverXY(25, 7);
 								_mInterfaz.color(oEspecialidad[0]);
-								cout << "Cardiólogo ";
+								cout << "CardiÃ³logo ";
 
 								_mInterfaz.moverXY(25, 8);
 								_mInterfaz.color(oEspecialidad[1]);
@@ -233,11 +238,11 @@ void interfaz::menuPrincipal()
 
 								_mInterfaz.moverXY(25, 9);
 								_mInterfaz.color(oEspecialidad[2]);
-								cout << "Ginecólogo ";
+								cout << "GinecÃ³logo ";
 
 								_mInterfaz.moverXY(25, 10);
 								_mInterfaz.color(oEspecialidad[3]);
-								cout << "Dermatólogo";
+								cout << "DermatÃ³logo";
 
 								key = _getch();
 
@@ -292,7 +297,7 @@ void interfaz::menuPrincipal()
 							switch (nEspecialidad)
 							{
 							case 1:
-								_doctor.setEspecialidad("Cardiólogo");
+								_doctor.setEspecialidad("CardiÃ³logo");
 								break;
 
 							case 2:
@@ -300,11 +305,11 @@ void interfaz::menuPrincipal()
 								break;
 
 							case 3:
-								_doctor.setEspecialidad("Ginecólogo");
+								_doctor.setEspecialidad("GinecÃ³logo");
 								break;
 
 							case 4:
-								_doctor.setEspecialidad("Dermatólogo");
+								_doctor.setEspecialidad("DermatÃ³logo");
 								break;
 							}
 
@@ -320,7 +325,7 @@ void interfaz::menuPrincipal()
 							_mInterfaz.moverXY(25, 6);
 							cout << "\033[100m\033[30m" << cuadroIngresarTexto;
 							_mInterfaz.moverXY(25, 6);
-							cout << "Ingresa la dirección del doctor:";
+							cout << "Ingresa la direcciÃ³n del doctor:";
 							_mInterfaz.moverXY(25, 7);
 							cout << "\033[40m\033[37m" << cuadroIngresarTexto;
 							_mInterfaz.moverXY(25, 7);
@@ -358,7 +363,7 @@ void interfaz::menuPrincipal()
 							_mInterfaz.moverXY(25, 6);
 							cout << "\033[100m\033[30m" << cuadroIngresarTexto;
 							_mInterfaz.moverXY(25, 6);
-							cout << "Ingresa el número de telefono del doctor:";
+							cout << "Ingresa el nÃºmero de telefono del doctor:";
 							_mInterfaz.moverXY(25, 7);
 							cout << "\033[40m\033[37m" << cuadroIngresarTexto;
 							_mInterfaz.moverXY(25, 7);
@@ -369,7 +374,7 @@ void interfaz::menuPrincipal()
 								_mInterfaz.moverXY(25, 8);
 								cout << "\033[100m\033[31mLo ingresado no coincide con el formato solicitado.";
 								_mInterfaz.moverXY(25, 9);
-								cout << "Por favor vuelve a ingresar el número de telefono.";
+								cout << "Por favor vuelve a ingresar el nÃºmero de telefono.";
 								_mInterfaz.moverXY(25, 7);
 								cout << "\033[40m\033[37m" << cuadroIngresarTexto;
 								_mInterfaz.moverXY(25, 7);
@@ -394,7 +399,7 @@ void interfaz::menuPrincipal()
 
 							cout << "\033[100m\033[30m";
 							_mInterfaz.moverXY(25, 3);
-							cout << "Número de cedula:";
+							cout << "NÃºmero de cedula:";
 							_mInterfaz.moverXY(25, 4);
 							cout << _doctor.getCedula();
 
@@ -412,7 +417,7 @@ void interfaz::menuPrincipal()
 
 							cout << "\033[100m\033[30m";
 							_mInterfaz.moverXY(25, 12);
-							cout << "Dirección:";
+							cout << "DirecciÃ³n:";
 							_mInterfaz.moverXY(25, 13);
 							cout << _doctor.getDireccion();
 
@@ -434,12 +439,12 @@ void interfaz::menuPrincipal()
 							_mInterfaz.moverXY(25, 22);
 							cout << _doctor.getTelefono();
 
-							if (_mInterfaz.confirmarDatos("¿Los datos ingresados son correctos?", 24) == 1)
+							if (_mInterfaz.confirmarDatos("Â¿Los datos ingresados son correctos?", 24) == 1)
 							{
 								doctor = new doctores(_doctor.getCedula(), _doctor.getNombre(), _doctor.getEspecialidad(), _doctor.getDireccion(), _doctor.getHoraInicio(), _doctor.getHoraFin(), _doctor.getTelefono());
 								arbolDoctor.registrarDatos(doctor, _doctor.getCedula());
 								_archivo.guardarDoctor(arbolDoctor);
-								_mInterfaz.mostrarMensajeExito("¡El doctor fue ingresado con exito!");
+								_mInterfaz.mostrarMensajeExito("Â¡El doctor fue ingresado con exito!");
 
 								break;
 							}
@@ -475,7 +480,7 @@ void interfaz::menuPrincipal()
 							cout << "\033[100mIngresar Paciente";
 
 							_mInterfaz.moverXY(25, 6);
-							cout << "Ingresa el número de cedula del paciente: (9 digitos)";
+							cout << "Ingresa el nÃºmero de cedula del paciente: (9 digitos)";
 							_mInterfaz.moverXY(25, 7);
 							cout << "\033[40m\033[37m" << cuadroIngresarTexto;
 							_mInterfaz.moverXY(25, 7);
@@ -486,7 +491,7 @@ void interfaz::menuPrincipal()
 								_mInterfaz.moverXY(25, 8);
 								cout << "\033[100m\033[31mLo ingresado no coincide con el formato solicitado o ya existe.";
 								_mInterfaz.moverXY(25, 9);
-								cout << "Por favor vuelve a ingresar el número de cedula.";
+								cout << "Por favor vuelve a ingresar el nÃºmero de cedula.";
 								_mInterfaz.moverXY(25, 7);
 								cout << "\033[40m\033[37m" << cuadroIngresarTexto;
 								_mInterfaz.moverXY(25, 7);
@@ -509,7 +514,7 @@ void interfaz::menuPrincipal()
 							_mInterfaz.moverXY(25, 6);
 							cout << "\033[100m\033[30m" << cuadroIngresarTexto;
 							_mInterfaz.moverXY(25, 6);
-							cout << "Ingresa la dirección del paciente:";
+							cout << "Ingresa la direcciÃ³n del paciente:";
 							_mInterfaz.moverXY(25, 7);
 							cout << "\033[40m\033[37m" << cuadroIngresarTexto;
 							_mInterfaz.moverXY(25, 7);
@@ -519,7 +524,7 @@ void interfaz::menuPrincipal()
 							_mInterfaz.moverXY(25, 6);
 							cout << "\033[100m\033[30m" << cuadroIngresarTexto;
 							_mInterfaz.moverXY(25, 6);
-							cout << "Ingresa el número de telefono del paciente:";
+							cout << "Ingresa el nÃºmero de telefono del paciente:";
 							_mInterfaz.moverXY(25, 7);
 							cout << "\033[40m\033[37m" << cuadroIngresarTexto;
 							_mInterfaz.moverXY(25, 7);
@@ -530,7 +535,7 @@ void interfaz::menuPrincipal()
 								_mInterfaz.moverXY(25, 8);
 								cout << "\033[100m\033[31mLo ingresado no coincide con el formato solicitado.";
 								_mInterfaz.moverXY(25, 9);
-								cout << "Por favor vuelve a ingresar el número de telefono.";
+								cout << "Por favor vuelve a ingresar el nÃºmero de telefono.";
 								_mInterfaz.moverXY(25, 7);
 								cout << "\033[40m\033[37m" << cuadroIngresarTexto;
 								_mInterfaz.moverXY(25, 7);
@@ -555,7 +560,7 @@ void interfaz::menuPrincipal()
 
 							cout << "\033[100m\033[30m";
 							_mInterfaz.moverXY(25, 3);
-							cout << "Número de cedula:";
+							cout << "NÃºmero de cedula:";
 							_mInterfaz.moverXY(25, 4);
 							cout << _paciente.getCedula();
 
@@ -567,7 +572,7 @@ void interfaz::menuPrincipal()
 
 							cout << "\033[100m\033[30m";
 							_mInterfaz.moverXY(25, 9);
-							cout << "Dirección:";
+							cout << "DirecciÃ³n:";
 							_mInterfaz.moverXY(25, 10);
 							cout << _paciente.getDireccion();
 
@@ -577,12 +582,12 @@ void interfaz::menuPrincipal()
 							_mInterfaz.moverXY(25, 13);
 							cout << _paciente.getTelefono();
 
-							if (_mInterfaz.confirmarDatos("¿Los datos ingresados son correctos?", 15) == 1)
+							if (_mInterfaz.confirmarDatos("Â¿Los datos ingresados son correctos?", 15) == 1)
 							{
 								paciente = new pacientes(_paciente.getCedula(), _paciente.getNombre(), _paciente.getDireccion(), _paciente.getTelefono());
 								arbolPaciente.registrarDatos(paciente, _paciente.getCedula());
 								_archivo.guardarPaciente(arbolPaciente);
-								_mInterfaz.mostrarMensajeExito("¡El paciente fue ingresado con exito!");
+								_mInterfaz.mostrarMensajeExito("Â¡El paciente fue ingresado con exito!");
 
 								break;
 							}
@@ -627,7 +632,7 @@ void interfaz::menuPrincipal()
 							while (arbolMedicamento.verificarDatos(_medicamento.getCodigo()))
 							{
 								_mInterfaz.moverXY(25, 8);
-								cout << "\033[100m\033[31mEl codigo ingresado ya está registrado.";
+								cout << "\033[100m\033[31mEl codigo ingresado ya estÃ¡ registrado.";
 								_mInterfaz.moverXY(25, 9);
 								cout << "Por favor ingresa otro codigo de medicamento.";
 								_mInterfaz.moverXY(25, 7);
@@ -692,12 +697,12 @@ void interfaz::menuPrincipal()
 							_mInterfaz.moverXY(25, 10);
 							cout << _medicamento.getCantidadInventario();
 
-							if (_mInterfaz.confirmarDatos("¿Los datos ingresados son correctos?", 12) == 1)
+							if (_mInterfaz.confirmarDatos("Â¿Los datos ingresados son correctos?", 12) == 1)
 							{
 								medicamento = new medicamentos(_medicamento.getCodigo(), _medicamento.getNombre(), _medicamento.getCantidadInventario());
 								arbolMedicamento.registrarDatos(medicamento, _medicamento.getCodigo());
 								_archivo.guardarMedicamento(arbolMedicamento);
-								_mInterfaz.mostrarMensajeExito("¡El medicamento fue ingresado con exito!");
+								_mInterfaz.mostrarMensajeExito("Â¡El medicamento fue ingresado con exito!");
 
 								break;
 							}
@@ -713,7 +718,7 @@ void interfaz::menuPrincipal()
 					// Registrar Cita
 					try
 					{
-						// Se verificará si hay doctores, pacientes y medicamentos registrados en el sistema
+						// Se verificarÃ¡ si hay doctores, pacientes y medicamentos registrados en el sistema
 						_mInterfaz.verificarVacio(arbolDoctor, arbolPaciente, arbolMedicamento);
 
 						while (1)
@@ -735,17 +740,25 @@ void interfaz::menuPrincipal()
 							_mInterfaz.moverXY(52, 4);
 							cout << "\033[100mRegistrar Cita";
 
-							// Se genera un número
+							// Se genera un codigo para la cita
 							_cita.setCodigo(to_string(_mInterfaz.generarCodigo()));
 
-							// Si el codigo ya existe, se generará otro hasta que no esté repetido
+							// Si el codigo ya existe, se generarÃ¡ otro hasta que no estÃ© repetido
 							while (arbolCita.verificarDatos(_cita.getCodigo()))
 							{
 								_cita.setCodigo(to_string(_mInterfaz.generarCodigo()));
 							}
 
+							// Se generarÃ¡ un codigo para las facturas
+							_factura.setCodigo(to_string(_mInterfaz.generarCodigo()));
+
+							while (arbolFactura.verificarDatos(_factura.getCodigo()))
+							{
+								_factura.setCodigo(to_string(_mInterfaz.generarCodigo()));
+							}
+
 							_mInterfaz.moverXY(25, 6);
-							cout << "\033[100mIngresa el número de cedula del paciente registrado:";
+							cout << "\033[100mIngresa el nÃºmero de cedula del paciente registrado:";
 							_mInterfaz.moverXY(25, 7);
 							cout << "\033[40m\033[37m" << cuadroIngresarTexto;
 							_mInterfaz.moverXY(25, 7);
@@ -754,9 +767,9 @@ void interfaz::menuPrincipal()
 							while (!arbolPaciente.verificarDatos(_paciente.getCedula()))
 							{
 								_mInterfaz.moverXY(25, 8);
-								cout << "\033[100m\033[31mLa cedula ingresada no está registrada.";
+								cout << "\033[100m\033[31mLa cedula ingresada no estÃ¡ registrada.";
 								_mInterfaz.moverXY(25, 9);
-								cout << "Por favor ingresa un número de cedula registrada.";
+								cout << "Por favor ingresa un nÃºmero de cedula registrada.";
 								_mInterfaz.moverXY(25, 7);
 								cout << "\033[40m\033[37m" << cuadroIngresarTexto;
 								_mInterfaz.moverXY(25, 7);
@@ -778,9 +791,9 @@ void interfaz::menuPrincipal()
 							while (!arbolDoctor.verificarDatos(_doctor.getCedula()))
 							{
 								_mInterfaz.moverXY(25, 8);
-								cout << "\033[100m\033[31mLa cedula ingresada no está registrada.";
+								cout << "\033[100m\033[31mLa cedula ingresada no estÃ¡ registrada.";
 								_mInterfaz.moverXY(25, 9);
-								cout << "Por favor ingresa un número de cedula registrada.";
+								cout << "Por favor ingresa un nÃºmero de cedula registrada.";
 								_mInterfaz.moverXY(25, 7);
 								cout << "\033[40m\033[37m" << cuadroIngresarTexto;
 								_mInterfaz.moverXY(25, 7);
@@ -798,13 +811,20 @@ void interfaz::menuPrincipal()
 							_cita.setFecha(dato);
 							_cita.setHora(hora);
 
+							_mInterfaz.moverXY(25, 6);
+							cout << "\033[100m\033[30mIngresa el costo de la cita: (En Colones)";
+							_mInterfaz.moverXY(25, 7);
+							cout << "\033[40m\033[37m" << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 7);
+							_factura.setMonto(stoi(_mInterfaz.ingresarNumeros()));
+
 							cout << "\033[44m\033[30m";
 
 							system("cls");
 							cout << espacios << endl;
 							cout << cuadroLado << "\033[100m ." << cuadroBorde << ". \033[44m" << cuadroLado << endl;
 
-							for (int i = 0; i < 18; i++)
+							for (int i = 0; i < 24; i++)
 							{
 								cout << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
 							}
@@ -824,34 +844,53 @@ void interfaz::menuPrincipal()
 
 							cout << "\033[100m\033[30m";
 							_mInterfaz.moverXY(25, 6);
-							cout << "Nombre del paciente:";
+							cout << "Codigo de la factura:";
 							_mInterfaz.moverXY(25, 7);
-							cout << paciente -> getNombre();
+							cout << _factura.getCodigo();
 
 							cout << "\033[100m\033[30m";
 							_mInterfaz.moverXY(25, 9);
-							cout << "Nombre del doctor:";
+							cout << "Nombre del paciente:";
 							_mInterfaz.moverXY(25, 10);
-							cout << doctor -> getNombre();
+							cout << paciente -> getNombre();
 
 							cout << "\033[100m\033[30m";
 							_mInterfaz.moverXY(25, 12);
-							cout << "Fecha de la cita:";
+							cout << "Nombre del doctor:";
 							_mInterfaz.moverXY(25, 13);
-							cout << "Dia: " << _cita.getFecha().substr(0, 2) << " - Mes: " << _cita.getFecha().substr(2, 2) << " - Año: " << _cita.getFecha().substr(4, 4);
+							cout << doctor -> getNombre();
 
 							cout << "\033[100m\033[30m";
 							_mInterfaz.moverXY(25, 15);
-							cout << "Hora de la cita:";
+							cout << "Fecha de la cita:";
 							_mInterfaz.moverXY(25, 16);
-							cout << hora;
+							cout << "Dia: " << _cita.getFecha().substr(0, 2) << " - Mes: " << _cita.getFecha().substr(2, 2) << " - AÃ±o: " << _cita.getFecha().substr(4, 4);
 
-							if (_mInterfaz.confirmarDatos("¿Los datos ingresados son correctos?", 18) == 1)
+							cout << "\033[100m\033[30m";
+							_mInterfaz.moverXY(25, 18);
+							cout << "Hora de la cita:";
+							_mInterfaz.moverXY(25, 19);
+							cout << _cita.getHora();
+
+							cout << "\033[100m\033[30m";
+							_mInterfaz.moverXY(25, 21);
+							cout << "Costo total de la cita:";
+							_mInterfaz.moverXY(25, 22);
+							cout << _factura.getMonto();
+
+							if (_mInterfaz.confirmarDatos("Â¿Los datos ingresados son correctos?", 24) == 1)
 							{
+								// Registramos la cita
 								cita = new citas(_cita.getCodigo(), _cita.getFecha(), _cita.getHora(), doctor, paciente);
 								arbolCita.registrarDatos(cita, _cita.getCodigo());
 								_archivo.guardarCita(arbolCita);
-								_mInterfaz.mostrarMensajeExito("¡La cita fue registrada con exito!");
+
+								// Registramos la factura
+								factura = new facturas(_factura.getCodigo(), _cita.getFecha(), paciente, _factura.getMonto());
+								arbolFactura.registrarDatos(factura, _factura.getCodigo());
+								_archivo.guardarFactura(arbolFactura);
+
+								_mInterfaz.mostrarMensajeExito("Â¡La cita fue registrada con exito!");
 
 								break;
 							}
@@ -901,7 +940,7 @@ void interfaz::menuPrincipal()
 							while (!arbolCita.verificarDatos(_cita.getCodigo()))
 							{
 								_mInterfaz.moverXY(25, 8);
-								cout << "\033[100m\033[31mEl codigo ingresada no está registrada.";
+								cout << "\033[100m\033[31mEl codigo ingresada no estÃ¡ registrada.";
 								_mInterfaz.moverXY(25, 9);
 								cout << "Por favor ingresa el codigo de cita registrado.";
 								_mInterfaz.moverXY(25, 7);
@@ -950,7 +989,7 @@ void interfaz::menuPrincipal()
 							_mInterfaz.moverXY(25, 12);
 							cout << "Fecha de la cita:";
 							_mInterfaz.moverXY(25, 13);
-							cout << "Dia: " << cita -> getFecha().substr(0, 2) << " - Mes: " << cita -> getFecha().substr(2, 2) << " - Año: " << cita -> getFecha().substr(4, 4);
+							cout << "Dia: " << cita -> getFecha().substr(0, 2) << " - Mes: " << cita -> getFecha().substr(2, 2) << " - AÃ±o: " << cita -> getFecha().substr(4, 4);
 
 							cout << "\033[100m\033[30m";
 							_mInterfaz.moverXY(25, 15);
@@ -958,7 +997,7 @@ void interfaz::menuPrincipal()
 							_mInterfaz.moverXY(25, 16);
 							cout << cita -> getHora();
 
-							if (_mInterfaz.confirmarDatos("¿Deseas atender esta cita?", 18) == 1)
+							if (_mInterfaz.confirmarDatos("Â¿Deseas atender esta cita?", 18) == 1)
 							{
 								while (1)
 								{
@@ -1009,7 +1048,7 @@ void interfaz::menuPrincipal()
 									while (!arbolMedicamento.verificarDatos(_medicamento.getCodigo()))
 									{
 										_mInterfaz.moverXY(25, 8);
-										cout << "\033[100m\033[31mEl codigo ingresada no está registrada.";
+										cout << "\033[100m\033[31mEl codigo ingresada no estÃ¡ registrada.";
 										_mInterfaz.moverXY(25, 9);
 										cout << "Por favor ingresa el codigo de medicamento registrado.";
 										_mInterfaz.moverXY(25, 7);
@@ -1115,7 +1154,7 @@ void interfaz::menuPrincipal()
 									_mInterfaz.moverXY(25, 16);
 									cout << cita -> getDoctor() -> getNombre();
 
-									if (_mInterfaz.confirmarDatos("¿Los datos ingresados son correctos?", 18) == 1)
+									if (_mInterfaz.confirmarDatos("Â¿Los datos ingresados son correctos?", 18) == 1)
 									{
 										// Se crea un dato de receta medica
 										recetaMedica = new recetasMedicas(_recetaMedica.getCodigo(), cita -> getPaciente(), _recetaMedica.getDiagnostico(), medicamento, _recetaMedica.getCantidad(), _recetaMedica.getDosis(), cita -> getDoctor());
@@ -1130,7 +1169,7 @@ void interfaz::menuPrincipal()
 										arbolCita.eliminarDatos(cita, cita -> getCodigo());
 										_archivo.guardarCita(arbolCita);
 
-										_mInterfaz.mostrarMensajeExito("¡La cita fue atendida con exito!");
+										_mInterfaz.mostrarMensajeExito("Â¡La cita fue atendida con exito!");
 
 										break;
 									}
@@ -1185,7 +1224,7 @@ void interfaz::menuPrincipal()
 							while (!arbolCita.verificarDatos(_cita.getCodigo()))
 							{
 								_mInterfaz.moverXY(25, 8);
-								cout << "\033[100m\033[31mEl codigo ingresada no está registrada.";
+								cout << "\033[100m\033[31mEl codigo ingresada no estÃ¡ registrada.";
 								_mInterfaz.moverXY(25, 9);
 								cout << "Por favor ingresa el codigo de cita registrado.";
 								_mInterfaz.moverXY(25, 7);
@@ -1234,7 +1273,7 @@ void interfaz::menuPrincipal()
 							_mInterfaz.moverXY(25, 12);
 							cout << "Fecha de la cita:";
 							_mInterfaz.moverXY(25, 13);
-							cout << "Dia: " << cita -> getFecha().substr(0, 2) << " - Mes: " << cita -> getFecha().substr(2, 2) << " - Año: " << cita -> getFecha().substr(4, 4);
+							cout << "Dia: " << cita -> getFecha().substr(0, 2) << " - Mes: " << cita -> getFecha().substr(2, 2) << " - AÃ±o: " << cita -> getFecha().substr(4, 4);
 
 							cout << "\033[100m\033[30m";
 							_mInterfaz.moverXY(25, 15);
@@ -1242,7 +1281,7 @@ void interfaz::menuPrincipal()
 							_mInterfaz.moverXY(25, 16);
 							cout << cita -> getHora();
 
-							if (_mInterfaz.confirmarDatos("¿Deseas modificar esta cita?", 18) == 1)
+							if (_mInterfaz.confirmarDatos("Â¿Deseas modificar esta cita?", 18) == 1)
 							{
 								while (1)
 								{
@@ -1264,7 +1303,7 @@ void interfaz::menuPrincipal()
 									cout << "\033[100mModificar Cita";
 
 									_mInterfaz.moverXY(25, 6);
-									cout << "\033[100mIngresa el número de cedula del paciente registrado:";
+									cout << "\033[100mIngresa el nÃºmero de cedula del paciente registrado:";
 									_mInterfaz.moverXY(25, 7);
 									cout << "\033[40m\033[37m" << cuadroIngresarTexto;
 									_mInterfaz.moverXY(25, 7);
@@ -1273,9 +1312,9 @@ void interfaz::menuPrincipal()
 									while (!arbolPaciente.verificarDatos(_paciente.getCedula()))
 									{
 										_mInterfaz.moverXY(25, 8);
-										cout << "\033[100m\033[31mLa cedula ingresada no está registrada.";
+										cout << "\033[100m\033[31mLa cedula ingresada no estÃ¡ registrada.";
 										_mInterfaz.moverXY(25, 9);
-										cout << "Por favor ingresa un número de cedula registrada.";
+										cout << "Por favor ingresa un nÃºmero de cedula registrada.";
 										_mInterfaz.moverXY(25, 7);
 										cout << "\033[40m\033[37m" << cuadroIngresarTexto;
 										_mInterfaz.moverXY(25, 7);
@@ -1297,9 +1336,9 @@ void interfaz::menuPrincipal()
 									while (!arbolDoctor.verificarDatos(_doctor.getCedula()))
 									{
 										_mInterfaz.moverXY(25, 8);
-										cout << "\033[100m\033[31mLa cedula ingresada no está registrada.";
+										cout << "\033[100m\033[31mLa cedula ingresada no estÃ¡ registrada.";
 										_mInterfaz.moverXY(25, 9);
-										cout << "Por favor ingresa un número de cedula registrada.";
+										cout << "Por favor ingresa un nÃºmero de cedula registrada.";
 										_mInterfaz.moverXY(25, 7);
 										cout << "\033[40m\033[37m" << cuadroIngresarTexto;
 										_mInterfaz.moverXY(25, 7);
@@ -1357,7 +1396,7 @@ void interfaz::menuPrincipal()
 									_mInterfaz.moverXY(25, 12);
 									cout << "Fecha de la cita:";
 									_mInterfaz.moverXY(25, 13);
-									cout << "Dia: " << _cita.getFecha().substr(0, 2) << " - Mes: " << _cita.getFecha().substr(2, 2) << " - Año: " << _cita.getFecha().substr(4, 4);
+									cout << "Dia: " << _cita.getFecha().substr(0, 2) << " - Mes: " << _cita.getFecha().substr(2, 2) << " - AÃ±o: " << _cita.getFecha().substr(4, 4);
 
 									cout << "\033[100m\033[30m";
 									_mInterfaz.moverXY(25, 15);
@@ -1365,7 +1404,7 @@ void interfaz::menuPrincipal()
 									_mInterfaz.moverXY(25, 16);
 									cout << _cita.getHora();
 
-									if (_mInterfaz.confirmarDatos("¿Los datos ingresados son correctos?", 18) == 1)
+									if (_mInterfaz.confirmarDatos("Â¿Los datos ingresados son correctos?", 18) == 1)
 									{
 										cita -> setFecha(_cita.getFecha());
 										cita -> setHora(_cita.getHora());
@@ -1373,7 +1412,7 @@ void interfaz::menuPrincipal()
 										cita -> setPaciente(paciente);
 
 										_archivo.guardarCita(arbolCita);
-										_mInterfaz.mostrarMensajeExito("¡La cita fue actualizada con exito!");
+										_mInterfaz.mostrarMensajeExito("Â¡La cita fue actualizada con exito!");
 
 										break;
 									}
@@ -1428,7 +1467,7 @@ void interfaz::menuPrincipal()
 							while (!arbolCita.verificarDatos(_cita.getCodigo()))
 							{
 								_mInterfaz.moverXY(25, 8);
-								cout << "\033[100m\033[31mEl codigo ingresada no está registrada.";
+								cout << "\033[100m\033[31mEl codigo ingresada no estÃ¡ registrada.";
 								_mInterfaz.moverXY(25, 9);
 								cout << "Por favor ingresa el codigo de cita registrado.";
 								_mInterfaz.moverXY(25, 7);
@@ -1477,7 +1516,7 @@ void interfaz::menuPrincipal()
 							_mInterfaz.moverXY(25, 12);
 							cout << "Fecha de la cita:";
 							_mInterfaz.moverXY(25, 13);
-							cout << "Dia: " << cita -> getFecha().substr(0, 2) << " - Mes: " << cita -> getFecha().substr(2, 2) << " - Año: " << cita -> getFecha().substr(4, 4);
+							cout << "Dia: " << cita -> getFecha().substr(0, 2) << " - Mes: " << cita -> getFecha().substr(2, 2) << " - AÃ±o: " << cita -> getFecha().substr(4, 4);
 
 							cout << "\033[100m\033[30m";
 							_mInterfaz.moverXY(25, 15);
@@ -1485,11 +1524,11 @@ void interfaz::menuPrincipal()
 							_mInterfaz.moverXY(25, 16);
 							cout << cita -> getHora();
 
-							if (_mInterfaz.confirmarDatos("¿Deseas cancelar esta cita?", 18) == 1)
+							if (_mInterfaz.confirmarDatos("Â¿Deseas cancelar esta cita?", 18) == 1)
 							{
 								arbolCita.eliminarDatos(cita, cita -> getCodigo());
 								_archivo.guardarCita(arbolCita);
-								_mInterfaz.mostrarMensajeExito("¡La cita fue cancelada con exito!");
+								_mInterfaz.mostrarMensajeExito("Â¡La cita fue cancelada con exito!");
 								break;
 							}
 						}
@@ -1501,12 +1540,12 @@ void interfaz::menuPrincipal()
 					break;
 
 				case 8:
-					// Consultar Receta Medica
+					// Consultar Facturas
 					try
 					{
-						if (!arbolRecetaMedica.verificarVacio())
+						if (!arbolFactura.verificarVacio())
 						{
-							throw exception("!No hay recetas medicas registradas en el sistema!");
+							throw exception("!No hay facturas registradas en el sistema!");
 						}
 
 						while (1)
@@ -1526,28 +1565,28 @@ void interfaz::menuPrincipal()
 							cout << "\033[44m\033[30m" << espacios;
 
 							_mInterfaz.moverXY(50, 4);
-							cout << "\033[100mConsultar receta medica";
+							cout << "\033[100mConsultar factura";
 
 							_mInterfaz.moverXY(25, 6);
-							cout << "\033[100mIngresa el codigo de la receta medica registrada:";
+							cout << "\033[100mIngresa el codigo de la factura registrada:";
 							_mInterfaz.moverXY(25, 7);
 							cout << "\033[40m\033[37m" << cuadroIngresarTexto;
 							_mInterfaz.moverXY(25, 7);
-							_recetaMedica.setCodigo(_mInterfaz.ingresarNumeros());
+							_factura.setCodigo(_mInterfaz.ingresarNumeros());
 
-							while (!arbolRecetaMedica.verificarDatos(_recetaMedica.getCodigo()))
+							while (!arbolFactura.verificarDatos(_factura.getCodigo()))
 							{
 								_mInterfaz.moverXY(25, 8);
-								cout << "\033[100m\033[31mEl codigo ingresado no está registrado.";
+								cout << "\033[100m\033[31mEl codigo ingresado no estÃ¡ registrado.";
 								_mInterfaz.moverXY(25, 9);
-								cout << "Por favor ingresa el codigo de la receta medica registrada.";
+								cout << "Por favor ingresa el codigo de la factura registrada.";
 								_mInterfaz.moverXY(25, 7);
 								cout << "\033[40m\033[37m" << cuadroIngresarTexto;
 								_mInterfaz.moverXY(25, 7);
-								_recetaMedica.setCodigo(_mInterfaz.ingresarNumeros());
+								_factura.setCodigo(_mInterfaz.ingresarNumeros());
 							}
 
-							recetaMedica = arbolRecetaMedica.obtenerDatos(_recetaMedica.getCodigo());
+							factura = arbolFactura.obtenerDatos(_factura.getCodigo());
 
 							cout << "\033[44m\033[30m";
 
@@ -1555,7 +1594,7 @@ void interfaz::menuPrincipal()
 							cout << espacios << endl;
 							cout << cuadroLado << "\033[100m ." << cuadroBorde << ". \033[44m" << cuadroLado << endl;
 
-							for (int i = 0; i < 24; i++)
+							for (int i = 0; i < 15; i++)
 							{
 								cout << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
 							}
@@ -1567,47 +1606,30 @@ void interfaz::menuPrincipal()
 
 							cout << "\033[100m\033[30m";
 							_mInterfaz.moverXY(25, 3);
-							cout << "Codigo de la receta medica:";
+							cout << "Codigo de la factura:";
 							_mInterfaz.moverXY(25, 4);
-							cout << recetaMedica -> getCodigo();
+							cout << factura -> getCodigo();
 
 							cout << "\033[100m\033[30m";
 							_mInterfaz.moverXY(25, 6);
 							cout << "Nombre del paciente:";
 							_mInterfaz.moverXY(25, 7);
-							cout << recetaMedica -> getPaciente() -> getNombre();
+							cout << factura -> getPaciente() -> getNombre();
 
 							cout << "\033[100m\033[30m";
 							_mInterfaz.moverXY(25, 9);
-							cout << "Diagnostico del paciente:";
+							cout << "Fecha de facturaciÃ³n:";
 							_mInterfaz.moverXY(25, 10);
-							cout << recetaMedica -> getDiagnostico();
+							cout << "Dia: " << factura -> getFecha().substr(0, 2) << " - Mes: " << factura -> getFecha().substr(2, 2) << " - AÃ±o: " << factura -> getFecha().substr(4, 4);
 
 							cout << "\033[100m\033[30m";
 							_mInterfaz.moverXY(25, 12);
-							cout << "Nombre del medicamento:";
+							cout << "Costo de la cita:";
 							_mInterfaz.moverXY(25, 13);
-							cout << recetaMedica -> getMedicamento() -> getNombre();
+							// wcout permite inprimir caracteres la codificacion / formato UTF-8
+							wcout << colon << factura -> getMonto();
 
-							cout << "\033[100m\033[30m";
-							_mInterfaz.moverXY(25, 15);
-							cout << "Cantidad de medicamentos:";
-							_mInterfaz.moverXY(25, 16);
-							cout << recetaMedica -> getCantidad();
-
-							cout << "\033[100m\033[30m";
-							_mInterfaz.moverXY(25, 18);
-							cout << "Dosis del medicamento:";
-							_mInterfaz.moverXY(25, 19);
-							cout << recetaMedica -> getDosis();
-
-							cout << "\033[100m\033[30m";
-							_mInterfaz.moverXY(25, 21);
-							cout << "Doctor encargado:";
-							_mInterfaz.moverXY(25, 22);
-							cout << recetaMedica -> getDoctor() -> getNombre();
-
-							if (_mInterfaz.confirmarDatos("¿Deseas consultar otra receta medica?", 24) == 2)
+							if (_mInterfaz.confirmarDatos("Â¿Deseas consultar otra factura?", 15) == 2)
 							{
 								break;
 							}
@@ -1619,7 +1641,126 @@ void interfaz::menuPrincipal()
 					}
 					break;
 
-				case 9:
+					case 9:
+						// Consultar Receta Medica
+						try
+						{
+							if (!arbolRecetaMedica.verificarVacio())
+							{
+								throw exception("!No hay recetas medicas registradas en el sistema!");
+							}
+
+							while (1)
+							{
+								system("cls");
+								cout << "\033[44m\033[30m" << espacios << endl;
+								cout << cuadroLado << "\033[100m ." << cuadroBorde << ". \033[44m" << cuadroLado << endl;
+
+								for (int i = 0; i < 9; i++)
+								{
+									cout << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
+								}
+
+								cout << cuadroLado << "\033[100m |" << cuadroBorde << "| \033[40m  \033[44m" << cuadroFinal << endl;
+								cout << cuadroLado << "\033[100m  " << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+								cout << cuadroLado << "  \033[40m" << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+								cout << "\033[44m\033[30m" << espacios;
+
+								_mInterfaz.moverXY(50, 4);
+								cout << "\033[100mConsultar receta medica";
+
+								_mInterfaz.moverXY(25, 6);
+								cout << "\033[100mIngresa el codigo de la receta medica registrada:";
+								_mInterfaz.moverXY(25, 7);
+								cout << "\033[40m\033[37m" << cuadroIngresarTexto;
+								_mInterfaz.moverXY(25, 7);
+								_recetaMedica.setCodigo(_mInterfaz.ingresarNumeros());
+
+								while (!arbolRecetaMedica.verificarDatos(_recetaMedica.getCodigo()))
+								{
+									_mInterfaz.moverXY(25, 8);
+									cout << "\033[100m\033[31mEl codigo ingresado no estÃ¡ registrado.";
+									_mInterfaz.moverXY(25, 9);
+									cout << "Por favor ingresa el codigo de la receta medica registrada.";
+									_mInterfaz.moverXY(25, 7);
+									cout << "\033[40m\033[37m" << cuadroIngresarTexto;
+									_mInterfaz.moverXY(25, 7);
+									_recetaMedica.setCodigo(_mInterfaz.ingresarNumeros());
+								}
+
+								recetaMedica = arbolRecetaMedica.obtenerDatos(_recetaMedica.getCodigo());
+
+								cout << "\033[44m\033[30m";
+
+								system("cls");
+								cout << espacios << endl;
+								cout << cuadroLado << "\033[100m ." << cuadroBorde << ". \033[44m" << cuadroLado << endl;
+
+								for (int i = 0; i < 24; i++)
+								{
+									cout << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
+								}
+
+								cout << cuadroLado << "\033[100m |" << cuadroBorde << "| \033[40m  \033[44m" << cuadroFinal << endl;
+								cout << cuadroLado << "\033[100m  " << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+								cout << cuadroLado << "  \033[40m" << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+								cout << "\033[44m\033[30m" << espacios;
+
+								cout << "\033[100m\033[30m";
+								_mInterfaz.moverXY(25, 3);
+								cout << "Codigo de la receta medica:";
+								_mInterfaz.moverXY(25, 4);
+								cout << recetaMedica -> getCodigo();
+
+								cout << "\033[100m\033[30m";
+								_mInterfaz.moverXY(25, 6);
+								cout << "Nombre del paciente:";
+								_mInterfaz.moverXY(25, 7);
+								cout << recetaMedica -> getPaciente() -> getNombre();
+
+								cout << "\033[100m\033[30m";
+								_mInterfaz.moverXY(25, 9);
+								cout << "Diagnostico del paciente:";
+								_mInterfaz.moverXY(25, 10);
+								cout << recetaMedica -> getDiagnostico();
+
+								cout << "\033[100m\033[30m";
+								_mInterfaz.moverXY(25, 12);
+								cout << "Nombre del medicamento:";
+								_mInterfaz.moverXY(25, 13);
+								cout << recetaMedica -> getMedicamento() -> getNombre();
+
+								cout << "\033[100m\033[30m";
+								_mInterfaz.moverXY(25, 15);
+								cout << "Cantidad de medicamentos:";
+								_mInterfaz.moverXY(25, 16);
+								cout << recetaMedica -> getCantidad();
+
+								cout << "\033[100m\033[30m";
+								_mInterfaz.moverXY(25, 18);
+								cout << "Dosis del medicamento:";
+								_mInterfaz.moverXY(25, 19);
+								cout << recetaMedica -> getDosis();
+
+								cout << "\033[100m\033[30m";
+								_mInterfaz.moverXY(25, 21);
+								cout << "Doctor encargado:";
+								_mInterfaz.moverXY(25, 22);
+								cout << recetaMedica -> getDoctor() -> getNombre();
+
+								if (_mInterfaz.confirmarDatos("Â¿Deseas consultar otra receta medica?", 24) == 2)
+								{
+									break;
+								}
+							}
+						}
+						catch (exception& e)
+						{
+							_mInterfaz.mostrarMensajeFallido(e.what());
+						}
+						break;
+
+				case 10:
 					// Mostrar Arbol
 					try
 					{
@@ -1864,7 +2005,7 @@ void interfaz::menuPrincipal()
 					}
 					break;
 
-				case 10:
+				case 11:
 					// Recorrido Profundo
 					try
 					{
@@ -2109,7 +2250,7 @@ void interfaz::menuPrincipal()
 					}
 					break;
 
-				case 11:
+				case 12:
 					// Recorrido por Niveles
 					try
 					{
@@ -2354,7 +2495,7 @@ void interfaz::menuPrincipal()
 					}
 					break;
 
-				case 12:
+				case 13:
 					// Altura del arbol
 					try
 					{
@@ -2589,7 +2730,7 @@ void interfaz::menuPrincipal()
 					}
 					break;
 
-				case 13:
+				case 14:
 					// Contar Nodos
 					try
 					{
@@ -2824,7 +2965,7 @@ void interfaz::menuPrincipal()
 					}
 					break;
 
-				case 14:
+				case 15:
 					// Contar Hojas
 					try
 					{
@@ -3059,7 +3200,7 @@ void interfaz::menuPrincipal()
 					}
 					break;
 
-				case 15:
+				case 16:
 					// Salir
 					try
 					{
@@ -3080,7 +3221,7 @@ void interfaz::menuPrincipal()
 						_mInterfaz.moverXY(55, 4);
 						cout << "\033[100mSalir";
 
-						if (_mInterfaz.confirmarDatos("¿Deseas salir del programa?", 6) == 1)
+						if (_mInterfaz.confirmarDatos("Â¿Deseas salir del programa?", 6) == 1)
 						{
 							cout << "\033[40m\033[37m";
 							system("cls");
@@ -3100,7 +3241,7 @@ void interfaz::menuPrincipal()
 					// Opcion por defecto
 					try
 					{
-						throw exception("Ocurrio un error al seleccionar una opción");
+						throw exception("Ocurrio un error al seleccionar una opciÃ³n");
 					}
 					catch (exception& e) 
 					{
@@ -3129,13 +3270,14 @@ void interfaz::menuPrincipal()
 			Set[12] = 128;
 			Set[13] = 128;
 			Set[14] = 128;
+			Set[15] = 128;
 
 			// Cambiar color basado en la opcion seleccionada
 			switch (opcion)
 			{
 			case 1:
-				// Se indica el codigo de color con el que se usará en el texto
-				// si la opción esta seleccionada
+				// Se indica el codigo de color con el que se usarÃ¡ en el texto
+				// si la opciÃ³n esta seleccionada
 				Set[0] = 71;
 				break;
 
@@ -3193,6 +3335,10 @@ void interfaz::menuPrincipal()
 
 			case 15:
 				Set[14] = 71;
+				break;
+
+			case 16:
+				Set[15] = 71;
 				break;
 			}
 		}

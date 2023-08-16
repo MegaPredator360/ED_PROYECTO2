@@ -11,6 +11,9 @@ protected:
 	string dato;
 	string hora;
 	int cantidad;
+
+	// Wchar_t permite contener caracteres que no estén en la tabla ASCII, en su lugar usa la codificacion UTF-8
+	wchar_t colon = L'¢';
 	vector<string> listaCodigos;
 
 	// Arboles
