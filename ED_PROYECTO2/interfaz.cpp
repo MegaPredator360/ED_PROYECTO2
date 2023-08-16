@@ -1953,6 +1953,52 @@ void interfaz::menuPrincipal()
 							break;
 
 						case 5:
+							// Arbol Facturas
+							if (!arbolFactura.verificarVacio())
+							{
+								throw exception("No hay facturas registrados en el sistema.");
+							}
+
+							listaCodigos.clear();
+
+							arbolFactura.mostrarArbol(listaCodigos);
+							cantidad = listaCodigos.size();
+
+							_mInterfaz.moverXY(0, 6);
+							for (int i = 0; i < cantidad + 3; i++)
+							{
+								cout << "\033[44m\033[30m" << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
+							}
+							cout << cuadroLado << "\033[100m |" << cuadroBorde << "| \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << cuadroLado << "\033[100m  " << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << cuadroLado << "  \033[40m" << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << "\033[44m\033[30m" << espacios;
+
+							_mInterfaz.moverXY(25, 6);
+							cout << "\033[100mMostrando arbol de facturas:";
+
+							for (int i = 0; i < cantidad; i++)
+							{
+								_mInterfaz.moverXY(25, 7 + i);
+								cout << listaCodigos[i];
+							}
+
+							_mInterfaz.moverXY(55, cantidad + 8);
+							cout << "\033[41m\033[37mContinuar";
+
+							while (1)
+							{
+								key = _getch();
+
+								if (key == '\r')
+								{
+									break;
+								}
+							}
+							cout << "\033[44m\033[30m";
+							break;
+
+						case 6:
 							// Arbol Recetas Medicas
 							if (!arbolRecetaMedica.verificarVacio())
 							{
@@ -1975,7 +2021,7 @@ void interfaz::menuPrincipal()
 							cout << "\033[44m\033[30m" << espacios;
 
 							_mInterfaz.moverXY(25, 6);
-							cout << "\033[100mMostrando arbol de receta medica:";
+							cout << "\033[100mMostrando arbol de recetas medicas:";
 
 							for (int i = 0; i < cantidad; i++)
 							{
@@ -2198,6 +2244,52 @@ void interfaz::menuPrincipal()
 							break;
 
 						case 5:
+							// Arbol Facturas
+							if (!arbolFactura.verificarVacio())
+							{
+								throw exception("No hay facturas registrados en el sistema.");
+							}
+
+							listaCodigos.clear();
+
+							arbolFactura.recorridoProfundidad(listaCodigos);
+							cantidad = listaCodigos.size();
+
+							_mInterfaz.moverXY(0, 6);
+							for (int i = 0; i < cantidad + 3; i++)
+							{
+								cout << "\033[44m\033[30m" << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
+							}
+							cout << cuadroLado << "\033[100m |" << cuadroBorde << "| \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << cuadroLado << "\033[100m  " << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << cuadroLado << "  \033[40m" << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << "\033[44m\033[30m" << espacios;
+
+							_mInterfaz.moverXY(25, 6);
+							cout << "\033[100mRecorrido profundo del arbol de facturas:";
+
+							for (int i = 0; i < cantidad; i++)
+							{
+								_mInterfaz.moverXY(25, 7 + i);
+								cout << listaCodigos[i];
+							}
+
+							_mInterfaz.moverXY(55, cantidad + 8);
+							cout << "\033[41m\033[37mContinuar";
+
+							while (1)
+							{
+								key = _getch();
+
+								if (key == '\r')
+								{
+									break;
+								}
+							}
+							cout << "\033[44m\033[30m";
+							break;
+
+						case 6:
 							// Arbol Recetas Medicas
 							if (!arbolRecetaMedica.verificarVacio())
 							{
@@ -2220,7 +2312,7 @@ void interfaz::menuPrincipal()
 							cout << "\033[44m\033[30m" << espacios;
 
 							_mInterfaz.moverXY(25, 6);
-							cout << "\033[100mRecorrido profundo del arbol de receta medica:";
+							cout << "\033[100mRecorrido profundo del arbol de recetas medicas:";
 
 							for (int i = 0; i < cantidad; i++)
 							{
@@ -2443,6 +2535,52 @@ void interfaz::menuPrincipal()
 							break;
 
 						case 5:
+							// Arbol Facturas
+							if (!arbolFactura.verificarVacio())
+							{
+								throw exception("No hay facturas registrados en el sistema.");
+							}
+
+							listaCodigos.clear();
+
+							arbolFactura.recorridoPorNiveles(listaCodigos);
+							cantidad = listaCodigos.size();
+
+							_mInterfaz.moverXY(0, 6);
+							for (int i = 0; i < cantidad + 3; i++)
+							{
+								cout << "\033[44m\033[30m" << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
+							}
+							cout << cuadroLado << "\033[100m |" << cuadroBorde << "| \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << cuadroLado << "\033[100m  " << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << cuadroLado << "  \033[40m" << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+							cout << "\033[44m\033[30m" << espacios;
+
+							_mInterfaz.moverXY(25, 6);
+							cout << "\033[100mRecorrido por niveles del arbol de facturas:";
+
+							for (int i = 0; i < cantidad; i++)
+							{
+								_mInterfaz.moverXY(25, 7 + i);
+								cout << listaCodigos[i];
+							}
+
+							_mInterfaz.moverXY(55, cantidad + 8);
+							cout << "\033[41m\033[37mContinuar";
+
+							while (1)
+							{
+								key = _getch();
+
+								if (key == '\r')
+								{
+									break;
+								}
+							}
+							cout << "\033[44m\033[30m";
+							break;
+
+						case 6:
 							// Arbol Recetas Medicas
 							if (!arbolRecetaMedica.verificarVacio())
 							{
@@ -2465,7 +2603,7 @@ void interfaz::menuPrincipal()
 							cout << "\033[44m\033[30m" << espacios;
 
 							_mInterfaz.moverXY(25, 6);
-							cout << "\033[100mRecorrido por niveles del arbol de receta medica:";
+							cout << "\033[100mRecorrido por niveles del arbol de recetas medicas:";
 
 							for (int i = 0; i < cantidad; i++)
 							{
@@ -2680,6 +2818,50 @@ void interfaz::menuPrincipal()
 							break;
 
 						case 5:
+							// Arbol Facturas
+							if (!arbolFactura.verificarVacio())
+							{
+								throw exception("No hay facturas registrados en el sistema.");
+							}
+
+							cantidad = arbolFactura.alturaArbol();
+
+							_mInterfaz.moverXY(25, 6);
+							cout << "\033[100m\033[30m" << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 7);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 8);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 9);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 10);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 11);
+							cout << cuadroIngresarTexto;
+
+							_mInterfaz.moverXY(25, 6);
+							cout << "La altura de el arbol de facturas es:";
+
+							_mInterfaz.moverXY(25, 7);
+							cout << cantidad;
+
+							_mInterfaz.moverXY(55, 9);
+							cout << "\033[41m\033[37mContinuar";
+
+							while (1)
+							{
+								key = _getch();
+
+								if (key == '\r')
+								{
+									break;
+								}
+							}
+							cout << "\033[44m\033[30m";
+
+							break;
+
+						case 6:
 							// Arbol Recetas Medicas
 							if (!arbolRecetaMedica.verificarVacio())
 							{
@@ -2915,6 +3097,50 @@ void interfaz::menuPrincipal()
 							break;
 
 						case 5:
+							// Arbol Facturas
+							if (!arbolFactura.verificarVacio())
+							{
+								throw exception("No hay facturas registrados en el sistema.");
+							}
+
+							cantidad = arbolFactura.contarNodos();
+
+							_mInterfaz.moverXY(25, 6);
+							cout << "\033[100m\033[30m" << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 7);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 8);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 9);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 10);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 11);
+							cout << cuadroIngresarTexto;
+
+							_mInterfaz.moverXY(25, 6);
+							cout << "La cantidad de nodos en el arbol de facturas es:";
+
+							_mInterfaz.moverXY(25, 7);
+							cout << cantidad;
+
+							_mInterfaz.moverXY(55, 9);
+							cout << "\033[41m\033[37mContinuar";
+
+							while (1)
+							{
+								key = _getch();
+
+								if (key == '\r')
+								{
+									break;
+								}
+							}
+							cout << "\033[44m\033[30m";
+
+							break;
+
+						case 6:
 							// Arbol Recetas Medicas
 							if (!arbolRecetaMedica.verificarVacio())
 							{
@@ -3150,6 +3376,50 @@ void interfaz::menuPrincipal()
 							break;
 
 						case 5:
+							// Arbol Facturas
+							if (!arbolFactura.verificarVacio())
+							{
+								throw exception("No hay facturas registrados en el sistema.");
+							}
+
+							cantidad = arbolFactura.contarHojas();
+
+							_mInterfaz.moverXY(25, 6);
+							cout << "\033[100m\033[30m" << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 7);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 8);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 9);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 10);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 11);
+							cout << cuadroIngresarTexto;
+
+							_mInterfaz.moverXY(25, 6);
+							cout << "La cantidad de hojas en el arbol de facturas es:";
+
+							_mInterfaz.moverXY(25, 7);
+							cout << cantidad;
+
+							_mInterfaz.moverXY(55, 9);
+							cout << "\033[41m\033[37mContinuar";
+
+							while (1)
+							{
+								key = _getch();
+
+								if (key == '\r')
+								{
+									break;
+								}
+							}
+							cout << "\033[44m\033[30m";
+
+							break;
+
+						case 6:
 							// Arbol Recetas Medicas
 							if (!arbolRecetaMedica.verificarVacio())
 							{

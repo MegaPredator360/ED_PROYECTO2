@@ -752,14 +752,14 @@ int metodoInterfaz::seleccionarArbol(string _opcion, int _posicion)
 	string cuadroBorde(76, '_');
 	string cuadroRelleno(76, ' ');
 	int opcion = 1;
-	int selector[] = { 71, 128, 128, 128, 128 };
+	int selector[] = { 71, 128, 128, 128, 128, 128 };
 
 	system("cls");
 
 	cout << "\033[44m\033[30m" << espacios << endl;
 	cout << cuadroLado << "\033[100m ." << cuadroBorde << ". \033[44m" << cuadroLado << endl;
 
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 11; i++)
 	{
 		cout << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
 	}
@@ -779,22 +779,26 @@ int metodoInterfaz::seleccionarArbol(string _opcion, int _posicion)
 	{
 		moverXY(25, 7);
 		color(selector[0]);
-		cout << "Arbol Doctores";
+		cout << "Arbol Doctores       ";
 
 		moverXY(25, 8);
 		color(selector[1]);
-		cout << "Arbol Pacientes";
+		cout << "Arbol Pacientes      ";
 
 		moverXY(25, 9);
 		color(selector[2]);
-		cout << "Arbol Medicamentos";
+		cout << "Arbol Medicamentos   ";
 
 		moverXY(25, 10);
 		color(selector[3]);
-		cout << "Arbol Citas";
+		cout << "Arbol Citas          ";
 
 		moverXY(25, 11);
 		color(selector[4]);
+		cout << "Arbol Facturas       ";
+
+		moverXY(25, 12);
+		color(selector[5]);
 		cout << "Arbol Recetas Medicas";
 
 		key = _getch();
@@ -805,14 +809,14 @@ int metodoInterfaz::seleccionarArbol(string _opcion, int _posicion)
 
 			if (opcion == 0)
 			{
-				opcion = 5;
+				opcion = 6;
 			}
 		}
 		else if (key == 80)	// Validar si la flecha abajo es pulsada	|| 80 es el valor de la flecha abajo en ASCII
 		{
 			opcion++;
 
-			if (opcion == 6)
+			if (opcion == 7)
 			{
 				opcion = 1;
 			}
@@ -827,6 +831,7 @@ int metodoInterfaz::seleccionarArbol(string _opcion, int _posicion)
 		selector[2] = 128;
 		selector[3] = 128;
 		selector[4] = 128;
+		selector[5] = 128;
 
 		switch (opcion)
 		{
@@ -848,6 +853,10 @@ int metodoInterfaz::seleccionarArbol(string _opcion, int _posicion)
 
 		case 5:
 			selector[4] = 71;
+			break;
+
+		case 6:
+			selector[5] = 71;
 			break;
 		}
 	}
