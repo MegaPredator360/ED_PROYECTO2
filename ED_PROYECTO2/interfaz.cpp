@@ -1856,7 +1856,7 @@ void interfaz::menuPrincipal()
 					// Recorrido Profundo
 					try
 					{
-						int arbol = _mInterfaz.seleccionarArbol("Mostrar Arbol", 53);
+						int arbol = _mInterfaz.seleccionarArbol("Recorrido Profundo", 50);
 
 						switch (arbol)
 						{
@@ -1883,7 +1883,7 @@ void interfaz::menuPrincipal()
 							cout << "\033[44m\033[30m" << espacios;
 
 							_mInterfaz.moverXY(25, 6);
-							cout << "\033[100mMostrando arbol de doctores:";
+							cout << "\033[100mRecorrido profundo del arbol de doctores:";
 
 							for (int i = 0; i < cantidad; i++)
 							{
@@ -1929,7 +1929,7 @@ void interfaz::menuPrincipal()
 							cout << "\033[44m\033[30m" << espacios;
 
 							_mInterfaz.moverXY(25, 6);
-							cout << "\033[100mMostrando arbol de pacientes:";
+							cout << "\033[100mRecorrido profundo del arbol de pacientes:";
 
 							for (int i = 0; i < cantidad; i++)
 							{
@@ -1975,7 +1975,7 @@ void interfaz::menuPrincipal()
 							cout << "\033[44m\033[30m" << espacios;
 
 							_mInterfaz.moverXY(25, 6);
-							cout << "\033[100mMostrando arbol de medicamentos:";
+							cout << "\033[100mRecorrido profundo del arbol de medicamentos:";
 
 							for (int i = 0; i < cantidad; i++)
 							{
@@ -2021,7 +2021,7 @@ void interfaz::menuPrincipal()
 							cout << "\033[44m\033[30m" << espacios;
 
 							_mInterfaz.moverXY(25, 6);
-							cout << "\033[100mMostrando arbol de citas:";
+							cout << "\033[100mRecorrido profundo del arbol de citas:";
 
 							for (int i = 0; i < cantidad; i++)
 							{
@@ -2067,7 +2067,7 @@ void interfaz::menuPrincipal()
 							cout << "\033[44m\033[30m" << espacios;
 
 							_mInterfaz.moverXY(25, 6);
-							cout << "\033[100mMostrando arbol de receta medica:";
+							cout << "\033[100mRecorrido profundo del arbol de receta medica:";
 
 							for (int i = 0; i < cantidad; i++)
 							{
@@ -2128,7 +2128,7 @@ void interfaz::menuPrincipal()
 							cout << "\033[44m\033[30m" << espacios;
 
 							_mInterfaz.moverXY(25, 6);
-							cout << "\033[100mMostrando arbol de doctores:";
+							cout << "\033[100mRecorrido por niveles del arbol de doctores:";
 
 							for (int i = 0; i < cantidad; i++)
 							{
@@ -2174,7 +2174,7 @@ void interfaz::menuPrincipal()
 							cout << "\033[44m\033[30m" << espacios;
 
 							_mInterfaz.moverXY(25, 6);
-							cout << "\033[100mMostrando arbol de pacientes:";
+							cout << "\033[100mRecorrido por niveles del arbol de pacientes:";
 
 							for (int i = 0; i < cantidad; i++)
 							{
@@ -2220,7 +2220,7 @@ void interfaz::menuPrincipal()
 							cout << "\033[44m\033[30m" << espacios;
 
 							_mInterfaz.moverXY(25, 6);
-							cout << "\033[100mMostrando arbol de medicamentos:";
+							cout << "\033[100mRecorrido por niveles del arbol de medicamentos:";
 
 							for (int i = 0; i < cantidad; i++)
 							{
@@ -2266,7 +2266,7 @@ void interfaz::menuPrincipal()
 							cout << "\033[44m\033[30m" << espacios;
 
 							_mInterfaz.moverXY(25, 6);
-							cout << "\033[100mMostrando arbol de citas:";
+							cout << "\033[100mRecorrido por niveles del arbol de citas:";
 
 							for (int i = 0; i < cantidad; i++)
 							{
@@ -2312,7 +2312,7 @@ void interfaz::menuPrincipal()
 							cout << "\033[44m\033[30m" << espacios;
 
 							_mInterfaz.moverXY(25, 6);
-							cout << "\033[100mMostrando arbol de receta medica:";
+							cout << "\033[100mRecorrido por niveles del arbol de receta medica:";
 
 							for (int i = 0; i < cantidad; i++)
 							{
@@ -2346,7 +2346,7 @@ void interfaz::menuPrincipal()
 					// Altura del arbol
 					try
 					{
-						int arbol = _mInterfaz.seleccionarArbol("Mostrar Arbol", 53);
+						int arbol = _mInterfaz.seleccionarArbol("Altura del Arbol", 51);
 
 						switch (arbol)
 						{
@@ -2581,7 +2581,7 @@ void interfaz::menuPrincipal()
 					// Contar Nodos
 					try
 					{
-						int arbol = _mInterfaz.seleccionarArbol("Mostrar Arbol", 53);
+						int arbol = _mInterfaz.seleccionarArbol("Contar Nodos", 53);
 
 						switch (arbol)
 						{
@@ -2592,43 +2592,216 @@ void interfaz::menuPrincipal()
 								throw exception("No hay doctores registrados en el sistema.");
 							}
 
-							
+							cantidad = arbolDoctor.contarNodos();
+
+							_mInterfaz.moverXY(25, 6);
+							cout << "\033[100m\033[30m" << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 7);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 8);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 9);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 10);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 11);
+							cout << cuadroIngresarTexto;
+
+							_mInterfaz.moverXY(25, 6);
+							cout << "La cantidad de nodos en el arbol de doctores es:";
+
+							_mInterfaz.moverXY(25, 7);
+							cout << cantidad;
+
+							_mInterfaz.moverXY(55, 9);
+							cout << "\033[41m\033[37mContinuar";
+
+							while (1)
+							{
+								key = _getch();
+
+								if (key == '\r')
+								{
+									break;
+								}
+							}
+							cout << "\033[44m\033[30m";
 
 							break;
 
 						case 2:
 							// Arbol Pacientes
-							if (!arbolDoctor.verificarVacio())
+							if (!arbolPaciente.verificarVacio())
 							{
-								throw exception("No hay doctores registrados en el sistema.");
+								throw exception("No hay pacientes registrados en el sistema.");
 							}
+
+							cantidad = arbolPaciente.contarNodos();
+
+							_mInterfaz.moverXY(25, 6);
+							cout << "\033[100m\033[30m" << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 7);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 8);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 9);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 10);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 11);
+							cout << cuadroIngresarTexto;
+
+							_mInterfaz.moverXY(25, 6);
+							cout << "La cantidad de nodos en el arbol de pacientes es:";
+
+							_mInterfaz.moverXY(25, 7);
+							cout << cantidad;
+
+							_mInterfaz.moverXY(55, 9);
+							cout << "\033[41m\033[37mContinuar";
+
+							while (1)
+							{
+								key = _getch();
+
+								if (key == '\r')
+								{
+									break;
+								}
+							}
+							cout << "\033[44m\033[30m";
 
 							break;
 
 						case 3:
 							// Arbol Medicamentos
-							if (!arbolDoctor.verificarVacio())
+							if (!arbolMedicamento.verificarVacio())
 							{
-								throw exception("No hay doctores registrados en el sistema.");
+								throw exception("No hay medicamentos registrados en el sistema.");
 							}
+
+							cantidad = arbolMedicamento.contarNodos();
+
+							_mInterfaz.moverXY(25, 6);
+							cout << "\033[100m\033[30m" << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 7);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 8);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 9);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 10);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 11);
+							cout << cuadroIngresarTexto;
+
+							_mInterfaz.moverXY(25, 6);
+							cout << "La cantidad de nodos en el arbol de medicamentos es:";
+
+							_mInterfaz.moverXY(25, 7);
+							cout << cantidad;
+
+							_mInterfaz.moverXY(55, 9);
+							cout << "\033[41m\033[37mContinuar";
+
+							while (1)
+							{
+								key = _getch();
+
+								if (key == '\r')
+								{
+									break;
+								}
+							}
+							cout << "\033[44m\033[30m";
 
 							break;
 
 						case 4:
 							// Arbol Citas
-							if (!arbolDoctor.verificarVacio())
+							if (!arbolCita.verificarVacio())
 							{
-								throw exception("No hay doctores registrados en el sistema.");
+								throw exception("No hay citas registrados en el sistema.");
 							}
+
+							cantidad = arbolCita.contarNodos();
+
+							_mInterfaz.moverXY(25, 6);
+							cout << "\033[100m\033[30m" << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 7);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 8);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 9);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 10);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 11);
+							cout << cuadroIngresarTexto;
+
+							_mInterfaz.moverXY(25, 6);
+							cout << "La cantidad de nodos en el arbol de citas es:";
+
+							_mInterfaz.moverXY(25, 7);
+							cout << cantidad;
+
+							_mInterfaz.moverXY(55, 9);
+							cout << "\033[41m\033[37mContinuar";
+
+							while (1)
+							{
+								key = _getch();
+
+								if (key == '\r')
+								{
+									break;
+								}
+							}
+							cout << "\033[44m\033[30m";
 
 							break;
 
 						case 5:
 							// Arbol Recetas Medicas
-							if (!arbolDoctor.verificarVacio())
+							if (!arbolRecetaMedica.verificarVacio())
 							{
-								throw exception("No hay doctores registrados en el sistema.");
+								throw exception("No hay recetas medicas registrados en el sistema.");
 							}
+
+							cantidad = arbolRecetaMedica.contarNodos();
+
+							_mInterfaz.moverXY(25, 6);
+							cout << "\033[100m\033[30m" << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 7);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 8);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 9);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 10);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 11);
+							cout << cuadroIngresarTexto;
+
+							_mInterfaz.moverXY(25, 6);
+							cout << "La cantidad de nodos en el arbol de recetas medicas es:";
+
+							_mInterfaz.moverXY(25, 7);
+							cout << cantidad;
+
+							_mInterfaz.moverXY(55, 9);
+							cout << "\033[41m\033[37mContinuar";
+
+							while (1)
+							{
+								key = _getch();
+
+								if (key == '\r')
+								{
+									break;
+								}
+							}
+							cout << "\033[44m\033[30m";
 
 							break;
 						}
@@ -2643,7 +2816,7 @@ void interfaz::menuPrincipal()
 					// Contar Hojas
 					try
 					{
-						int arbol = _mInterfaz.seleccionarArbol("Mostrar Arbol", 53);
+						int arbol = _mInterfaz.seleccionarArbol("Contar Hojas", 53);
 
 						switch (arbol)
 						{
@@ -2654,41 +2827,216 @@ void interfaz::menuPrincipal()
 								throw exception("No hay doctores registrados en el sistema.");
 							}
 
+							cantidad = arbolDoctor.contarHojas();
+
+							_mInterfaz.moverXY(25, 6);
+							cout << "\033[100m\033[30m" << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 7);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 8);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 9);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 10);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 11);
+							cout << cuadroIngresarTexto;
+
+							_mInterfaz.moverXY(25, 6);
+							cout << "La cantidad de hojas en el arbol de doctores es:";
+
+							_mInterfaz.moverXY(25, 7);
+							cout << cantidad;
+
+							_mInterfaz.moverXY(55, 9);
+							cout << "\033[41m\033[37mContinuar";
+
+							while (1)
+							{
+								key = _getch();
+
+								if (key == '\r')
+								{
+									break;
+								}
+							}
+							cout << "\033[44m\033[30m";
+
 							break;
 
 						case 2:
 							// Arbol Pacientes
-							if (!arbolDoctor.verificarVacio())
+							if (!arbolPaciente.verificarVacio())
 							{
-								throw exception("No hay doctores registrados en el sistema.");
+								throw exception("No hay pacientes registrados en el sistema.");
 							}
+
+							cantidad = arbolPaciente.contarHojas();
+
+							_mInterfaz.moverXY(25, 6);
+							cout << "\033[100m\033[30m" << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 7);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 8);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 9);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 10);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 11);
+							cout << cuadroIngresarTexto;
+
+							_mInterfaz.moverXY(25, 6);
+							cout << "La cantidad de hojas en el arbol de pacientes es:";
+
+							_mInterfaz.moverXY(25, 7);
+							cout << cantidad;
+
+							_mInterfaz.moverXY(55, 9);
+							cout << "\033[41m\033[37mContinuar";
+
+							while (1)
+							{
+								key = _getch();
+
+								if (key == '\r')
+								{
+									break;
+								}
+							}
+							cout << "\033[44m\033[30m";
 
 							break;
 
 						case 3:
 							// Arbol Medicamentos
-							if (!arbolDoctor.verificarVacio())
+							if (!arbolMedicamento.verificarVacio())
 							{
-								throw exception("No hay doctores registrados en el sistema.");
+								throw exception("No hay medicamentos registrados en el sistema.");
 							}
+
+							cantidad = arbolMedicamento.contarHojas();
+
+							_mInterfaz.moverXY(25, 6);
+							cout << "\033[100m\033[30m" << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 7);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 8);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 9);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 10);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 11);
+							cout << cuadroIngresarTexto;
+
+							_mInterfaz.moverXY(25, 6);
+							cout << "La cantidad de hojas en el arbol de medicamentos es:";
+
+							_mInterfaz.moverXY(25, 7);
+							cout << cantidad;
+
+							_mInterfaz.moverXY(55, 9);
+							cout << "\033[41m\033[37mContinuar";
+
+							while (1)
+							{
+								key = _getch();
+
+								if (key == '\r')
+								{
+									break;
+								}
+							}
+							cout << "\033[44m\033[30m";
 
 							break;
 
 						case 4:
 							// Arbol Citas
-							if (!arbolDoctor.verificarVacio())
+							if (!arbolCita.verificarVacio())
 							{
-								throw exception("No hay doctores registrados en el sistema.");
+								throw exception("No hay citas registrados en el sistema.");
 							}
+
+							cantidad = arbolCita.contarHojas();
+
+							_mInterfaz.moverXY(25, 6);
+							cout << "\033[100m\033[30m" << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 7);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 8);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 9);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 10);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 11);
+							cout << cuadroIngresarTexto;
+
+							_mInterfaz.moverXY(25, 6);
+							cout << "La cantidad de hojas en el arbol de citas es:";
+
+							_mInterfaz.moverXY(25, 7);
+							cout << cantidad;
+
+							_mInterfaz.moverXY(55, 9);
+							cout << "\033[41m\033[37mContinuar";
+
+							while (1)
+							{
+								key = _getch();
+
+								if (key == '\r')
+								{
+									break;
+								}
+							}
+							cout << "\033[44m\033[30m";
 
 							break;
 
 						case 5:
 							// Arbol Recetas Medicas
-							if (!arbolDoctor.verificarVacio())
+							if (!arbolRecetaMedica.verificarVacio())
 							{
-								throw exception("No hay doctores registrados en el sistema.");
+								throw exception("No hay recetas medicas registrados en el sistema.");
 							}
+
+							cantidad = arbolRecetaMedica.contarHojas();
+
+							_mInterfaz.moverXY(25, 6);
+							cout << "\033[100m\033[30m" << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 7);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 8);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 9);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 10);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 11);
+							cout << cuadroIngresarTexto;
+
+							_mInterfaz.moverXY(25, 6);
+							cout << "La cantidad de hojas en el arbol de recetas medicas es:";
+
+							_mInterfaz.moverXY(25, 7);
+							cout << cantidad;
+
+							_mInterfaz.moverXY(55, 9);
+							cout << "\033[41m\033[37mContinuar";
+
+							while (1)
+							{
+								key = _getch();
+
+								if (key == '\r')
+								{
+									break;
+								}
+							}
+							cout << "\033[44m\033[30m";
 
 							break;
 						}

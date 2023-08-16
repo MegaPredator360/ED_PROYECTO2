@@ -243,7 +243,7 @@ int arboles<T>::contarNodos()
 {
     try
     {
-        return _nArboles.contarNodos(raiz);
+        return _nArboles -> contarNodos(raiz);
     }
     catch (exception& e)
     {
@@ -256,7 +256,7 @@ int arboles<T>::contarHojas()
 {
     try
     {
-        return _nArboles.contarHojas(raiz);
+        return _nArboles -> contarHojas(raiz);
     }
     catch (exception& e)
     {
