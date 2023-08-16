@@ -3,10 +3,10 @@
 class facturas
 {
 protected:
-	int numeroFactura;
+	string codigo;
 	string fecha;
-	citas cita;
-	float monto;
+	pacientes* paciente;
+	int monto;
 
 public:
 	// Constructor vacio
@@ -14,25 +14,25 @@ public:
 
 	// Constructor lleno
 	facturas(
-		int _numeroFactura,
+		string _codigo,
 		string _fecha,
-		citas _cita,
-		float _monto
+		pacientes* _paciente,
+		int _monto
 	);
 
 	// Destructor
 	~facturas();
 
 	// Getters
-	int getNumeroFactura();
+	string getCodigo();
 	string getFecha();
-	citas getCita();
-	float getMonto();
+	pacientes* getPaciente();
+	int getMonto();
 
 	// Setters
-	void setNumeroFactura(int _numeroFactura);
+	void setCodigo(string _codigo);
 	void setFecha(string _fecha);
-	void setCita(citas _cita);
-	void setMonto(float _monto);
+	void setPaciente(pacientes* _paciente);
+	void setMonto(int _monto);
 };
 

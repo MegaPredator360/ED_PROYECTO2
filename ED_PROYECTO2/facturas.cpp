@@ -3,27 +3,27 @@
 facturas::facturas(void) { }
 
 facturas::facturas(
-	int _numeroFactura,
+	string _codigo,
 	string _fecha,
-	citas _cita,
-	float _monto
+	pacientes* _paciente,
+	int _monto
 ) {
-	numeroFactura = _numeroFactura;
+	codigo = _codigo;
 	fecha = _fecha;
-	cita = _cita;
+	paciente = _paciente;
 	monto = _monto;
 }
 
 facturas::~facturas() { }
 
 // Getters
-int facturas::getNumeroFactura() { return numeroFactura; }
+string facturas::getCodigo() { return codigo; }
 string facturas::getFecha() { return fecha; }
-citas facturas::getCita() { return cita; }
-float facturas::getMonto() { return monto; }
+pacientes* facturas::getPaciente() { return paciente; }
+int facturas::getMonto() { return monto; }
 
 // Setters
-void facturas::setNumeroFactura(int _numeroFactura) { numeroFactura = _numeroFactura; }
+void facturas::setCodigo(string _codigo) { codigo = _codigo; }
 void facturas::setFecha(string _fecha) { fecha = _fecha; }
-void facturas::setCita(citas _cita) { cita = _cita; }
-void facturas::setMonto(float _monto) { monto = _monto; }
+void facturas::setPaciente(pacientes* _paciente) { paciente = _paciente; }
+void facturas::setMonto(int _monto) { monto = _monto; }

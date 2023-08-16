@@ -146,6 +146,40 @@ void archivos::guardarCita(arboles<citas> _arbolCita)
 	}
 }
 
+void archivos::guardarFactura(arboles<facturas> _arbolFactura)
+{
+	try
+	{
+		if (_arbolFactura.verificarVacio())
+		{
+			ofstream guardarFacturas("datosFactura.dat");
+			facturas* factura;
+			queue<facturas*> colaFactura = _arbolFactura.colaDatos();
+			string dato;
+
+			while (!colaFactura.empty())
+			{
+				factura = colaFactura.front();
+				dato = factura -> getCodigo() + "/" + factura -> getFecha() + "/" + factura -> getPaciente() -> getCedula() + "/" + to_string(factura -> getMonto());
+				guardarFacturas << dato << "\n";
+				colaFactura.pop();
+			}
+
+			guardarFacturas.close();
+		}
+		else
+		{
+			ofstream guardarFacturas("datosFactura.dat");
+			guardarFacturas << "";
+			guardarFacturas.close();
+		}
+	}
+	catch (exception& e)
+	{
+		throw e;
+	}
+}
+
 void archivos::guardarRecetaMedica(arboles<recetaMedica> _arbolReceta)
 {
 	try
@@ -352,6 +386,49 @@ arboles<citas> archivos::cargarCita(arboles<doctores> _arbolDoctor, arboles<paci
 		cargarCita.close();
 
 		return arbolCita;
+	}
+	catch (exception& e)
+	{
+		throw e;
+	}
+}
+
+arboles<facturas> archivos::cargarFactura(arboles<pacientes> _arbolPaciente)
+{
+	try
+	{
+		arboles<facturas> arbolFactura;
+		facturas _factura;
+		facturas* factura;
+		string paciente;
+
+		// Cargar datos del archivo
+		ifstream cargarCita("datosCita.dat");
+		if (cargarCita.is_open())
+		{
+			string datos;
+			while (getline(cargarCita, datos))
+			{
+				_factura.setCodigo(datos.substr(0, datos.find("/")));
+				datos.erase(0, tamañoString(_factura.getCodigo()) + 1);
+
+				_factura.setFecha(datos.substr(0, datos.find("/")));
+				datos.erase(0, tamañoString(_factura.getFecha()) + 1);
+
+				paciente = datos.substr(0, datos.find("/"));
+				datos.erase(0, tamañoString(paciente) + 1);
+
+				_factura.setMonto(stoi(datos.substr(0, datos.find("/"))));
+				datos.erase(0, tamañoString(to_string(_factura.getMonto())) + 1);
+
+				factura = new facturas(_factura.getCodigo(), _factura.getFecha(), _arbolPaciente.obtenerDatos(paciente), _factura.getMonto());
+
+				arbolFactura.registrarDatos(factura, _factura.getCodigo());
+			}
+		}
+		cargarCita.close();
+
+		return arbolFactura;
 	}
 	catch (exception& e)
 	{

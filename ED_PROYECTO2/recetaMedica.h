@@ -1,4 +1,4 @@
-#include "citas.h"
+#include "facturas.h"
 
 class recetaMedica
 {
