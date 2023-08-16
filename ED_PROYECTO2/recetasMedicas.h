@@ -1,6 +1,6 @@
 #include "facturas.h"
 
-class recetaMedica
+class recetasMedicas
 {
 protected:
 	string codigo;
@@ -13,10 +13,10 @@ protected:
 
 public:
 	// Constructor vacio
-	recetaMedica(void);
+	recetasMedicas(void);
 
 	// Constructor lleno
-	recetaMedica(
+	recetasMedicas(
 		string _codigo,
 		pacientes* _paciente,
 		string _diagnostico,
@@ -27,7 +27,7 @@ public:
 	);
 
 	// Destructor
-	virtual ~recetaMedica();
+	virtual ~recetasMedicas();
 
 	// Getters
 	virtual string getCodigo();

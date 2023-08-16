@@ -1,7 +1,7 @@
 #include "std.h"
 
 // Clases de datos
-#include "recetaMedica.h"
+#include "recetasMedicas.h"
 
 // Arboles
 #include "arboles.h"
@@ -18,7 +18,7 @@ public:
 	void guardarMedicamento(arboles<medicamentos> _arbolMedicamentos);
 	void guardarCita(arboles<citas> _arbolCita);
 	void guardarFactura(arboles<facturas> _arbolFactura);
-	void guardarRecetaMedica(arboles<recetaMedica> _arbolReceta);
+	void guardarRecetaMedica(arboles<recetasMedicas> _arbolReceta);
 
 	// Cargar Datos
 	arboles<doctores> cargarDoctor();
@@ -26,6 +26,6 @@ public:
 	arboles<medicamentos> cargarMedicamento();
 	arboles<citas> cargarCita(arboles<doctores> _arbolDoctor, arboles<pacientes> _arbolPaciente);
 	arboles<facturas> cargarFactura(arboles<pacientes> _arbolPaciente);
-	arboles<recetaMedica> cargarReceta(arboles<pacientes> _arbolPaciente, arboles<medicamentos> _arbolMedicamento, arboles<doctores> _arbolDoctor);
+	arboles<recetasMedicas> cargarReceta(arboles<pacientes> _arbolPaciente, arboles<medicamentos> _arbolMedicamento, arboles<doctores> _arbolDoctor);
 };
 

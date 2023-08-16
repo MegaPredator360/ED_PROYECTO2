@@ -21,13 +21,13 @@ public:
 	);
 
 	// Destructor
-	~facturas();
+	virtual ~facturas();
 
 	// Getters
-	string getCodigo();
-	string getFecha();
-	pacientes* getPaciente();
-	int getMonto();
+	virtual string getCodigo();
+	virtual string getFecha();
+	virtual pacientes* getPaciente();
+	virtual int getMonto();
 
 	// Setters
 	void setCodigo(string _codigo);

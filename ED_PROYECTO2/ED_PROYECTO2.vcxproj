@@ -136,7 +136,7 @@
     <ClCompile Include="medicamentos.cpp" />
     <ClCompile Include="metodoInterfaz.cpp" />
     <ClCompile Include="pacientes.cpp" />
-    <ClCompile Include="recetaMedica.cpp" />
+    <ClCompile Include="recetasMedicas.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="arboles.h" />
@@ -150,7 +150,7 @@
     <ClInclude Include="nodos.h" />
     <ClInclude Include="nodosArboles.h" />
     <ClInclude Include="pacientes.h" />
-    <ClInclude Include="recetaMedica.h" />
+    <ClInclude Include="recetasMedicas.h" />
     <ClInclude Include="std.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

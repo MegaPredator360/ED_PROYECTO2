@@ -85,7 +85,11 @@ string nodos<T>::obtenerCodigo()
     {
         codigo = _cita -> getCodigo();
     }
-    else if (recetaMedica* _recetaMedica = dynamic_cast<recetaMedica*>(dato))
+    else if (facturas* _factura = dynamic_cast<facturas*>(dato))
+    {
+        codigo = _factura -> getCodigo();
+    }
+    else if (recetasMedicas* _recetaMedica = dynamic_cast<recetasMedicas*>(dato))
     {
         codigo = _recetaMedica -> getCodigo();
     }

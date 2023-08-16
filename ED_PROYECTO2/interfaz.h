@@ -8,17 +8,7 @@ protected:
 	int opcion;
 
 	// Variables para llenar datos
-	string cedula;
-	string codigo;
-	string nombre;
-	string especialidad;
-	string direccion;
-	string horaInicio;
-	string horaFinal;
-	string telefono;
-	string paciente;
-	string doctor;
-	string fecha;
+	string dato;
 	string hora;
 	int cantidad;
 	vector<string> listaCodigos;
@@ -28,14 +18,24 @@ protected:
 	arboles<pacientes> arbolPaciente;
 	arboles<medicamentos> arbolMedicamento;
 	arboles<citas> arbolCita;
-	arboles<recetaMedica> arbolRecetaMedica;
+	arboles<facturas> arbolFactura;
+	arboles<recetasMedicas> arbolRecetaMedica;
 
+	// Llamados a clases - Punteros
+	doctores* doctor;
+	pacientes* paciente;
+	medicamentos* medicamento;
+	citas* cita;
+	facturas* factura;
+	recetasMedicas* recetaMedica;
+;
 	// Llamados a clases
-	doctores* _doctor;
-	pacientes* _paciente;
-	medicamentos* _medicamento;
-	citas* _cita;
-	recetaMedica* _recetaMedica;
+	doctores _doctor;
+	pacientes _paciente;
+	medicamentos _medicamento;
+	citas _cita;
+	facturas _factura;
+	recetasMedicas _recetaMedica;
 	metodoInterfaz _mInterfaz;
 	archivos _archivo;
 

@@ -36,7 +36,7 @@
     <ClCompile Include="doctores.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="recetaMedica.cpp">
+    <ClCompile Include="recetasMedicas.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="medicamentos.cpp">
@@ -71,7 +71,7 @@
     <ClInclude Include="doctores.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="recetaMedica.h">
+    <ClInclude Include="recetasMedicas.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="medicamentos.h">

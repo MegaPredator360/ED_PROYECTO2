@@ -180,15 +180,15 @@ void archivos::guardarFactura(arboles<facturas> _arbolFactura)
 	}
 }
 
-void archivos::guardarRecetaMedica(arboles<recetaMedica> _arbolReceta)
+void archivos::guardarRecetaMedica(arboles<recetasMedicas> _arbolReceta)
 {
 	try
 	{
 		if (_arbolReceta.verificarVacio())
 		{
 			ofstream guardarReceta("datosReceta.dat");
-			recetaMedica* receta;
-			queue<recetaMedica*> colaReceta = _arbolReceta.colaDatos();
+			recetasMedicas* receta;
+			queue<recetasMedicas*> colaReceta = _arbolReceta.colaDatos();
 			string dato;
 
 			while (!colaReceta.empty())
@@ -436,13 +436,13 @@ arboles<facturas> archivos::cargarFactura(arboles<pacientes> _arbolPaciente)
 	}
 }
 
-arboles<recetaMedica> archivos::cargarReceta(arboles<pacientes> _arbolPaciente, arboles<medicamentos> _arbolMedicamento, arboles<doctores> _arbolDoctor)
+arboles<recetasMedicas> archivos::cargarReceta(arboles<pacientes> _arbolPaciente, arboles<medicamentos> _arbolMedicamento, arboles<doctores> _arbolDoctor)
 {
 	try
 	{
-		arboles<recetaMedica> arbolReceta;
-		recetaMedica _receta;
-		recetaMedica* receta;
+		arboles<recetasMedicas> arbolReceta;
+		recetasMedicas _receta;
+		recetasMedicas* receta;
 		string paciente;
 		string medicamento;
 		string doctor;
@@ -475,7 +475,7 @@ arboles<recetaMedica> archivos::cargarReceta(arboles<pacientes> _arbolPaciente, 
 				doctor = datos.substr(0, datos.find("/"));
 				datos.erase(0, tamañoString(doctor) + 1);
 
-				receta = new recetaMedica(_receta.getCodigo(), _arbolPaciente.obtenerDatos(paciente), _receta.getDiagnostico(), _arbolMedicamento.obtenerDatos(medicamento), _receta.getCantidad(), _receta.getDosis(), _arbolDoctor.obtenerDatos(doctor));
+				receta = new recetasMedicas(_receta.getCodigo(), _arbolPaciente.obtenerDatos(paciente), _receta.getDiagnostico(), _arbolMedicamento.obtenerDatos(medicamento), _receta.getCantidad(), _receta.getDosis(), _arbolDoctor.obtenerDatos(doctor));
 
 				arbolReceta.registrarDatos(receta, _receta.getCodigo());
 			}
