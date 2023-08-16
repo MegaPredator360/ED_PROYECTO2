@@ -2357,41 +2357,216 @@ void interfaz::menuPrincipal()
 								throw exception("No hay doctores registrados en el sistema.");
 							}
 
+							cantidad = arbolDoctor.alturaArbol();
+
+							_mInterfaz.moverXY(25, 6);
+							cout << "\033[100m\033[30m" << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 7);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 8);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 9);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 10);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 11);
+							cout << cuadroIngresarTexto;
+
+							_mInterfaz.moverXY(25, 6);
+							cout << "La altura de el arbol de doctores es:";
+
+							_mInterfaz.moverXY(25, 7);
+							cout << cantidad;
+
+							_mInterfaz.moverXY(55, 9);
+							cout << "\033[41m\033[37mContinuar";
+
+							while (1)
+							{
+								key = _getch();
+
+								if (key == '\r')
+								{
+									break;
+								}
+							}
+							cout << "\033[44m\033[30m";
+
 							break;
 
 						case 2:
 							// Arbol Pacientes
-							if (!arbolDoctor.verificarVacio())
+							if (!arbolPaciente.verificarVacio())
 							{
-								throw exception("No hay doctores registrados en el sistema.");
+								throw exception("No hay pacientes registrados en el sistema.");
 							}
+
+							cantidad = arbolPaciente.alturaArbol();
+
+							_mInterfaz.moverXY(25, 6);
+							cout << "\033[100m\033[30m" << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 7);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 8);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 9);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 10);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 11);
+							cout << cuadroIngresarTexto;
+
+							_mInterfaz.moverXY(25, 6);
+							cout << "La altura de el arbol de pacientes es:";
+
+							_mInterfaz.moverXY(25, 7);
+							cout << cantidad;
+
+							_mInterfaz.moverXY(55, 9);
+							cout << "\033[41m\033[37mContinuar";
+
+							while (1)
+							{
+								key = _getch();
+
+								if (key == '\r')
+								{
+									break;
+								}
+							}
+							cout << "\033[44m\033[30m";
 
 							break;
 
 						case 3:
 							// Arbol Medicamentos
-							if (!arbolDoctor.verificarVacio())
+							if (!arbolMedicamento.verificarVacio())
 							{
-								throw exception("No hay doctores registrados en el sistema.");
+								throw exception("No hay medicamentos registrados en el sistema.");
 							}
+
+							cantidad = arbolMedicamento.alturaArbol();
+
+							_mInterfaz.moverXY(25, 6);
+							cout << "\033[100m\033[30m" << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 7);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 8);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 9);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 10);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 11);
+							cout << cuadroIngresarTexto;
+
+							_mInterfaz.moverXY(25, 6);
+							cout << "La altura de el arbol de medicamentos es:";
+
+							_mInterfaz.moverXY(25, 7);
+							cout << cantidad;
+
+							_mInterfaz.moverXY(55, 9);
+							cout << "\033[41m\033[37mContinuar";
+
+							while (1)
+							{
+								key = _getch();
+
+								if (key == '\r')
+								{
+									break;
+								}
+							}
+							cout << "\033[44m\033[30m";
 
 							break;
 
 						case 4:
 							// Arbol Citas
-							if (!arbolDoctor.verificarVacio())
+							if (!arbolCita.verificarVacio())
 							{
-								throw exception("No hay doctores registrados en el sistema.");
+								throw exception("No hay citas registrados en el sistema.");
 							}
+
+							cantidad = arbolCita.alturaArbol();
+
+							_mInterfaz.moverXY(25, 6);
+							cout << "\033[100m\033[30m" << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 7);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 8);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 9);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 10);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 11);
+							cout << cuadroIngresarTexto;
+
+							_mInterfaz.moverXY(25, 6);
+							cout << "La altura de el arbol de citas es:";
+
+							_mInterfaz.moverXY(25, 7);
+							cout << cantidad;
+
+							_mInterfaz.moverXY(55, 9);
+							cout << "\033[41m\033[37mContinuar";
+
+							while (1)
+							{
+								key = _getch();
+
+								if (key == '\r')
+								{
+									break;
+								}
+							}
+							cout << "\033[44m\033[30m";
 
 							break;
 
 						case 5:
 							// Arbol Recetas Medicas
-							if (!arbolDoctor.verificarVacio())
+							if (!arbolRecetaMedica.verificarVacio())
 							{
-								throw exception("No hay doctores registrados en el sistema.");
+								throw exception("No hay recetas medicas registrados en el sistema.");
 							}
+
+							cantidad = arbolRecetaMedica.alturaArbol();
+
+							_mInterfaz.moverXY(25, 6);
+							cout << "\033[100m\033[30m" << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 7);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 8);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 9);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 10);
+							cout << cuadroIngresarTexto;
+							_mInterfaz.moverXY(25, 11);
+							cout << cuadroIngresarTexto;
+
+							_mInterfaz.moverXY(25, 6);
+							cout << "La altura de el arbol de recetas medicas es:";
+
+							_mInterfaz.moverXY(25, 7);
+							cout << cantidad;
+
+							_mInterfaz.moverXY(55, 9);
+							cout << "\033[41m\033[37mContinuar";
+
+							while (1)
+							{
+								key = _getch();
+
+								if (key == '\r')
+								{
+									break;
+								}
+							}
+							cout << "\033[44m\033[30m";
 
 							break;
 						}
@@ -2416,6 +2591,8 @@ void interfaz::menuPrincipal()
 							{
 								throw exception("No hay doctores registrados en el sistema.");
 							}
+
+							
 
 							break;
 

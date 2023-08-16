@@ -230,7 +230,7 @@ int arboles<T>::alturaArbol()
 {
     try
     {
-        return _nArboles.alturaArbol(raiz);
+        return _nArboles -> alturaArbol(raiz);
     }
     catch (exception& e)
     {

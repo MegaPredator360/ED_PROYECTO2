@@ -273,8 +273,8 @@ int nodosArboles<T>::alturaArbol(nodos<T>* _nodo)
             return 0;
         }
 
-        int alturaIzq = alturaArbol(_nodo -> izquierda);
-        int alturaDer = alturaArbol(_nodo -> derecha);
+        int alturaIzq = alturaArbol(_nodo -> obtenerIzquierda());
+        int alturaDer = alturaArbol(_nodo -> obtenerDerecha());
 
         return 1 + max(alturaIzq, alturaDer);
     }
