@@ -25,208 +25,439 @@
 </head>
 
 <body>
-    
+
 
     <!-- Menú Lateral -->
     <div class="menuLateral">
         <ul>
             <li><button class="sidebarButton" onclick="redirigirBoton1()">Introducción</button></li>
             <li><button class="sidebarButton" onclick="redirigirBoton4()">Objetivo</button></li>
-            <li><button class="sidebarButton" onclick="redirigirBoton2()">Descripción de la aplicación</button></li>
+            <li><button class="sidebarButton" onclick="redirigirBoton5()">Instalación</button></li>
+            <li><button class="sidebarButton" onclick="redirigirBoton2()">Descripción</button></li>
+            <li><button class="sidebarButton" onclick="redirigirBoton6()">Curiosidades</button></li>
             <li><button class="sidebarButton" onclick="redirigirBoton3()">Conclusión</button></li>
         </ul>
     </div>
     <!-- Barra Superior -->
     <ul class="navBarContainer" id="navbar">
         <li class="float-left marginLeft2p"><img src="./images/logo_ulatina_1_light.png" class="image-logo-bar"></li>
-        <li class="float-left"><a class="material-button active" href="#home">Home</a></li>
-        <li class="float-left"><a class="material-button" href="#news">News</a></li>
-        <li class="float-right marginRight2p"><button class="material-button" onclick="toggleDarkMode()"><i class="bi bi-moon"></i></button></li>
+        <li class="float-left"><a class="material-button active">Documentación</a></li>
+        <li class="float-left"><a class="material-button" href="./acerca.html">Acerca De</a></li>
+        <li class="float-right marginRight2p"><button class="material-button" onclick="toggleDarkMode()"><i
+                    class="bi bi-moon"></i></button></li>
     </ul>
     <div class="cuerpoPagina">
-        <h2 id="titulo1">Fixed Full-height Side Nav</h2>
-        <br>
-        <h3>Introducción</h3>
-        <br>
-        <p>Este proyecto se realizó con el objetivo de mejorar los conocimientos de estructuración de datos al nivel de árboles. <br>
-            Para este proyecto se solicitó que se realizara en C++ usando Visual Studio 2022 Community como único IDE, y se facilitará un diagrama de clases usando GitMind. <br>
-            Se construirá un sistema hospitalario donde se pueden asignar citas para pacientes, esos pacientes obtienen una cita con un doctor en particular.
-            Cuando se crea la cita se genera cuna factura, el doctor generará una receta medica en donde cada receta contiene el detalle de varios medicamentos y sus respectivas dosis.
-        </p>
-        <br><br>
-       
-        <h2 id="titulo4">Objetivo</h2>
-        El Principal de este proyecto es aplicar los conocimientos teóricos, principios y técnicas vistas durante la clase haciendo uso del sistema de estructuración de datos en árboles, 
-        es importante destacar durante la realización de este proyecto que el código correctamente estructurado y fácil de poder reutilizar.
-        <p>
-<br><br>
-        </p>
-        <h3 id="titulo2">Descripción de la aplicación</h3>
-        <p>
-            Cuando inicies el programa serás recibido con una pantalla de inicio que despliega todas las funciones del menú incluyendo la opción de salir del programa. 
-            <br>Podrás utilizar las teclas de arriba y abajo para desplazar entre las opciones,
-            y pulsar ENTER para ingresar a la opción deseada. 
-        </p>
-        <br><br>
-        <h4>Opción 1:</h4>
-        <p>
-         <h5>- Ingresar Doctor:</h5> Al seleccionar está opción se le solicitará ingresar el 
-         número de cédula del doctor a registrar, la cual deberá de ser de 9 dígitos numéricos de extensión 
-         esta opción no permite ingresar una cédula ya registrada. <br> Posteriormente se te solicitará el 
-         nombre completo del doctor, seguidamente se te presentará una pantalla en al cual podrás utilizar 
-         las teclas de arriba y abajo, junto con la tecla ENTER para seleccionar la correspondiente al doctor. <br>
-         En las siguientes pantallas podrás ingresar la dirección del doctor, y las horas de entrada y salida de este, 
-         las cuales se pueden ajustar por medio de las teclas de arriba y abajo, y seleccionarlas con la tecla ENTER. <br>
-         Por último, se te solicitará ingresar el número telefónico del doctor, el cual debe constar de 8 dígitos numéricos válidos.
-         <br>
-         En primera instancia, el sistema te mostrará una pantalla con el resumen de los datos a ingresar, ante el cual se te solicitará confirmar los datos con "Sí" o "No".
-         De seleccionar "Si" el nuevo doctor será guardado y registrado en el sistema y en el archivo "datosDoctor.dat",
-         de lo contrario se le solicitará ingresar nuevamente la información del doctor.
-        </p>
-        <br>
-        <h4>Opción 2:</h4>
-        <p>
-            <h5>- Ingresar Paciente:</h5>
-             En caso de seleccionar la segunda opción, se te solicitará ingresar el número de cédula del paciente que deseas ingresar,
-             la cual deberá de ser de 9 dígitos numéricos de extensión, esta opción no permite ingresar una cédula ya registrada.  <br>
-              Posteriormente se te solicitará el nombre completo del paciente, su dirección y número telefónico, el cual debe constar de 8 dígitos numéricos válidos. <br>
-              Seguidamente, el sistema te mostrará una pantalla con el resumen de los datos a ingresar, ante el cual se te solicitará confirmar los datos con "Sí" o "No". <br>
-              De seleccionar "Si" el nuevo paciente será guardado y registrado en el sistema y en el archivo "datosPaciente.dat", de lo contrario se le solicitará ingresar nuevamente la información del paciente.
-        </p>
-        <br>
-        <h4>Opción 3:</h4>
-        <p>
-            <h5>- Ingresar Medicamentos:</h5>
-          Al seleccionar la tercera opción, se te solicitará ingresar el código del medicamento que se desea añadir, el cual deberá constar de únicamente dígitos numéricos,
-           esta opción no permite ingresar un código ya registrado. <br> Posteriormente se te solicitará el nombre del medicamento, seguido de la cantidad disponible en inventario, 
-           esta opción permite ingresar únicamente dígitos numéricos. <br>
-          Ahora, el sistema te mostrará una pantalla con el resumen de los datos del medicamento a ingresar, ante el cual se te solicitará confirmar los datos con "Sí" o "No". <br>
-          De seleccionar "Si" el nuevo paciente será guardado y registrado en el sistema y en el archivo "datosMedicamento.dat", de lo contrario se le solicitará ingresar nuevamente la información de este.  
-        </p>
-        <br>
-        <h4>Opción 4:</h4>
-        <p>
-            <h5>- Registrar Cita:</h5>
-            Si seleccionas la cuarta opción, se te solicitará ingresar el número de cédula del paciente a quien le corresponde la cita,
-         y en la siguiente pantalla se te solicitará la cédula del doctor con quien se desea la cita, ambas deberán ser de 9 dígitos numéricos de extensión, esta opción válida que las cédulas ya estén registradas en el sistema. <br>
-          Luego se te solicitará ingresar le fecha en que deseas la cita, para esto podrás utilizar las teclas de arriba y abajo, junto con la tecla ENTER para seleccionar el día, mes y año deseados. <br>
-           Posteriormente, se te mostrará el día de la cita ingresado y los horarios disponibles para la misma, ante el cual se te solicitará confirmar los datos con "Sí" o "No".  <br>
-           De seleccionar "No" se te volverá a preguntar el día de la cita, de lo contrario, se te redirigirá a una pantalla en donde debes ingresar, por medio de las teclas de arriba y abajo, la hora deseada para la cita y seleccionarla con la tecla ENTER. <br>
-            Por último, el sistema te mostrará una pantalla con el resumen de la cita, nótese que acá se muestra el código único de la cita que generó el sistema de manera automática. <br>
-         Se te solicitará confirmar los datos con "Sí" o "No". De seleccionar "Si" la cita será guardada y registrada en el sistema y en el archivo "datosCita.dat", de lo contrario se le solicitará ingresar nuevamente la información.
-        </p>
-        <br>
-        <h4>Opción 5:</h4>
-        <p>
-            <h5>- Atender Cita:</h5>
-            Si seleccionas esta opción, se te solicitará ingresar código de la cita que se desea atender, el cuál es de carácter numérico y debe estar ya registrado en el sistema. <br>
-             Al hacerlo, el sistema te mostrará una pantalla con el resumen de la cita ingresada, ante el cual se te solicitará confirmar si deseas atenderla con "Sí" o "No". 
-             De seleccionar "Si", se procede a preguntar sobre el diagnóstico resultante de la cita, así como el código del medicamento a recetas, el cual ya debe de existir en el sistema.  <br> 
-             También, se le solicitará la cantidad (de carácter numérico) de medicamento, y la dosis en que debe de tomarse. <br>
-             Ahora, el sistema te mostrará una pantalla con el resumen de la receta y se te solicitará confirmar los datos con "Sí" o "No". De seleccionar "No" se te volverán a consultar los datos para la receta,
-              de lo contrario, atenderá la cita y será eliminada de las citas pendientes del sistema y del archivo "datosCita.dat". <br>
-               Además, se creará un registro de la receta expuesta, la cual se guardará en el sistema y en el archivo "datosReceta.dat". De haber seleccionado "No" en el primer resumen, se le solicitará ingresar nuevamente el código de la cita a atender.
-        </p>
-        <br>
-        <h4>Opción 6:</h4>
-        <p>
-            <h5>- Modificar Cita:</h5>
-            Si seleccionas esta opción, se te solicitará ingresar el código de la cita que deseas modificar, el cuál es de carácter numérico y debe estar ya registrado en el sistema. <br>
-             Al hacerlo, el sistema te mostrará una pantalla con el resumen de la cita ingresada,
-             ante el cual se te solicitará confirmar si deseas modificarla con "Sí" o "No". De seleccionar "Si", se te solicitarán nuevamente los datos de la Opción 4 y la cita será modificada en el sistema y en el archivo "datosCita.dat", de lo contrario se le solicitará ingresar nuevamente el código de la cita a modificar.
-        </p>
-        <br>
-        <h4>Opción 7:</h4>
-        <p>
-            <h5>- Cancelar Cita:</h5>
-            Al seleccionar esta opción, se te solicitará ingresar el código de la cita que deseas modificar, el cuál es de carácter numérico y debe estar ya registrado en el sistema. <br>
-            Al hacerlo, el sistema te mostrará una pantalla con el resumen de la cita ingresada, ante el cual se te solicitará confirmar si deseas cancelarla con "Sí" o "No". De seleccionar "Si", la cita será cancelada y eliminada en el sistema y del archivo "datosCita.dat",
-             de lo contrario se le solicitará ingresar nuevamente el código de la cita a cancelar.
-        </p>
-        <br>
-        <h4>Opción 8:</h4>
-        <p>
-            <h5>- Consultar Factura:</h5>
-            Cuando seleccionas esta opción, se te solicitará ingresar el código de las facturas a consultar, el cuál es de carácter numérico y debe estar ya registrado en el sistema. <br>
-            Al hacerlo, el sistema te mostrará una pantalla con el resumen de la factura expuesta. <br>
-             Posteriormente, el sistema te preguntará si deseas consultar otra receta, con "Sí" o "No". De seleccionar "Si", te volverá a consultar el código de otra factura, de lo contrario, el sistema regresará al menú principal.
-        </p>
-        <br>
-        <h4>Opción 9:</h4>
-        <p>
-            <h5>- Consultar receta Médica:</h5>
-            Cuando seleccionas esta opción, se te solicitará ingresar el código de la receta a consultar, el cuál es de carácter numérico y debe estar ya registrado en el sistema. <br>
-             Al hacerlo, el sistema te mostrará una pantalla con el resumen de la receta expuesta. Posteriormente, el sistema te preguntará si deseas consultar otra receta, con "Sí" o "No".
-              De seleccionar "Si", te volverá a consultar el código de la otra receta, de lo contrario, el sistema regresará al menú principal.
-        </p>
-        <br>
-        <h4>Opción 10:</h4>
-        <p>
-            <h5>- Mostar Arbol:</h5>
-            En caso de seleccionar esta opción, el sistema te mostrará una pantalla donde se te solicita seleccionar el árbol que desees ver: doctores, pacientes, medicamentos, citas o receta médica.  <br>
-            Podrás utilizar las teclas de arriba y abajo para desplazarte entre las opciones y seleccionar la que deseas con la tecla ENTER. <br>
-            Seguidamente el sistema mostrará los códigos de los registros ordenados de dicha estructura de árbol por post-orden.
-        </p>
-        <br>
-        <h4>Opción 11:</h4>
-        <p>
-            <h5>- Recorrido Profundo:</h5>
-            Para esta opción, el sistema te mostrará una pantalla donde se te solicita seleccionar el árbol que desees ver: doctores, pacientes, medicamentos, citas o receta médica. <br>
-            Podrás utilizar las teclas de arriba y abajo para desplazarte entre las opciones y seleccionar la que deseas con la tecla ENTER. <br>
-            Seguidamente el sistema mostrará los códigos de los registros ordenados de dicha estructura de árbol por pre-orden.
-        </p>
-        <br>
-        <h4>Opción 12:</h4>
-        <p>
-            <h5>- Recorrido por Niveles:</h5>
-            Al seleccionar esta opción, el sistema te mostrará una pantalla donde se te solicita seleccionar el árbol que desees ver: doctores, pacientes, medicamentos, citas o receta médica. <br>
-            Podrás utilizar las teclas de arriba y abajo para desplazarte entre las opciones y seleccionar la que deseas con la tecla ENTER. <br>
-             Seguidamente el sistema mostrará los códigos de los registros ordenados de dicha estructura de árbol por in-orden.
-        </p>
-        <br>
-        <h4>Opción 13:</h4>
-        <p>
-            <h5>- Altura del Arbol:</h5>
-            En caso de seleccionar esta opción, el sistema te mostrará una pantalla donde se te solicita seleccionar el árbol al que le deseas conocer la altura: doctores, pacientes, medicamentos, citas o receta médica. <br>
-             Podrás utilizar las teclas de arriba y abajo para desplazarte entre las opciones y seleccionar la que deseas con la tecla ENTER. <br>
-             Seguidamente el sistema mostrará el valor de la altura de dicho árbol.
-        </p>
-        <br>
-        <h4>Opción 14:</h4>
-        <p>
-            <h5>- Contar Nodos:</h5>
-            Al seleccionar esta opción, el sistema te mostrará una pantalla donde se te solicita seleccionar el árbol al que le deseas conocer la cantidad de nodos: doctores, pacientes, medicamentos, citas o receta médica. <br>
-            Podrás utilizar las teclas de arriba y abajo para desplazarte entre las opciones y seleccionar la que deseas con la tecla ENTER. <br>
-             Seguidamente el sistema mostrará la cantidad de nodos presentes de dicho árbol.
-        </p>
-        <br>
-        <h4>Opción 15:</h4>
-        <p>
-            <h5>- Contar Hojas:</h5>
-            Al seleccionar esta opción, el sistema te mostrará una pantalla donde se te solicita seleccionar el árbol al que le deseas conocer la cantidad de hojas: doctores, pacientes, medicamentos, citas o receta médica. <br>
-             Podrás utilizar las teclas de arriba y abajo para desplazarte entre las opciones y seleccionar la que deseas con la tecla ENTER. <br>
-             Seguidamente el sistema mostrará la cantidad de hojas presentes de dicho árbol.
-        </p>
-        <br>
-        <h4>Opción 16:</h4>
-        <p>
-            <h5>- Salir:</h5>
-            En caso de seleccionar la última opción se te preguntará si deseas salir del programa o deseas continuar en él.
-        </p>
-        <br>
-        
-        <h3 id="titulo3">Conclusión</h3>
-        <p>
-            Con este proyecto hemos logrado construir una solución efectiva al problema propuesto. <br>
-            Hemos logrado comprender mejor el funcionamiento de árboles, su posicionamiento, y su ordenamiento. <br>
-            Siendo esté el último proyecto, decidimos expandir sobre lo que nos han enseñado y mejores aspectos sobre los proyectos / trabajos anteriores, y poder poner a prueba nuestros conocimientos a lo largo del cuatrimestre. <br>
-             Con respecto al programa. Se decidió expandir bajo el sistema de interfaz desarrollado en el Examen 1 inspirado en Linux, y se trató dar la mejor comodidad al usuario durante el uso de la aplicación. 
-        </p>
-        <br>
-        <footer class="footer">
-            <p>Universidad Latina de Costa Rica.</p>
-        </footer>
+        <h2 id="titulo1">Introducción</h3>
+            <br />
+            <p>
+                Este proyecto se realizó con el objetivo de mejorar los conocimientos de estructuración de datos al
+                nivel
+                de árboles. <br>
+                Para este proyecto se solicitó que se realizara en C++ usando Visual Studio 2022 Community como único
+                IDE, y se facilitará un diagrama de clases usando GitMind.
+                <br>
+                Se construirá un sistema hospitalario donde se pueden asignar citas para pacientes, esos pacientes
+                obtienen una cita con un doctor en particular.
+                Cuando se crea la cita se genera cuna factura, el doctor generará una receta medica en donde cada receta
+                contiene el detalle de varios medicamentos y sus respectivas dosis.
+            </p>
+            <br>
+            <div class="divideLine"></div>
+            <br>
+            <h2 id="titulo4">Objetivo</h2>
+            <br />
+            <p>
+                El Principal de este proyecto es aplicar los conocimientos teóricos, principios y técnicas vistas
+                durante la clase haciendo uso del sistema de estructuración de datos en árboles,
+                es importante destacar durante la realización de este proyecto que el código correctamente estructurado
+                y fácil de poder reutilizar.
+            </p>
+            <br>
+            <div class="divideLine"></div>
+            <br>
+            <h2 id="titulo5">Instalación</h2>
+            <br />
+            <p>
+                Para la ejecución de este programa se necesita un editor como Visual Studio Community 2022 o Visual
+                Studio Code.
+                <br /><br />
+                Para Visual Studio Community 2022 necesitas tener descargado la carga de trabajo <b>Desarrollo para el
+                    escritorio con C++</b>, ya con esto será suficiente para poder ejecutar el programa.
+                <br />
+            <div class="card" style="width:80%;">
+                <img src="./images/VSWorkload.png">
+            </div>
+            En el caso de Visual Studio Code necesitas tener instalado en tu computadora un compilador de C++ que te
+            permita correr el programa, los más recomendados son <a href="https://www.msys2.org/">g++</a> o
+            <a href="https://clang.llvm.org/get_started.html">clang</a>.
+            <br /><br />
+            Se recomienda tener instalado también la extensión de C++ en Visual Studio Code para la detección de
+            errores de sintaxis y ayudas con las librerías.
+            <br />
+            <div class="card" style="width:80%;">
+                <img src="./images/VSCodeCppExtension.png">
+            </div>
+            Una vez instalado, pulsas en el botón de ejecutar en la esquina superior derecha.
+            <br />
+            <div class="card" style="width:40%;">
+                <img src="./images/VSCodeDebugButton.png">
+            </div>
+            Si es tu primer programa de C++ corriendo en Visual Studio Code se te abrirá la paleta de comando
+            pidiendote que selecciones un compilador para debugear el programa. Te recomiendo que selecciones
+            alguno de los 2 compiladores que están marcados.
+            <br />
+            <div class="card" style="width:60%;">
+                <img src="./images/VSCodeComandPalette.png">
+            </div>
+            Ya que lo tengas seleccionado, Visual Studio Code empezará a compílar el programa. El archivo principal
+            del programa se llama <b>main.cpp</b>
+            </p>
+            <br>
+            <div class="divideLine"></div>
+            <br>
+            <h2 id="titulo2">Descripción</h2>
+            <br />
+            <p>
+                Cuando inicies el programa serás recibido con una pantalla de inicio que despliega todas las funciones
+                del menú incluyendo la opción de salir del programa.
+                <br>
+                Podrás utilizar las teclas de arriba y abajo para desplazar entre las opciones,
+                y pulsar ENTER para ingresar a la opción deseada.
+                <br />
+            <div class="card" style="width:80%;">
+                <img src="./images/PantallaInicio.png">
+            </div>
+            </p>
+            <ul>
+                <li class="marginLeft2p">
+                    <h3>Ingresar Doctor:</h3>
+                    <p>
+                        Al seleccionar está opción se le solicitará ingresar el
+                        número de cédula del doctor a registrar, la cual deberá de ser de 9 dígitos numéricos de
+                        extensión esta opción no permite ingresar una cédula ya registrada.
+                        <br>
+                        Posteriormente se te solicitará
+                        el nombre completo del doctor, seguidamente se te presentará una pantalla en al cual podrás
+                        utilizar las teclas de arriba y abajo, junto con la tecla ENTER para seleccionar la
+                        correspondiente al doctor.
+                        <br>
+                        En las siguientes pantallas podrás ingresar la dirección del doctor, y las horas de entrada y
+                        salida de este, las cuales se pueden ajustar por medio de las teclas de arriba y abajo, y
+                        seleccionarlas con la tecla ENTER.
+                        <br>
+                        Por último, se te solicitará ingresar el número telefónico del doctor, el cual debe constar de 8
+                        dígitos numéricos válidos.
+                        <br>
+                        En primera instancia, el sistema te mostrará una pantalla con el resumen de los datos a
+                        ingresar, ante el cual se te solicitará confirmar los datos con "Sí" o "No".
+                        De seleccionar "Si" el nuevo doctor será guardado y registrado en el sistema y en el archivo
+                        "datosDoctor.dat",
+                        de lo contrario se le solicitará ingresar nuevamente la información del doctor.
+                    </p>
+                </li>
+                <br />
+                <li class="marginLeft2p">
+                    <h3>Ingresar Paciente:</h3>
+                    <p>
+                        En caso de seleccionar la segunda opción, se te solicitará ingresar el número de cédula del
+                        paciente que
+                        deseas ingresar,
+                        la cual deberá de ser de 9 dígitos numéricos de extensión, esta opción no permite ingresar una
+                        cédula ya
+                        registrada. <br>
+                        Posteriormente se te solicitará el nombre completo del paciente, su dirección y número
+                        telefónico, el cual
+                        debe constar de 8 dígitos numéricos válidos. <br>
+                        Seguidamente, el sistema te mostrará una pantalla con el resumen de los datos a ingresar, ante
+                        el cual se te
+                        solicitará confirmar los datos con "Sí" o "No". <br>
+                        De seleccionar "Si" el nuevo paciente será guardado y registrado en el sistema y en el archivo
+                        "datosPaciente.dat", de lo contrario se le solicitará ingresar nuevamente la información del
+                        paciente.
+                    </p>
+                </li>
+                <br />
+                <li class="marginLeft2p">
+                    <h3>Ingresar Medicamentos:</h3>
+                    <p>
+                        Al seleccionar la tercera opción, se te solicitará ingresar el código del medicamento que se
+                        desea añadir,
+                        el cual deberá constar de únicamente dígitos numéricos,
+                        esta opción no permite ingresar un código ya registrado. <br> Posteriormente se te solicitará el
+                        nombre del
+                        medicamento, seguido de la cantidad disponible en inventario,
+                        esta opción permite ingresar únicamente dígitos numéricos. <br>
+                        Ahora, el sistema te mostrará una pantalla con el resumen de los datos del medicamento a
+                        ingresar, ante el
+                        cual se te solicitará confirmar los datos con "Sí" o "No". <br>
+                        De seleccionar "Si" el nuevo paciente será guardado y registrado en el sistema y en el archivo
+                        "datosMedicamento.dat", de lo contrario se le solicitará ingresar nuevamente la información de
+                        este.
+                </li>
+                <br />
+                <li class="marginLeft2p">
+                    <h3>Registrar Cita:</h3>
+                    <p>
+                        Al seleccionar esta opcion se te solicitará ingresar el número de cédula del paciente a
+                        quien le
+                        corresponde la cita,
+                        y en la siguiente pantalla se te solicitará la cédula del doctor con quien se desea la cita,
+                        ambas deberán
+                        ser de 9 dígitos numéricos de extensión, esta opción válida que las cédulas ya estén registradas
+                        en el
+                        sistema. <br>
+                        Luego se te solicitará ingresar le fecha en que deseas la cita, para esto podrás utilizar las
+                        teclas de
+                        arriba y abajo, junto con la tecla ENTER para seleccionar el día, mes y año deseados. <br>
+                        Posteriormente, se te mostrará el día de la cita ingresado y los horarios disponibles para la
+                        misma, ante el
+                        cual se te solicitará confirmar los datos con "Sí" o "No". <br>
+                        De seleccionar "No" se te volverá a preguntar el día de la cita, de lo contrario, se te
+                        redirigirá a una
+                        pantalla en donde debes ingresar, por medio de las teclas de arriba y abajo, la hora deseada
+                        para la cita y
+                        seleccionarla con la tecla ENTER. <br>
+                        Por último, el sistema te mostrará una pantalla con el resumen de la cita, nótese que acá se
+                        muestra el
+                        código único de la cita que generó el sistema de manera automática. <br>
+                        Se te solicitará confirmar los datos con "Sí" o "No". De seleccionar "Si" la cita será guardada
+                        y registrada
+                        en el sistema y en el archivo "datosCita.dat", de lo contrario se le solicitará ingresar
+                        nuevamente la
+                        información.
+                </li>
+                <br />
+                <li class="marginLeft2p">
+                    <h3>Atender Cita:</h3>
+                    <p>
+                        Si seleccionas esta opción, se te solicitará ingresar código de la cita que se desea atender, el
+                        cuál es de
+                        carácter numérico y debe estar ya registrado en el sistema. <br>
+                        Al hacerlo, el sistema te mostrará una pantalla con el resumen de la cita ingresada, ante el
+                        cual se te
+                        solicitará confirmar si deseas atenderla con "Sí" o "No".
+                        De seleccionar "Si", se procede a preguntar sobre el diagnóstico resultante de la cita, así como
+                        el código
+                        del medicamento a recetas, el cual ya debe de existir en el sistema. <br>
+                        También, se le solicitará la cantidad (de carácter numérico) de medicamento, y la dosis en que
+                        debe de
+                        tomarse. <br>
+                        Ahora, el sistema te mostrará una pantalla con el resumen de la receta y se te solicitará
+                        confirmar los
+                        datos con "Sí" o "No". De seleccionar "No" se te volverán a consultar los datos para la receta,
+                        de lo contrario, atenderá la cita y será eliminada de las citas pendientes del sistema y del
+                        archivo
+                        "datosCita.dat". <br>
+                        Además, se creará un registro de la receta expuesta, la cual se guardará en el sistema y en el
+                        archivo
+                        "datosReceta.dat". De haber seleccionado "No" en el primer resumen, se le solicitará ingresar
+                        nuevamente el
+                        código de la cita a atender.
+                </li>
+                <br />
+                <li class="marginLeft2p">
+                    <h3>Modificar Cita:</h3>
+                    <p>
+                        Si seleccionas esta opción, se te solicitará ingresar el código de la cita que deseas modificar,
+                        el cuál es
+                        de carácter numérico y debe estar ya registrado en el sistema. <br>
+                        Al hacerlo, el sistema te mostrará una pantalla con el resumen de la cita ingresada,
+                        ante el cual se te solicitará confirmar si deseas modificarla con "Sí" o "No". De seleccionar
+                        "Si", se te
+                        solicitarán nuevamente los datos de la Opción 4 y la cita será modificada en el sistema y en el
+                        archivo
+                        "datosCita.dat", de lo contrario se le solicitará ingresar nuevamente el código de la cita a
+                        modificar.
+                </li>
+                <br />
+                <li class="marginLeft2p">
+                    <h3>Cancelar Cita:</h3>
+                    <p>
+                        Al seleccionar esta opción, se te solicitará ingresar el código de la cita que deseas modificar,
+                        el cuál es
+                        de carácter numérico y debe estar ya registrado en el sistema. <br>
+                        Al hacerlo, el sistema te mostrará una pantalla con el resumen de la cita ingresada, ante el
+                        cual se te
+                        solicitará confirmar si deseas cancelarla con "Sí" o "No". De seleccionar "Si", la cita será
+                        cancelada y
+                        eliminada en el sistema y del archivo "datosCita.dat",
+                        de lo contrario se le solicitará ingresar nuevamente el código de la cita a cancelar.
+                </li>
+                <br />
+                <li class="marginLeft2p">
+                    <h3>Consultar Factura:</h3>
+                    <p>
+                        Cuando seleccionas esta opción, se te solicitará ingresar el código de las facturas a consultar,
+                        el cuál es
+                        de carácter numérico y debe estar ya registrado en el sistema. <br>
+                        Al hacerlo, el sistema te mostrará una pantalla con el resumen de la factura expuesta. <br>
+                        Posteriormente, el sistema te preguntará si deseas consultar otra receta, con "Sí" o "No". De
+                        seleccionar
+                        "Si", te volverá a consultar el código de otra factura, de lo contrario, el sistema regresará al
+                        menú
+                        principal.
+                </li>
+                <br />
+                <li class="marginLeft2p">
+                    <h3>Consultar Receta Médica:</h3>
+                    <p>
+                        Cuando seleccionas esta opción, se te solicitará ingresar el código de la receta a consultar, el
+                        cuál es de
+                        carácter numérico y debe estar ya registrado en el sistema. <br>
+                        Al hacerlo, el sistema te mostrará una pantalla con el resumen de la receta expuesta.
+                        Posteriormente, el
+                        sistema te preguntará si deseas consultar otra receta, con "Sí" o "No".
+                        De seleccionar "Si", te volverá a consultar el código de la otra receta, de lo contrario, el
+                        sistema
+                        regresará al menú principal.
+                </li>
+                <br />
+                <li class="marginLeft2p">
+                    <h3>Mostrar Arbol:</h3>
+                    <p>
+                        En caso de seleccionar esta opción, el sistema te mostrará una pantalla donde se te solicita
+                        seleccionar el
+                        árbol que desees ver: doctores, pacientes, medicamentos, citas o receta médica. <br>
+                        Podrás utilizar las teclas de arriba y abajo para desplazarte entre las opciones y seleccionar
+                        la que deseas
+                        con la tecla ENTER. <br>
+                        Seguidamente el sistema mostrará los códigos de los registros ordenados de dicha estructura de
+                        árbol por
+                        post-orden.
+                </li>
+                <br />
+                <li class="marginLeft2p">
+                    <h3>Recorrido Profundo:</h3>
+                    <p>
+                        Para esta opción, el sistema te mostrará una pantalla donde se te solicita seleccionar el árbol
+                        que desees
+                        ver: doctores, pacientes, medicamentos, citas o receta médica. <br>
+                        Podrás utilizar las teclas de arriba y abajo para desplazarte entre las opciones y seleccionar
+                        la que deseas
+                        con la tecla ENTER. <br>
+                        Seguidamente el sistema mostrará los códigos de los registros ordenados de dicha estructura de
+                        árbol por
+                        pre-orden.
+                    </p>
+                </li>
+                <br />
+                <li class="marginLeft2p">
+                    <h3>Recorrido por Niveles:</h3>
+                    <p>
+                        Al seleccionar esta opción, el sistema te mostrará una pantalla donde se te solicita seleccionar
+                        el árbol
+                        que desees ver: doctores, pacientes, medicamentos, citas o receta médica. <br>
+                        Podrás utilizar las teclas de arriba y abajo para desplazarte entre las opciones y seleccionar
+                        la que deseas
+                        con la tecla ENTER.
+                    </p>
+                </li>
+                <br />
+                <li class="marginLeft2p">
+                    <h3>Altura del Arbol:</h3>
+                    <p>
+                        En caso de seleccionar esta opción, el sistema te mostrará una pantalla donde se te solicita
+                        seleccionar el
+                        árbol al que le deseas conocer la altura: doctores, pacientes, medicamentos, citas o receta
+                        médica. <br>
+                        Podrás utilizar las teclas de arriba y abajo para desplazarte entre las opciones y seleccionar
+                        la que deseas
+                        con la tecla ENTER. <br>
+                        Seguidamente el sistema mostrará el valor de la altura de dicho árbol.
+                    </p>
+                </li>
+                <br />
+                <li class="marginLeft2p">
+                    <h3>Contar Nodos:</h3>
+                    <p>
+                        Al seleccionar esta opción, el sistema te mostrará una pantalla donde se te solicita seleccionar
+                        el árbol al
+                        que le deseas conocer la cantidad de nodos: doctores, pacientes, medicamentos, citas o receta
+                        médica. <br>
+                        Podrás utilizar las teclas de arriba y abajo para desplazarte entre las opciones y seleccionar
+                        la que deseas
+                        con la tecla ENTER. <br>
+                        Seguidamente el sistema mostrará la cantidad de nodos presentes de dicho árbol.
+                    </p>
+                </li>
+                <br />
+                <li class="marginLeft2p">
+                    <h3>Contar Hojas:</h3>
+                    <p>
+                        Al seleccionar esta opción, el sistema te mostrará una pantalla donde se te solicita seleccionar
+                        el árbol al
+                        que le deseas conocer la cantidad de hojas: doctores, pacientes, medicamentos, citas o receta
+                        médica. <br>
+                        Podrás utilizar las teclas de arriba y abajo para desplazarte entre las opciones y seleccionar
+                        la que deseas
+                        con la tecla ENTER. <br>
+                        Seguidamente el sistema mostrará la cantidad de hojas presentes de dicho árbol.
+                    </p>
+                </li>
+                <br />
+                <li class="marginLeft2p">
+                    <h3>Salir:</h3>
+                    <p>
+                        Al seleccionar esta opción, el sistema te mostrará una pantalla donde se te solicita seleccionar
+                        el árbol al
+                        que le deseas conocer la cantidad de hojas: doctores, pacientes, medicamentos, citas o receta
+                        médica. <br>
+                        Podrás utilizar las teclas de arriba y abajo para desplazarte entre las opciones y seleccionar
+                        la que deseas
+                        con la tecla ENTER. <br>
+                        Seguidamente el sistema mostrará la cantidad de hojas presentes de dicho árbol.
+                    </p>
+                </li>
+            </ul>
+            <br>
+            <div class="divideLine"></div>
+            <br>
+            <h2 id="titulo6">Curiosidades</h2>
+            <br />
+            <p>
+                En el codigo fuente encontrarás muchas refencias en los <b>cout</b> con respecto a un comando como este
+                <b>\033[100m</b>, este comando es el encargado de cambiar el color a la consola apartir de donde va a
+                escribir, o imprimir imformación el <b>cout</b>, entonces para saber la paleta de colores acontinuacion
+                hay una imagen con la paleta de colores.
+                <br>
+                <b>Nota: </b>Foreground se refiere al color de la letra, y Background se refiere al color del fondo.
+                <br />
+            <div class="card" style="width:50%;">
+                <img src="./images/PaletaColores1.png">
+            </div>
+            Tambien durante el codigo, en el menú, para cuando se selecciona una opcion, se le asignar un color, pero
+            ese color viene en formato decimal, para eso, hay otra tabla de colores si deseas cambiar el color de como
+            se muestra la opcion marcada.
+            <div class="card" style="width:30%;">
+                <img src="./images/PaletaColores2.png">
+            </div>
+            Este viene en formato Hexadecimal, por lo que hay que convertir el valor que desees en decimal. En la
+            calculadora de Windows, puedes convertir ese valor seleccionando el modo programador de la calculadora.
+            <div class="card" style="width:30%;">
+                <img src="./images/CalculadoraWindows.png">
+            </div>
+            Y si seleccionas donde dice <b>HEX</b>, ahí podrás ingresar ese digito y se convertirá de forma automatica a
+            decimal, el primer digito que ingreses va a ser para el fondo y el segundo va a ser para la letra.
+            </p>
+            <br>
+            <div class="divideLine"></div>
+            <br>
+            <h2 id="titulo3">Conclusión</h2>
+            <br />
+            <p>
+                Con este proyecto hemos logrado construir una solución efectiva al problema propuesto. <br>
+                Hemos logrado comprender mejor el funcionamiento de árboles, su posicionamiento, y su ordenamiento. <br>
+                Siendo esté el último proyecto, decidimos expandir sobre lo que nos han enseñado y mejores aspectos
+                sobre los proyectos / trabajos anteriores, y poder poner a prueba nuestros conocimientos a lo largo del
+                cuatrimestre. <br>
+                Con respecto al programa. Se decidió expandir bajo el sistema de interfaz desarrollado en el Examen 1
+                inspirado en Linux, y se trató dar la mejor comodidad al usuario durante el uso de la aplicación.
+            </p>
+            <br>
     </div>
+    <footer class="footer">
+        <p>Universidad Latina de Costa Rica</p>
+    </footer>
 </body>
 
 </html>

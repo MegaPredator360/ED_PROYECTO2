@@ -31,8 +31,24 @@ function redirigirBoton4() {
     });
 }
 
+function redirigirBoton5() {
+    var top = document.getElementById("titulo5").offsetTop - document.getElementById("navbar").offsetHeight - 10;
+    window.scrollTo({
+        top: top,
+        behavior: "smooth"
+    });
+}
+
+function redirigirBoton6() {
+    var top = document.getElementById("titulo6").offsetTop - document.getElementById("navbar").offsetHeight - 10;
+    window.scrollTo({
+        top: top,
+        behavior: "smooth"
+    });
+}
+
 // Modo Oscuro
 function toggleDarkMode() {
     var element = document.body;
     element.classList.toggle("darkMode");
- }
+}

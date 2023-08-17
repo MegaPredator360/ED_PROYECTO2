@@ -5,7 +5,15 @@
 }
 
 body {
+    display: flex;
+    flex-direction: column;
     transition: 0.3s;
+    min-height: 100vh;
+}
+
+.divideLine {
+    border: solid;
+    border-width: 1px;
 }
 
 /* Barra superior */
@@ -45,12 +53,22 @@ body {
 
 .cuerpoPagina {
     margin-left: 250px;
-    padding:1px 16px; 
+    padding: 1px 16px;
     margin-top: 65px;
+    margin-right: 200px;
+}
+
+.cuerpoAcerca {
+    margin-left: 200px;
+    padding: 1px 16px;
+    margin-top: 65px;
+    margin-right: 200px;
 }
 
 /* Botones Barra Superior */
 .material-button {
+    position: relative;
+    overflow: hidden;
     display: inline-block;
     padding: 10px 20px !important;
     margin: 10px 3px;
@@ -67,7 +85,7 @@ body {
 
 .material-button:hover {
     background-color: rgb(7, 38, 131);
-  }
+}
 
 .active {
     background-color: rgb(22, 59, 173);
@@ -78,15 +96,35 @@ body {
     border: none;
     color: rgb(46, 46, 46);
     font-size: 20px;
-    padding: 15px 0;
+    padding: 15px 10%;
     width: 100%;
     background-color: transparent;
     transition: 0.3s;
+    text-align: left;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
 }
 
 .sidebarButton:hover {
     background-color: rgb(189, 189, 189);
     transition: 0.3s;
+}
+
+/* Card */
+.card {
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    background-color: #fff;
+    margin: 10px auto;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
 /* Modo Oscuro */
@@ -119,7 +157,7 @@ body {
     background-color: rgb(29, 29, 29);
     transition: 0.3s;
 
-    .footer{
+    .footer {
         background-color: rgb(30, 37, 58);
     }
 }
@@ -146,9 +184,10 @@ body {
     margin-left: 2%;
 }
 
-.footer{
+.footer {
     text-align: center;
-    background-color: rgb(20, 75, 240); 
+    background-color: rgb(20, 75, 240);
     padding: 13px;
+    color: white;
+    margin-top: auto;
 }
-
