@@ -325,6 +325,7 @@ int metodoInterfaz::confirmarDatos(string _texto, int _posicion)
 	int nConfirmacion = 1;
 	int oConfirmacion[] = { 71, 128 };
 
+	color(128);
 	moverXY(25, _posicion);
 	cout << _texto;
 	moverXY(28, _posicion + 1);

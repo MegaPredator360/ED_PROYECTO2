@@ -1037,187 +1037,199 @@ void interfaz::menuPrincipal()
 							// Se le pregunatará al usuario si desea atender la cita
 							if (_mInterfaz.confirmarDatos("¿Deseas atender esta cita?", 18) == 1)
 							{
-								while (1)
+								// Despues se le preguntará si el paciente necesita una receta medica
+								if (_mInterfaz.confirmarDatos("¿El paciente necesita receta medica?", 18) == 1)
 								{
-									system("cls");
-									cout << "\033[44m\033[30m" << espacios << endl;
-									cout << cuadroLado << "\033[100m ." << cuadroBorde << ". \033[44m" << cuadroLado << endl;
-
-									for (int i = 0; i < 9; i++)
+									while (1)
 									{
-										cout << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
-									}
+										system("cls");
+										cout << "\033[44m\033[30m" << espacios << endl;
+										cout << cuadroLado << "\033[100m ." << cuadroBorde << ". \033[44m" << cuadroLado << endl;
 
-									cout << cuadroLado << "\033[100m |" << cuadroBorde << "| \033[40m  \033[44m" << cuadroFinal << endl;
-									cout << cuadroLado << "\033[100m  " << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
-									cout << cuadroLado << "  \033[40m" << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
-									cout << "\033[44m\033[30m" << espacios;
+										for (int i = 0; i < 9; i++)
+										{
+											cout << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
+										}
 
-									_mInterfaz.moverXY(52, 4);
-									cout << "\033[100m" << "Atender Cita";
+										cout << cuadroLado << "\033[100m |" << cuadroBorde << "| \033[40m  \033[44m" << cuadroFinal << endl;
+										cout << cuadroLado << "\033[100m  " << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+										cout << cuadroLado << "  \033[40m" << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+										cout << "\033[44m\033[30m" << espacios;
 
-									// Se generará un codigo para la receta medica
-									_recetaMedica.setCodigo(to_string(_mInterfaz.generarCodigo()));
+										_mInterfaz.moverXY(52, 4);
+										cout << "\033[100m" << "Atender Cita";
 
-									// Si el codigo generado ya existe, se generará otro hasta que no salga repetido
-									while (arbolRecetaMedica.verificarDatos(_recetaMedica.getCodigo()))
-									{
+										// Se generará un codigo para la receta medica
 										_recetaMedica.setCodigo(to_string(_mInterfaz.generarCodigo()));
-									}
 
-									_mInterfaz.moverXY(25, 6);
-									cout << "\033[100m" << "Ingresa el diagnostico del paciente:";
-									_mInterfaz.moverXY(25, 7);
-									cout << "\033[40m\033[37m" << cuadroIngresarTexto;
-									_mInterfaz.moverXY(25, 7);
-									getline(cin, dato);
-									_recetaMedica.setDiagnostico(dato);
+										// Si el codigo generado ya existe, se generará otro hasta que no salga repetido
+										while (arbolRecetaMedica.verificarDatos(_recetaMedica.getCodigo()))
+										{
+											_recetaMedica.setCodigo(to_string(_mInterfaz.generarCodigo()));
+										}
 
-									_mInterfaz.moverXY(0, 6);
-									cout << "\033[44m\033[30m" << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
-									cout << "\033[44m\033[30m" << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
-									cout << "\033[44m\033[30m" << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
+										_mInterfaz.moverXY(25, 6);
+										cout << "\033[100m" << "Ingresa el diagnostico del paciente:";
+										_mInterfaz.moverXY(25, 7);
+										cout << "\033[40m\033[37m" << cuadroIngresarTexto;
+										_mInterfaz.moverXY(25, 7);
+										getline(cin, dato);
+										_recetaMedica.setDiagnostico(dato);
 
-									_mInterfaz.moverXY(25, 6);
-									cout << "\033[100m" << "Ingresa el codigo del medicamento a recetar:";
-									_mInterfaz.moverXY(25, 7);
-									cout << "\033[40m\033[37m" << cuadroIngresarTexto;
-									_mInterfaz.moverXY(25, 7);
-									_medicamento.setCodigo(_mInterfaz.ingresarNumeros());
+										_mInterfaz.moverXY(0, 6);
+										cout << "\033[44m\033[30m" << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
+										cout << "\033[44m\033[30m" << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
+										cout << "\033[44m\033[30m" << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
 
-									// Se le solicitará al usuario el codigo del medicamento, se verificará si el codigo existe
-									while (!arbolMedicamento.verificarDatos(_medicamento.getCodigo()))
-									{
-										_mInterfaz.moverXY(25, 8);
-										cout << "\033[100m\033[31m" << "El codigo ingresada no está registrada.";
-										_mInterfaz.moverXY(25, 9);
-										cout << "Por favor ingresa el codigo de medicamento registrado.";
+										_mInterfaz.moverXY(25, 6);
+										cout << "\033[100m" << "Ingresa el codigo del medicamento a recetar:";
 										_mInterfaz.moverXY(25, 7);
 										cout << "\033[40m\033[37m" << cuadroIngresarTexto;
 										_mInterfaz.moverXY(25, 7);
 										_medicamento.setCodigo(_mInterfaz.ingresarNumeros());
-									}
 
-									// Se obtendrá el nodo del medicamento para vincular el medicamento con la receta
-									medicamento = arbolMedicamento.obtenerDatos(_medicamento.getCodigo());
+										// Se le solicitará al usuario el codigo del medicamento, se verificará si el codigo existe
+										while (!arbolMedicamento.verificarDatos(_medicamento.getCodigo()))
+										{
+											_mInterfaz.moverXY(25, 8);
+											cout << "\033[100m\033[31m" << "El codigo ingresada no está registrada.";
+											_mInterfaz.moverXY(25, 9);
+											cout << "Por favor ingresa el codigo de medicamento registrado.";
+											_mInterfaz.moverXY(25, 7);
+											cout << "\033[40m\033[37m" << cuadroIngresarTexto;
+											_mInterfaz.moverXY(25, 7);
+											_medicamento.setCodigo(_mInterfaz.ingresarNumeros());
+										}
 
-									_mInterfaz.moverXY(0, 8);
-									cout << "\033[44m\033[30m" << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
-									cout << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal;
-									_mInterfaz.moverXY(0, 6);
-									cout << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal;
-									_mInterfaz.moverXY(25, 6);
-									cout << "\033[100m" << "Ingresa la cantidad de medicamentos a recetar:";
-									_mInterfaz.moverXY(25, 7);
-									cout << "\033[40m\033[37m" << cuadroIngresarTexto;
-									_mInterfaz.moverXY(25, 7);
-									_recetaMedica.setCantidad(stoi(_mInterfaz.ingresarNumeros()));
+										// Se obtendrá el nodo del medicamento para vincular el medicamento con la receta
+										medicamento = arbolMedicamento.obtenerDatos(_medicamento.getCodigo());
 
-									// Se verificará si la cantidad de medicamentos que el usuario ingresa es menor que la cantidad de medicamentos que hay en inventario
-									while (!_mInterfaz.verificarCantidadMedicamento(medicamento -> getCantidadInventario(), _recetaMedica.getCantidad()))
-									{
-										_mInterfaz.moverXY(25, 8);
-										cout << "\033[100m\033[31m" << "No hay suficiente cantidad en inventario de ese medicamento.";
-										_mInterfaz.moverXY(25, 9);
-										cout << "Por favor ingresa una cantidad igual a " << medicamento -> getCantidadInventario() << " o menor.";
+										_mInterfaz.moverXY(0, 8);
+										cout << "\033[44m\033[30m" << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
+										cout << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal;
+										_mInterfaz.moverXY(0, 6);
+										cout << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal;
+										_mInterfaz.moverXY(25, 6);
+										cout << "\033[100m" << "Ingresa la cantidad de medicamentos a recetar:";
 										_mInterfaz.moverXY(25, 7);
 										cout << "\033[40m\033[37m" << cuadroIngresarTexto;
 										_mInterfaz.moverXY(25, 7);
 										_recetaMedica.setCantidad(stoi(_mInterfaz.ingresarNumeros()));
+
+										// Se verificará si la cantidad de medicamentos que el usuario ingresa es menor que la cantidad de medicamentos que hay en inventario
+										while (!_mInterfaz.verificarCantidadMedicamento(medicamento->getCantidadInventario(), _recetaMedica.getCantidad()))
+										{
+											_mInterfaz.moverXY(25, 8);
+											cout << "\033[100m\033[31m" << "No hay suficiente cantidad en inventario de ese medicamento.";
+											_mInterfaz.moverXY(25, 9);
+											cout << "Por favor ingresa una cantidad igual a " << medicamento->getCantidadInventario() << " o menor.";
+											_mInterfaz.moverXY(25, 7);
+											cout << "\033[40m\033[37m" << cuadroIngresarTexto;
+											_mInterfaz.moverXY(25, 7);
+											_recetaMedica.setCantidad(stoi(_mInterfaz.ingresarNumeros()));
+										}
+
+										_mInterfaz.moverXY(0, 8);
+										cout << "\033[44m\033[30m" << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
+										cout << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal;
+										_mInterfaz.moverXY(0, 6);
+										cout << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal;
+										_mInterfaz.moverXY(25, 6);
+										cout << "\033[100m" << "Ingresa la dosis en la que el paciente debe tomar el medicamento:";
+										_mInterfaz.moverXY(25, 7);
+										cout << "\033[40m\033[37m" << cuadroIngresarTexto;
+										_mInterfaz.moverXY(25, 7);
+										getline(cin, dato);
+										_recetaMedica.setDosis(dato);
+
+										cout << "\033[44m\033[30m";
+
+										system("cls");
+										cout << espacios << endl;
+										cout << cuadroLado << "\033[100m ." << cuadroBorde << ". \033[44m" << cuadroLado << endl;
+
+										for (int i = 0; i < 18; i++)
+										{
+											cout << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
+										}
+
+										cout << cuadroLado << "\033[100m |" << cuadroBorde << "| \033[40m  \033[44m" << cuadroFinal << endl;
+										cout << cuadroLado << "\033[100m  " << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+										cout << cuadroLado << "  \033[40m" << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+										cout << "\033[44m\033[30m" << espacios;
+
+										cout << "\033[100m\033[30m";
+										_mInterfaz.moverXY(25, 3);
+										cout << "Codigo de la receta medica:";
+										_mInterfaz.moverXY(25, 4);
+										cout << _recetaMedica.getCodigo();
+
+										cout << "\033[100m\033[30m";
+										_mInterfaz.moverXY(25, 6);
+										cout << "Nombre del paciente:";
+										_mInterfaz.moverXY(25, 7);
+										cout << cita->getPaciente()->getNombre();
+
+										cout << "\033[100m\033[30m";
+										_mInterfaz.moverXY(25, 9);
+										cout << "Diagnostico del paciente:";
+										_mInterfaz.moverXY(25, 10);
+										cout << _recetaMedica.getDiagnostico();
+
+										cout << "\033[100m\033[30m";
+										_mInterfaz.moverXY(25, 12);
+										cout << "Nombre del medicamento:";
+										_mInterfaz.moverXY(25, 13);
+										cout << medicamento->getNombre();
+
+										cout << "\033[100m\033[30m";
+										_mInterfaz.moverXY(25, 15);
+										cout << "Cantidad de medicamentos:";
+										_mInterfaz.moverXY(25, 16);
+										cout << _recetaMedica.getCantidad();
+
+										cout << "\033[100m\033[30m";
+										_mInterfaz.moverXY(25, 15);
+										cout << "Dosis del medicamento:";
+										_mInterfaz.moverXY(25, 16);
+										cout << _recetaMedica.getDosis();
+
+										cout << "\033[100m\033[30m";
+										_mInterfaz.moverXY(25, 15);
+										cout << "Doctor encargado:";
+										_mInterfaz.moverXY(25, 16);
+										cout << cita->getDoctor()->getNombre();
+
+										// Se le solicitará al usuario si los datos ingresados son correctos
+										if (_mInterfaz.confirmarDatos("¿Los datos ingresados son correctos?", 18) == 1)
+										{
+											// Se crea un dato de receta medica
+											recetaMedica = new recetasMedicas(_recetaMedica.getCodigo(), cita->getPaciente(), _recetaMedica.getDiagnostico(), medicamento, _recetaMedica.getCantidad(), _recetaMedica.getDosis(), cita->getDoctor());
+											arbolRecetaMedica.registrarDatos(recetaMedica, _recetaMedica.getCodigo());
+											_archivo.guardarRecetaMedica(arbolRecetaMedica);
+
+											// Se actualiza la cantidad en inventario del medicamento
+											medicamento->setCantidadInventario(medicamento->getCantidadInventario() - _recetaMedica.getCantidad());
+											_archivo.guardarMedicamento(arbolMedicamento);
+
+											// Se elimina la cita del sistema
+											arbolCita.eliminarDatos(cita, cita->getCodigo());
+											_archivo.guardarCita(arbolCita);
+											_cita.~citas();
+											_recetaMedica.~recetasMedicas();
+											_mInterfaz.mostrarMensajeExito("¡La cita fue atendida con exito!");
+
+											break;
+										}
 									}
-
-									_mInterfaz.moverXY(0, 8);
-									cout << "\033[44m\033[30m" << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
-									cout << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal;
-									_mInterfaz.moverXY(0, 6);
-									cout << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal;
-									_mInterfaz.moverXY(25, 6);
-									cout << "\033[100m" << "Ingresa la dosis en la que el paciente debe tomar el medicamento:";
-									_mInterfaz.moverXY(25, 7);
-									cout << "\033[40m\033[37m" << cuadroIngresarTexto;
-									_mInterfaz.moverXY(25, 7);
-									getline(cin, dato);
-									_recetaMedica.setDosis(dato);
-
-									cout << "\033[44m\033[30m";
-
-									system("cls");
-									cout << espacios << endl;
-									cout << cuadroLado << "\033[100m ." << cuadroBorde << ". \033[44m" << cuadroLado << endl;
-
-									for (int i = 0; i < 18; i++)
-									{
-										cout << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
-									}
-
-									cout << cuadroLado << "\033[100m |" << cuadroBorde << "| \033[40m  \033[44m" << cuadroFinal << endl;
-									cout << cuadroLado << "\033[100m  " << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
-									cout << cuadroLado << "  \033[40m" << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
-									cout << "\033[44m\033[30m" << espacios;
-
-									cout << "\033[100m\033[30m";
-									_mInterfaz.moverXY(25, 3);
-									cout << "Codigo de la receta medica:";
-									_mInterfaz.moverXY(25, 4);
-									cout << _recetaMedica.getCodigo();
-
-									cout << "\033[100m\033[30m";
-									_mInterfaz.moverXY(25, 6);
-									cout << "Nombre del paciente:";
-									_mInterfaz.moverXY(25, 7);
-									cout << cita -> getPaciente() -> getNombre();
-
-									cout << "\033[100m\033[30m";
-									_mInterfaz.moverXY(25, 9);
-									cout << "Diagnostico del paciente:";
-									_mInterfaz.moverXY(25, 10);
-									cout << _recetaMedica.getDiagnostico();
-
-									cout << "\033[100m\033[30m";
-									_mInterfaz.moverXY(25, 12);
-									cout << "Nombre del medicamento:";
-									_mInterfaz.moverXY(25, 13);
-									cout << medicamento -> getNombre();
-
-									cout << "\033[100m\033[30m";
-									_mInterfaz.moverXY(25, 15);
-									cout << "Cantidad de medicamentos:";
-									_mInterfaz.moverXY(25, 16);
-									cout << _recetaMedica.getCantidad();
-
-									cout << "\033[100m\033[30m";
-									_mInterfaz.moverXY(25, 15);
-									cout << "Dosis del medicamento:";
-									_mInterfaz.moverXY(25, 16);
-									cout << _recetaMedica.getDosis();
-
-									cout << "\033[100m\033[30m";
-									_mInterfaz.moverXY(25, 15);
-									cout << "Doctor encargado:";
-									_mInterfaz.moverXY(25, 16);
-									cout << cita -> getDoctor() -> getNombre();
-
-									// Se le solicitará al usuario si los datos ingresados son correctos
-									if (_mInterfaz.confirmarDatos("¿Los datos ingresados son correctos?", 18) == 1)
-									{
-										// Se crea un dato de receta medica
-										recetaMedica = new recetasMedicas(_recetaMedica.getCodigo(), cita -> getPaciente(), _recetaMedica.getDiagnostico(), medicamento, _recetaMedica.getCantidad(), _recetaMedica.getDosis(), cita -> getDoctor());
-										arbolRecetaMedica.registrarDatos(recetaMedica, _recetaMedica.getCodigo());
-										_archivo.guardarRecetaMedica(arbolRecetaMedica);
-
-										// Se actualiza la cantidad en inventario del medicamento
-										medicamento -> setCantidadInventario(medicamento -> getCantidadInventario() - _recetaMedica.getCantidad());
-										_archivo.guardarMedicamento(arbolMedicamento);
-
-										// Se elimina la cita del sistema
-										arbolCita.eliminarDatos(cita, cita -> getCodigo());
-										_archivo.guardarCita(arbolCita);
-										_cita.~citas();
-										_recetaMedica.~recetasMedicas();
-										_mInterfaz.mostrarMensajeExito("¡La cita fue atendida con exito!");
-
-										break;
-									}
+								}
+								else
+								{
+									// Se elimina la cita del sistema
+									arbolCita.eliminarDatos(cita, cita -> getCodigo());
+									_archivo.guardarCita(arbolCita);
+									_cita.~citas();
+									_mInterfaz.mostrarMensajeExito("¡La cita fue atendida con exito!");
 								}
 
 								break;
