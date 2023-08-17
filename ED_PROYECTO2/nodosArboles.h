@@ -7,17 +7,37 @@ template <class T>
 class nodosArboles
 {
 public:
+    // Se registrarán los datos en el nodo, según el número de codigo / cedula
     void registrarDatos(nodos<T>*& _nodo, T* _dato, string _numero);
-    nodos<T>* buscarDatos(nodos<T>* _nodo, string _numero);
+
+    // Se eliminará el nodo del arbol
     nodos<T>* eliminarDatos(nodos<T>* _nodo, T* _dato, string _numero);
+
+    // Obtendrá una cola con los datos del arbol que serán usado para guardar los datos en los archivos
     queue<T*> colaDatos(nodos<T>* _nodo, queue<T*>& _cola);
+
+    // Obtendrá el Nodo solicitado basado en el tipo de clase y su numero de cedula / codigo
     T* obtenerDatos(nodos<T>* _nodo, string _numero);
+
+    // Retornará un vector con las horas de las registradas que coincidan con la cedula del doctor y la fecha que el usuario escogio
     void obtenerCita(nodos<T>* _nodo, vector<string>& _citaRealizada, string _cedula, string _fecha);
+
+    // Retornará un vector con la cedula / codigo del arbol registrado en formato de In-Orden
     void mostrarArbol(nodos<T>* _nodo, vector<string>& _listaCodigos);
+
+    // Retornará un vector con la cedula / codigo del arbol registrado en formato de Pre-Orden
     void recorridoProfundidad(nodos<T>* _nodo, vector<string>& _listaCodigos);
+
+    // Se encontrará el nodo con la cedula / codigo más bajo
     nodos<T>* encontrarNodoMinimo(nodos<T>* _nodo);
+
+    // Retornará la altura del arbol seleccionado
     int alturaArbol(nodos<T>* _nodo);
+
+    // Retornará la cantidad de nodos registrados en el arbol seleccionado
     int contarNodos(nodos<T>* _nodo);
+
+    // Retornará la cantidad de hojas registradas en el arbol seleccionado
     int contarHojas(nodos<T>* _nodo);
 };
 
@@ -52,30 +72,6 @@ void nodosArboles<T>::registrarDatos(nodos<T>*& _nodo, T* _dato, string _numero)
 
             // Se guardará ese dato nuevo en la derecha del nodo
             _nodo -> fijarDerecha(nodoNuevo);
-        }
-    }
-    catch (exception& e)
-    {
-        throw e;
-    }
-}
-
-template<class T>
-nodos<T>* nodosArboles<T>::buscarDatos(nodos<T>* _nodo, string _numero)
-{
-    try
-    {
-        if (_nodo == nullptr || _nodo -> obtenerCodigo() == _numero)
-        {
-            return _nodo;
-        }
-        else if (_numero < _nodo -> obtenerCodigo())
-        {
-            return buscarDatos(_nodo -> obtenerIzquierda(), _numero);
-        }
-        else 
-        {
-            return buscarDatos(_nodo -> obtenerDerecha(), _numero);
         }
     }
     catch (exception& e)

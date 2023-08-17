@@ -69,6 +69,7 @@ template<class T>
 string nodos<T>::obtenerCodigo()
 {
     // El "dynamic_cast" se encargará de verificar en tiempo de ejecucion si es posible hacer una conversion de "dato" a la clase de datos que se necesite
+    // esto con el objetivo de obtener el codigo / cedula del nodo
     if (doctores* _doctor = dynamic_cast<doctores*>(dato))
     {
         codigo = _doctor -> getCedula();

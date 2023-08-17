@@ -11,19 +11,44 @@ protected:
     nodosArboles<T>* _nArboles;
 
 public:
+    // Agregarán datos al arbol, recibido el nodo y un número codigo / cedula que se usará 
+    // para distribuir los nodos en el arbol
 	void registrarDatos(T* _dato, string _numero);
+
+    // Se usará para verificar el hay un nodo que contenga el codigo / cedula que estamos recibiendo
     bool verificarDatos(string _numero);
+
+    // Se usará para verificar si el arbol está vario
     bool verificarVacio();
+
+    // Se devuelve una cola con datos para ser almacenado en los archivos
     queue<T*> colaDatos();
+
+    // Se devuelve el nodo donde el codigo / cedula que recibimos se encuentra
     T* obtenerDatos(string _numero);
+
+    // Se devuelve un vector con las horas que citas que hayan sido programadas, para eso se requerira la fecha de la cita y la cedula del doctor
     void obtenerCita(vector<string>& _citasRealizadas, string _fecha, string _cedula);
-	void buscarDatos(string _numero);
+
+    // Será usado para el eliminar nodos, en este caso, se recibe la clase pertenenciente a eliminar y su codigo / cedula identificar el nodo a eliminar
 	void eliminarDatos(T* _dato, string _numero);
+
+    // Será usado para mostrar los codigos / cedula registrados en el arbol seleccionado, usando el formato de In-Orden
     void mostrarArbol(vector<string>& _listaCodigos);
+
+    // Será usado para mostrar los codigos / cedula registrados en el arbol seleccionado, usando el formato de Pre-Orden
     void recorridoProfundidad(vector<string>& _listaCodigos);
+
+    // Será usado para mostrar los codigos / cedula registrados en cada nivel del arbol seleccionado
     void recorridoPorNiveles(vector<string>& _listaCodigos);
+
+    // Mostrará la altura del arbol seleccionado
     int alturaArbol();
+
+    // Contará cuantos nodos hay registrados en el arbol seleccionado
     int contarNodos();
+
+    // Contará la cantidad de hojas que hay registradas en el arbol seleccionado
     int contarHojas();
 };
 
@@ -118,28 +143,6 @@ void arboles<T>::obtenerCita(vector<string>& _citasRealizadas, string _fecha, st
     try
     {
         _nArboles -> obtenerCita(raiz, _citasRealizadas, _cedula, _fecha);
-    }
-    catch (exception& e)
-    {
-        throw e;
-    }
-}
-
-template<class T>
-void arboles<T>::buscarDatos(string _numero)
-{
-    try
-    {
-        nodos<T>* resultado = _nArboles.buscarDatos(raiz, _numero);
-
-        if (resultado != nullptr) 
-        {
-            cout << "El elemento " << _numero << " se encuentra en el Arbol." << endl;
-        }
-        else 
-        {
-            cout << "El elemento " << _numero << " no se encuentra en el Arbol." << endl;
-        }
     }
     catch (exception& e)
     {

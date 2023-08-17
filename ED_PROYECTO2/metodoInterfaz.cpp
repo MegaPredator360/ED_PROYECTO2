@@ -319,6 +319,8 @@ string metodoInterfaz::ingresarFecha()
 
 int metodoInterfaz::confirmarDatos(string _texto, int _posicion)
 {
+	// Usando el mismo sistema de la interface, se recibirá un texto para que el usuario escoja si desea realizar
+	// la accion o no, y se recibira un "int _posicion" que en la posicion en Y donde aparecerá el texto
 	int key;
 	int nConfirmacion = 1;
 	int oConfirmacion[] = { 71, 128 };
@@ -392,6 +394,7 @@ int metodoInterfaz::confirmarDatos(string _texto, int _posicion)
 
 void metodoInterfaz::mostrarMensajeExito(string _mensaje)
 {
+	// Se creará un cuadro de mensaje mostrando que una accion se la realizado con exito
 	int key;
 	string espacios(120, ' ');
 	string cuadroLado(20, ' ');
@@ -423,6 +426,7 @@ void metodoInterfaz::mostrarMensajeExito(string _mensaje)
 	moverXY(55, 8);
 	cout << "\033[41m\033[37m" << "Aceptar";
 
+	// Se esperará a que el usuario pulse la tecla ENTER para continuar
 	while (1)
 	{
 		key = _getch();
@@ -438,6 +442,7 @@ void metodoInterfaz::mostrarMensajeExito(string _mensaje)
 
 void metodoInterfaz::mostrarMensajeFallido(string _mensaje)
 {
+	// Se creará un cuadro de mensaje mostrando que ha ocurrido un error durante el proceso de X accion
 	int key;
 	string espacios(120, ' ');
 	string cuadroLado(20, ' ');
@@ -486,6 +491,8 @@ void metodoInterfaz::verificarVacio(arboles<doctores> _arbolDoctor, arboles<paci
 {
 	try
 	{
+		// Este medodo se usa para el momento de ingresar cita, donde se verificara si hay datos en los 3 arboles, de los contrario
+		// se le mostrará al usuario cual arbol no tiene datos para insertarlos
 		string mensajeError = "No hay registros de los siguientes datos: ";
 		bool doctor = false;
 		bool paciente = false;
@@ -553,6 +560,7 @@ void metodoInterfaz::mostrarHoraCita(arboles<citas> _arbolCita, doctores* _docto
 {
 	try
 	{
+		// Este metodo se usa para que el usuario ingrese una fecha e indicar la hora de la cita
 		vector<string> horasDisponibles;
 		vector<string> citasRealizadas;
 		string espacios(120, ' ');
@@ -573,6 +581,7 @@ void metodoInterfaz::mostrarHoraCita(arboles<citas> _arbolCita, doctores* _docto
 
 		while (1)
 		{
+			// Se limpian los vectores en caso de ser usados anteriormente
 			horasDisponibles.clear();
 			citasRealizadas.clear();
 
@@ -582,12 +591,17 @@ void metodoInterfaz::mostrarHoraCita(arboles<citas> _arbolCita, doctores* _docto
 			cout << "\033[100m" << "Ingresa la fecha de la cita:";
 			moverXY(25, 7);
 			cout << cuadroIngresarTexto;
+			// Se le solicita la fecha de la cita
 			_fecha = ingresarFecha();
 
+			// Una vez con la fecha ingresada, se obtendrá de nodo del doctor seleccionado la horas de entrada y salida
 			horaInicio = stoi(_doctor -> getHoraInicio().substr(0, 2));
 			horaFinal = stoi(_doctor -> getHoraFin().substr(0, 2));
+
+			// Se obtendrá las horas de trabajo del doctor
 			horaTrabajo = horaFinal - horaInicio;
 
+			// Se usuará un vector para obtener las horas en la que el doctor puede atender una cita
 			for (int i = 0; i < horaTrabajo; i++)
 			{
 				hora1 = to_string(horaInicio + i);
@@ -604,6 +618,8 @@ void metodoInterfaz::mostrarHoraCita(arboles<citas> _arbolCita, doctores* _docto
 				horasDisponibles.push_back(hora1);
 			}
 
+			// Despues se usará el otro vector para obtener citas que hayan sido registradas con el doctor y la fecha que el usuario ingreso
+			// Si hay algún nodo de cita que cumpla con los 2 requisitos se añadirá al vector
 			_arbolCita.obtenerCita(citasRealizadas, _fecha, _doctor -> getCedula());
 
 			while (!citasRealizadas.empty())
@@ -612,17 +628,21 @@ void metodoInterfaz::mostrarHoraCita(arboles<citas> _arbolCita, doctores* _docto
 				{
 					if (citasRealizadas.empty())
 					{
+						// Pasa salir del ciclo for
 						break;
 					}
 
+					// Se compará si hay una hora igual con el vector de horas disponibles con el de citas realizadas
 					if (horasDisponibles[i] == citasRealizadas[0])
 					{
+						// Si se coincide, esa hora será borrada de ambos vectores
 						horasDisponibles.erase(horasDisponibles.begin() + i);
 						citasRealizadas.erase(citasRealizadas.begin());
 					}
 				}
 			}
 
+			// Ya cuando se hayan eliminado las horas de citas que ya están programadas se le mostrará al usuario las horas disponibles durante esa fecha
 			moverXY(25, 6);
 			cout << "\033[100m\033[30m" << cuadroIngresarTexto;
 			moverXY(25, 6);
@@ -645,6 +665,7 @@ void metodoInterfaz::mostrarHoraCita(arboles<citas> _arbolCita, doctores* _docto
 				cout << "\033[100m" << horasDisponibles[i];
 			}
 
+			// Se le preguntará al usuario si desea programa la cita en la fecha indicada
 			confirmacion = confirmarDatos("¿Deseas programar una cita en esta fecha?", 8 + horasDisponibles.size());
 
 			moverXY(0, 6);
@@ -662,6 +683,7 @@ void metodoInterfaz::mostrarHoraCita(arboles<citas> _arbolCita, doctores* _docto
 				cout << "\033[44m\033[30m" << espacios << endl;
 			}
 
+			// Si el usuario acepta, basado en el vector de horas disponibles, el usuario deberá de escojer una de las horas disponibles en esa fecha
 			if (confirmacion == 1)
 			{
 				moverXY(25, 6);
@@ -678,12 +700,12 @@ void metodoInterfaz::mostrarHoraCita(arboles<citas> _arbolCita, doctores* _docto
 
 					key = _getch();
 
-
-					// Valida si la flecha izquierda fue pulsada, valor 224 en ASCII
+					// Debido a que _getch manda 2 valores, se pondrá el primer valor al inicio
 					if (key == 224)
 					{
 						key = _getch();
 
+						// Se valida si el usuario pulsó la flecha hacia arriba
 						if (key == 72)
 						{
 							opcion++;
@@ -693,6 +715,7 @@ void metodoInterfaz::mostrarHoraCita(arboles<citas> _arbolCita, doctores* _docto
 								opcion = 0;
 							}
 						}
+						// Se valida si el usuario pulsó la flecha hacia abajo
 						else if (key == 80)
 						{
 							opcion--;
@@ -713,7 +736,7 @@ void metodoInterfaz::mostrarHoraCita(arboles<citas> _arbolCita, doctores* _docto
 				break;
 			}
 		}
-
+		// Se igualará la hora selecciona para ser retornado
 		_hora = horasDisponibles[opcion];
 	}
 	catch (exception& e)
@@ -726,6 +749,8 @@ bool metodoInterfaz::verificarCantidadMedicamento(int _inventario, int _cantidad
 {
 	try
 	{
+		// Se verificará si la cantidad solicitada por el usuario para la receta medica es menor
+		// que la cantidad que existe en inventario
 		int resultado = _inventario - _cantidad;
 
 		if (resultado < 0)
@@ -745,6 +770,7 @@ bool metodoInterfaz::verificarCantidadMedicamento(int _inventario, int _cantidad
 
 int metodoInterfaz::seleccionarArbol(string _opcion, int _posicion)
 {
+	// Usando el sistema de interface, se le preguntará al usuario que arbol quiere seleccionar para la obtención de datos
 	int key;
 	string espacios(120, ' ');
 	string cuadroLado(20, ' ');

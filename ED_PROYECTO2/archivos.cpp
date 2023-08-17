@@ -14,26 +14,37 @@ void archivos::guardarDoctor(arboles<doctores> _arbolDoctor)
 {
 	try
 	{
+		// Se verifica si hay datos en el arbol de doctores
 		if (_arbolDoctor.verificarVacio())
 		{
 			ofstream guardarDoctor("datosDoctor.dat");
 			doctores* doctor;
+
+			// Se crea una cola que será usada para obtener los datos de cada nodo de doctores
 			queue<doctores*> colaDoctor = _arbolDoctor.colaDatos();
 			string dato;
 
 			while (!colaDoctor.empty())
 			{
 				doctor = colaDoctor.front();
+
+				// Se crea un string con los datos que se guardarán en el archivo
 				dato = doctor -> getCedula() + "/" + doctor -> getNombre() + "/" + doctor -> getEspecialidad() + "/" + doctor -> getDireccion() + "/" + doctor -> getHoraInicio() + "/" + doctor -> getHoraFin() + "/" + doctor -> getTelefono();
+				
+				// Se escriben los datos
 				guardarDoctor << dato << "\n";
 				colaDoctor.pop();
 			}
 
 			guardarDoctor.close();
 		}
+		// Si no hay datos en el arbol
 		else
 		{
+			// Se creará / sobreescribirá el archivo
 			ofstream guardarDoctor("datosDoctor.dat");
+
+			// Se dejará el archivo sin datos
 			guardarDoctor << "";
 			guardarDoctor.close();
 		}
@@ -218,15 +229,19 @@ arboles<doctores> archivos::cargarDoctor()
 {
 	try
 	{
+		// Se crean los tipos de dato a usar
 		arboles<doctores> arbolDoctor;
 		doctores _doctor;
 		doctores* doctor;
 
-		// Cargar datos del archivo
+		// Si el archivo existe, se abrira y será leido
 		ifstream cargarDoctor("datosDoctor.dat");
 		if (cargarDoctor.is_open())
 		{
+			// Linea de datos del archivo
 			string datos;
+
+			// Se irá por cada linea de datos archivo y se iran definiendo cada dato para luego ser agregado de vuelta en el arbol
 			while (getline(cargarDoctor, datos))
 			{
 				_doctor.setCedula(datos.substr(0, datos.find("/")));

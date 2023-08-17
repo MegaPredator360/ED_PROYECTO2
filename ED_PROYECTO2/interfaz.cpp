@@ -11,6 +11,8 @@ void interfaz::menuPrincipal()
 	// Encargada de recibir el valor de la tecla pulsada en ASCII
 	int key = 0;
 
+	// Series de string usados para el diseño de la interface
+	// Repetirá un caracter X cantidad de veces cada vez que se llame
 	string espacios(120, ' ');
 	string cuadroLado(20, ' ');
 	string cuadroFinal(18, ' ');
@@ -190,6 +192,7 @@ void interfaz::menuPrincipal()
 							_mInterfaz.moverXY(25, 7);
 							_doctor.setCedula(_mInterfaz.ingresarNumeros());
 
+							// Si la cedula no contiene 9 digitos o ya existe, entrará en el ciclo while
 							while (_doctor.getCedula().length() != 9 || arbolDoctor.verificarDatos(_doctor.getCedula()))
 							{
 								_mInterfaz.moverXY(25, 8);
@@ -222,9 +225,10 @@ void interfaz::menuPrincipal()
 							_mInterfaz.moverXY(25, 7);
 							cout << cuadroIngresarTexto;
 
-							int oEspecialidad[] = { 128, 128, 128, 128 };
+							// En lugar de hacer que el usuario escriba el nombre de el tipo de doctor
+							// el usuario selecciona el tipo de doctor mediante una lista que se le presenta
+							int oEspecialidad[] = { 71, 128, 128, 128 };
 							int nEspecialidad = 1;
-							oEspecialidad[0] = { 71 };
 
 							while (1)
 							{
@@ -246,7 +250,7 @@ void interfaz::menuPrincipal()
 
 								key = _getch();
 
-								if (key == 72 && (nEspecialidad >= 1 && nEspecialidad <= 4))		// Validar si la flecha arriba es pulsada	|| 72 es el valor de la flecha arriba en ASCII
+								if (key == 72)		// Validar si la flecha arriba es pulsada	|| 72 es el valor de la flecha arriba en ASCII
 								{
 									nEspecialidad--;
 
@@ -255,7 +259,7 @@ void interfaz::menuPrincipal()
 										nEspecialidad = 4;
 									}
 								}
-								else if (key == 80 && (nEspecialidad >= 1 && nEspecialidad <= 4))	// Validar si la flecha abajo es pulsada	|| 80 es el valor de la flecha abajo en ASCII
+								else if (key == 80)	// Validar si la flecha abajo es pulsada	|| 80 es el valor de la flecha abajo en ASCII
 								{
 									nEspecialidad++;
 
@@ -348,6 +352,7 @@ void interfaz::menuPrincipal()
 							cout << cuadroIngresarTexto;
 							_doctor.setHoraFin(_mInterfaz.ingresarHora());
 
+							// Si la hora de salida del doctor es menor que la hora de entrada, se entrará a este ciclo while
 							if (stoi(_doctor.getHoraFin().substr(0, 2)) < stoi(_doctor.getHoraInicio().substr(0, 2)))
 							{
 								_mInterfaz.moverXY(25, 8);
@@ -369,6 +374,7 @@ void interfaz::menuPrincipal()
 							_mInterfaz.moverXY(25, 7);
 							_doctor.setTelefono(_mInterfaz.ingresarNumeros());
 
+							// Si el telefono no continene 8 digitos, se ingresará al ciclo while
 							while (_doctor.getTelefono().length() != 8)
 							{
 								_mInterfaz.moverXY(25, 8);
@@ -383,6 +389,7 @@ void interfaz::menuPrincipal()
 
 							cout << "\033[44m\033[30m";
 
+							// Una vez que el usuario termina de ingresar todos los datos se le mostrará un resumen con todos los datos ingresados.
 							system("cls");
 							cout << espacios << endl;
 							cout << cuadroLado << "\033[100m ." << cuadroBorde << ". \033[44m" << cuadroLado << endl;
@@ -439,6 +446,7 @@ void interfaz::menuPrincipal()
 							_mInterfaz.moverXY(25, 22);
 							cout << _doctor.getTelefono();
 
+							// Se le preguntará al usuario si los datos ingresados son correctos, de lo contrario se le solicitará que vuelva a ingresar todos los datos
 							if (_mInterfaz.confirmarDatos("¿Los datos ingresados son correctos?", 24) == 1)
 							{
 								doctor = new doctores(_doctor.getCedula(), _doctor.getNombre(), _doctor.getEspecialidad(), _doctor.getDireccion(), _doctor.getHoraInicio(), _doctor.getHoraFin(), _doctor.getTelefono());
@@ -486,6 +494,9 @@ void interfaz::menuPrincipal()
 							_mInterfaz.moverXY(25, 7);
 							_paciente.setCedula(_mInterfaz.ingresarNumeros());
 
+							// Si la cedula no tiene 9 digitos, o ya existe en el arbol, entrará al ciclo while
+							// y se le solicitará al usuario que vuelva a ingresar los datos hasta que ingrese una cedula que 
+							// cumpla con los requisitos
 							while (_paciente.getCedula().length() != 9 || arbolPaciente.verificarDatos(_paciente.getCedula()))
 							{
 								_mInterfaz.moverXY(25, 8);
@@ -530,6 +541,7 @@ void interfaz::menuPrincipal()
 							_mInterfaz.moverXY(25, 7);
 							_paciente.setTelefono(_mInterfaz.ingresarNumeros());
 
+							// Si el telefono no tiene 8 digitos, se le solicitará al usuario que vuelva a ingresar el telefono
 							while (_paciente.getTelefono().length() != 8)
 							{
 								_mInterfaz.moverXY(25, 8);
@@ -544,6 +556,7 @@ void interfaz::menuPrincipal()
 
 							cout << "\033[44m\033[30m";
 
+							// Cuando el usuario termina de ingresar los datos se le mostrará un resumen con los datos ingresados
 							system("cls");
 							cout << espacios << endl;
 							cout << cuadroLado << "\033[100m ." << cuadroBorde << ". \033[44m" << cuadroLado << endl;
@@ -582,6 +595,7 @@ void interfaz::menuPrincipal()
 							_mInterfaz.moverXY(25, 13);
 							cout << _paciente.getTelefono();
 
+							// Se le preguntará al usuario si los datos ingresados son correctos, de lo contrario, se le pedira que vuelva a ingresar los datos
 							if (_mInterfaz.confirmarDatos("¿Los datos ingresados son correctos?", 15) == 1)
 							{
 								paciente = new pacientes(_paciente.getCedula(), _paciente.getNombre(), _paciente.getDireccion(), _paciente.getTelefono());
@@ -629,6 +643,7 @@ void interfaz::menuPrincipal()
 							_mInterfaz.moverXY(25, 7);
 							_medicamento.setCodigo(_mInterfaz.ingresarNumeros());
 
+							// Si el codigo de el medicamento ya existe, se le solicitará al usuario que vuelva a ingresar otro codigo
 							while (arbolMedicamento.verificarDatos(_medicamento.getCodigo()))
 							{
 								_mInterfaz.moverXY(25, 8);
@@ -665,6 +680,7 @@ void interfaz::menuPrincipal()
 
 							cout << "\033[44m\033[30m";
 
+							// Una vez que el usuario termine de ingresar los datos, se le mostrará un resumen de los datos ingresados
 							system("cls");
 							cout << espacios << endl;
 							cout << cuadroLado << "\033[100m ." << cuadroBorde << ". \033[44m" << cuadroLado << endl;
@@ -697,6 +713,8 @@ void interfaz::menuPrincipal()
 							_mInterfaz.moverXY(25, 10);
 							cout << _medicamento.getCantidadInventario();
 
+							// Se le preguntará al usuario si los datos ingresados son correctos, de los contrario
+							// se le predirá que los vuelva a ingresar
 							if (_mInterfaz.confirmarDatos("¿Los datos ingresados son correctos?", 12) == 1)
 							{
 								medicamento = new medicamentos(_medicamento.getCodigo(), _medicamento.getNombre(), _medicamento.getCantidadInventario());
@@ -752,6 +770,7 @@ void interfaz::menuPrincipal()
 							// Se generará un codigo para las facturas
 							_factura.setCodigo(to_string(_mInterfaz.generarCodigo()));
 
+							// Si el codigo ya existe, se generará otro hasta que no esté repetido
 							while (arbolFactura.verificarDatos(_factura.getCodigo()))
 							{
 								_factura.setCodigo(to_string(_mInterfaz.generarCodigo()));
@@ -764,6 +783,8 @@ void interfaz::menuPrincipal()
 							_mInterfaz.moverXY(25, 7);
 							_paciente.setCedula(_mInterfaz.ingresarNumeros());
 							
+							// Se le solicitará la cedula del paciente que ya registrado y se verificará
+							// si la cedula no existe, se le solicitará al usuario volver a ingresar el número de cedula
 							while (!arbolPaciente.verificarDatos(_paciente.getCedula()))
 							{
 								_mInterfaz.moverXY(25, 8);
@@ -788,6 +809,8 @@ void interfaz::menuPrincipal()
 							_mInterfaz.moverXY(25, 7);
 							_doctor.setCedula(_mInterfaz.ingresarNumeros());
 
+							// Se le solicitará la cedula del doctor que ya registrado y se verificará
+							// si la cedula no existe, se le solicitará al usuario volver a ingresar el número de cedula
 							while (!arbolDoctor.verificarDatos(_doctor.getCedula()))
 							{
 								_mInterfaz.moverXY(25, 8);
@@ -800,12 +823,14 @@ void interfaz::menuPrincipal()
 								_doctor.setCedula(_mInterfaz.ingresarNumeros());
 							}
 
+							// Se obtendrá el nodo con los datos para vincular al doctor con la cita
 							doctor = arbolDoctor.obtenerDatos(_doctor.getCedula());
 
 							_mInterfaz.moverXY(0, 8);
 							cout << "\033[44m\033[30m" << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
 							cout << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal;
 
+							// Se le pedirá al usuario que ingrese la fecha y la hora de la cita, y se obtendrán los valores retornados de esa funcion
 							_mInterfaz.mostrarHoraCita(arbolCita, doctor, dato, hora);
 
 							_cita.setFecha(dato);
@@ -819,7 +844,8 @@ void interfaz::menuPrincipal()
 							_factura.setMonto(stoi(_mInterfaz.ingresarNumeros()));
 
 							cout << "\033[44m\033[30m";
-
+							
+							// Una vez que el usuario termina de ingresar los datos, se le mostrará un resumen con los datos
 							system("cls");
 							cout << espacios << endl;
 							cout << cuadroLado << "\033[100m ." << cuadroBorde << ". \033[44m" << cuadroLado << endl;
@@ -834,6 +860,7 @@ void interfaz::menuPrincipal()
 							cout << cuadroLado << "  \033[40m" << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
 							cout << "\033[44m\033[30m" << espacios;
 
+							// Se obtendrá el nodo del paciente para vincular la cita con el paciente
 							paciente = arbolPaciente.obtenerDatos(_paciente.getCedula());
 
 							cout << "\033[100m\033[30m";
@@ -878,6 +905,7 @@ void interfaz::menuPrincipal()
 							_mInterfaz.moverXY(25, 22);
 							cout << _factura.getMonto();
 
+							// Se le preguntará si los datos ingresados son correctos
 							if (_mInterfaz.confirmarDatos("¿Los datos ingresados son correctos?", 24) == 1)
 							{
 								// Registramos la cita
@@ -906,8 +934,10 @@ void interfaz::menuPrincipal()
 					// Atender Cita
 					try
 					{
+						// Se realizará una verificacion para revisar si alguna cita registrada en el sistema
 						if (!arbolCita.verificarVacio())
 						{
+							// Si no hay, se activará el try-catch enviando el siguiente mensaje
 							throw exception("!No hay citas registradas en el sistema!");
 						}
 
@@ -937,6 +967,7 @@ void interfaz::menuPrincipal()
 							_mInterfaz.moverXY(25, 7);
 							_cita.setCodigo(_mInterfaz.ingresarNumeros());
 
+							// Se le solicitará al usuario que ingrese el codigo de la cita, y se verificará si ese codigo existe
 							while (!arbolCita.verificarDatos(_cita.getCodigo()))
 							{
 								_mInterfaz.moverXY(25, 8);
@@ -997,6 +1028,7 @@ void interfaz::menuPrincipal()
 							_mInterfaz.moverXY(25, 16);
 							cout << cita -> getHora();
 
+							// Se le pregunatará al usuario si desea atender la cita
 							if (_mInterfaz.confirmarDatos("¿Deseas atender esta cita?", 18) == 1)
 							{
 								while (1)
@@ -1018,8 +1050,10 @@ void interfaz::menuPrincipal()
 									_mInterfaz.moverXY(52, 4);
 									cout << "\033[100m" << "Atender Cita";
 
+									// Se generará un codigo para la receta medica
 									_recetaMedica.setCodigo(to_string(_mInterfaz.generarCodigo()));
 
+									// Si el codigo generado ya existe, se generará otro hasta que no salga repetido
 									while (arbolRecetaMedica.verificarDatos(_recetaMedica.getCodigo()))
 									{
 										_recetaMedica.setCodigo(to_string(_mInterfaz.generarCodigo()));
@@ -1045,6 +1079,7 @@ void interfaz::menuPrincipal()
 									_mInterfaz.moverXY(25, 7);
 									_medicamento.setCodigo(_mInterfaz.ingresarNumeros());
 
+									// Se le solicitará al usuario el codigo del medicamento, se verificará si el codigo existe
 									while (!arbolMedicamento.verificarDatos(_medicamento.getCodigo()))
 									{
 										_mInterfaz.moverXY(25, 8);
@@ -1057,6 +1092,7 @@ void interfaz::menuPrincipal()
 										_medicamento.setCodigo(_mInterfaz.ingresarNumeros());
 									}
 
+									// Se obtendrá el nodo del medicamento para vincular el medicamento con la receta
 									medicamento = arbolMedicamento.obtenerDatos(_medicamento.getCodigo());
 
 									_mInterfaz.moverXY(0, 8);
@@ -1071,6 +1107,7 @@ void interfaz::menuPrincipal()
 									_mInterfaz.moverXY(25, 7);
 									_recetaMedica.setCantidad(stoi(_mInterfaz.ingresarNumeros()));
 
+									// Se verificará si la cantidad de medicamentos que el usuario ingresa es menor que la cantidad de medicamentos que hay en inventario
 									while (!_mInterfaz.verificarCantidadMedicamento(medicamento -> getCantidadInventario(), _recetaMedica.getCantidad()))
 									{
 										_mInterfaz.moverXY(25, 8);
@@ -1154,6 +1191,7 @@ void interfaz::menuPrincipal()
 									_mInterfaz.moverXY(25, 16);
 									cout << cita -> getDoctor() -> getNombre();
 
+									// Se le solicitará al usuario si los datos ingresados son correctos
 									if (_mInterfaz.confirmarDatos("¿Los datos ingresados son correctos?", 18) == 1)
 									{
 										// Se crea un dato de receta medica
@@ -1190,8 +1228,10 @@ void interfaz::menuPrincipal()
 					// Modificar Cita
 					try
 					{
+						// Se verificará si hay citas registradas en el sistema
 						if (!arbolCita.verificarVacio())
 						{
+							// En caso de no haber citas, se activará el try-catch con el siguiente mensaje
 							throw exception("!No hay citas registradas en el sistema!");
 						}
 
@@ -1221,6 +1261,7 @@ void interfaz::menuPrincipal()
 							_mInterfaz.moverXY(25, 7);
 							_cita.setCodigo(_mInterfaz.ingresarNumeros());
 
+							// Se verificará si el codigo de la cita de existe en el arbol
 							while (!arbolCita.verificarDatos(_cita.getCodigo()))
 							{
 								_mInterfaz.moverXY(25, 8);
@@ -1233,10 +1274,12 @@ void interfaz::menuPrincipal()
 								_cita.setCodigo(_mInterfaz.ingresarNumeros());
 							}
 
+							// Se obtendrá el nodo de la cita para ser modificada
 							cita = arbolCita.obtenerDatos(_cita.getCodigo());
 
 							cout << "\033[44m\033[30m";
 
+							// Se le mostrará al usuario los datos de ese nodo
 							system("cls");
 							cout << espacios << endl;
 							cout << cuadroLado << "\033[100m ." << cuadroBorde << ". \033[44m" << cuadroLado << endl;
@@ -1281,6 +1324,7 @@ void interfaz::menuPrincipal()
 							_mInterfaz.moverXY(25, 16);
 							cout << cita -> getHora();
 
+							// Se le preguntará si desea editar esa cita
 							if (_mInterfaz.confirmarDatos("¿Deseas modificar esta cita?", 18) == 1)
 							{
 								while (1)
@@ -1309,6 +1353,7 @@ void interfaz::menuPrincipal()
 									_mInterfaz.moverXY(25, 7);
 									_paciente.setCedula(_mInterfaz.ingresarNumeros());
 
+									// Se verificará si la cedula ingresada existe
 									while (!arbolPaciente.verificarDatos(_paciente.getCedula()))
 									{
 										_mInterfaz.moverXY(25, 8);
@@ -1333,6 +1378,7 @@ void interfaz::menuPrincipal()
 									_mInterfaz.moverXY(25, 7);
 									_doctor.setCedula(_mInterfaz.ingresarNumeros());
 
+									// Se verificará si la cedula ingresada existe
 									while (!arbolDoctor.verificarDatos(_doctor.getCedula()))
 									{
 										_mInterfaz.moverXY(25, 8);
@@ -1345,6 +1391,7 @@ void interfaz::menuPrincipal()
 										_doctor.setCedula(_mInterfaz.ingresarNumeros());
 									}
 
+									// Se obtendrá el nodo para vincular el doctor con la cita
 									doctor = arbolDoctor.obtenerDatos(_doctor.getCedula());
 
 									_mInterfaz.moverXY(0, 8);
@@ -1358,6 +1405,7 @@ void interfaz::menuPrincipal()
 
 									cout << "\033[44m\033[30m";
 
+									// Se le mostrará al usuario los nuevos datos ingresados
 									system("cls");
 									cout << espacios << endl;
 									cout << cuadroLado << "\033[100m ." << cuadroBorde << ". \033[44m" << cuadroLado << endl;
@@ -1372,6 +1420,7 @@ void interfaz::menuPrincipal()
 									cout << cuadroLado << "  \033[40m" << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
 									cout << "\033[44m\033[30m" << espacios;
 
+									// Se obtendrá el nodo para vincular el paciente con la cita
 									paciente = arbolPaciente.obtenerDatos(_paciente.getCedula());
 
 									cout << "\033[100m\033[30m";
@@ -1404,6 +1453,7 @@ void interfaz::menuPrincipal()
 									_mInterfaz.moverXY(25, 16);
 									cout << _cita.getHora();
 
+									// Se le preguntará si los datos ingresados son correctos
 									if (_mInterfaz.confirmarDatos("¿Los datos ingresados son correctos?", 18) == 1)
 									{
 										cita -> setFecha(_cita.getFecha());
@@ -1433,8 +1483,10 @@ void interfaz::menuPrincipal()
 					// Eliminar Cita
 					try
 					{
+						// Se verificará si hay citas registradas en el sistema
 						if (!arbolCita.verificarVacio())
 						{
+							// Se activará el try-catch con el siguiente mensaje
 							throw exception("!No hay citas registradas en el sistema!");
 						}
 
@@ -1464,6 +1516,7 @@ void interfaz::menuPrincipal()
 							_mInterfaz.moverXY(25, 7);
 							_cita.setCodigo(_mInterfaz.ingresarNumeros());
 
+							// Se verificará si el codigo ingresado existe
 							while (!arbolCita.verificarDatos(_cita.getCodigo()))
 							{
 								_mInterfaz.moverXY(25, 8);
@@ -1476,6 +1529,7 @@ void interfaz::menuPrincipal()
 								_cita.setCodigo(_mInterfaz.ingresarNumeros());
 							}
 
+							// Se obtendrán los datos de ese nodo para mostrar al usuario y ser eliminado
 							cita = arbolCita.obtenerDatos(_cita.getCodigo());
 
 							cout << "\033[44m\033[30m";
@@ -1524,8 +1578,10 @@ void interfaz::menuPrincipal()
 							_mInterfaz.moverXY(25, 16);
 							cout << cita -> getHora();
 
+							// Se le preguntará al usuario si desea cancelar la cita
 							if (_mInterfaz.confirmarDatos("¿Deseas cancelar esta cita?", 18) == 1)
 							{
+								// Se eliminará el nodo del arbol
 								arbolCita.eliminarDatos(cita, cita -> getCodigo());
 								_archivo.guardarCita(arbolCita);
 								_mInterfaz.mostrarMensajeExito("¡La cita fue cancelada con exito!");
@@ -1543,6 +1599,7 @@ void interfaz::menuPrincipal()
 					// Consultar Facturas
 					try
 					{
+						// Se verificará si hay facturas registradas en el sistema
 						if (!arbolFactura.verificarVacio())
 						{
 							throw exception("!No hay facturas registradas en el sistema!");
@@ -1574,6 +1631,7 @@ void interfaz::menuPrincipal()
 							_mInterfaz.moverXY(25, 7);
 							_factura.setCodigo(_mInterfaz.ingresarNumeros());
 
+							// Se verificará si el codigo existe
 							while (!arbolFactura.verificarDatos(_factura.getCodigo()))
 							{
 								_mInterfaz.moverXY(25, 8);
@@ -1586,6 +1644,7 @@ void interfaz::menuPrincipal()
 								_factura.setCodigo(_mInterfaz.ingresarNumeros());
 							}
 
+							// Se obtendrá el nodo de la factura para mostrar al usuario
 							factura = arbolFactura.obtenerDatos(_factura.getCodigo());
 
 							cout << "\033[44m\033[30m";
@@ -1629,6 +1688,7 @@ void interfaz::menuPrincipal()
 							// wcout permite inprimir caracteres la codificacion / formato UTF-8
 							wcout << colon << factura -> getMonto();
 
+							// Se le preguntará al usuario si desea consultar otra factura
 							if (_mInterfaz.confirmarDatos("¿Deseas consultar otra factura?", 15) == 2)
 							{
 								break;
@@ -1645,8 +1705,10 @@ void interfaz::menuPrincipal()
 						// Consultar Receta Medica
 						try
 						{
+							// Se verificará si hay recetas medicas registradas
 							if (!arbolRecetaMedica.verificarVacio())
 							{
+								// Se activará el try-catch con el siguiente mensaje
 								throw exception("!No hay recetas medicas registradas en el sistema!");
 							}
 
@@ -1676,6 +1738,7 @@ void interfaz::menuPrincipal()
 								_mInterfaz.moverXY(25, 7);
 								_recetaMedica.setCodigo(_mInterfaz.ingresarNumeros());
 
+								// Se verificará si el codigo existe en el arbol
 								while (!arbolRecetaMedica.verificarDatos(_recetaMedica.getCodigo()))
 								{
 									_mInterfaz.moverXY(25, 8);
@@ -1688,6 +1751,7 @@ void interfaz::menuPrincipal()
 									_recetaMedica.setCodigo(_mInterfaz.ingresarNumeros());
 								}
 
+								// Se obtendrá el nodo de la receta medica para mostrar al usuario
 								recetaMedica = arbolRecetaMedica.obtenerDatos(_recetaMedica.getCodigo());
 
 								cout << "\033[44m\033[30m";
@@ -1748,6 +1812,7 @@ void interfaz::menuPrincipal()
 								_mInterfaz.moverXY(25, 22);
 								cout << recetaMedica -> getDoctor() -> getNombre();
 
+								// Se le preguntará al usuario si desea consultar otra receta medica
 								if (_mInterfaz.confirmarDatos("¿Deseas consultar otra receta medica?", 24) == 2)
 								{
 									break;
@@ -1764,19 +1829,24 @@ void interfaz::menuPrincipal()
 					// Mostrar Arbol
 					try
 					{
+						// Se le mostrará al usuario los arboles que existen, y se le solicitará que seleccione uno
 						int arbol = _mInterfaz.seleccionarArbol("Mostrar Arbol", 53);
 
 						switch (arbol)
 						{
 						case 1:
 							// Arbol Doctores
+
+							// Se verificará si el hay doctores registrados
 							if (!arbolDoctor.verificarVacio())
 							{
 								throw exception("No hay doctores registrados en el sistema.");
 							}
 
+							// Se limpiará el vector en caso de ser usado anteriormente
 							listaCodigos.clear();
 
+							// Se obtendrá la lista de codigos en forma de In-Orden
 							arbolDoctor.mostrarArbol(listaCodigos);
 							cantidad = listaCodigos.size();
 
@@ -1799,6 +1869,7 @@ void interfaz::menuPrincipal()
 								cout << listaCodigos[i];
 							}
 
+							// Se esperará a que el usuario pulse ENTER para continuar
 							_mInterfaz.moverXY(55, cantidad + 8);
 							cout << "\033[41m\033[37m" << "Continuar";
 
@@ -2068,6 +2139,7 @@ void interfaz::menuPrincipal()
 
 							listaCodigos.clear();
 
+							// Se obtendrá la lista de codigos en forma de Pre-Orden
 							arbolDoctor.recorridoProfundidad(listaCodigos);
 							cantidad = listaCodigos.size();
 
@@ -2359,6 +2431,7 @@ void interfaz::menuPrincipal()
 
 							listaCodigos.clear();
 
+							// Se obtendrá la lista de codigos para el recorrido por niveles
 							arbolDoctor.recorridoPorNiveles(listaCodigos);
 							cantidad = listaCodigos.size();
 
