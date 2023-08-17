@@ -769,15 +769,6 @@ void interfaz::menuPrincipal()
 								_cita.setCodigo(to_string(_mInterfaz.generarCodigo()));
 							}
 
-							// Se generará un codigo para las facturas
-							_factura.setCodigo(to_string(_mInterfaz.generarCodigo()));
-
-							// Si el codigo ya existe, se generará otro hasta que no esté repetido
-							while (arbolFactura.verificarDatos(_factura.getCodigo()))
-							{
-								_factura.setCodigo(to_string(_mInterfaz.generarCodigo()));
-							}
-
 							_mInterfaz.moverXY(25, 6);
 							cout << "\033[100m" << "Ingresa el número de cedula del paciente registrado:";
 							_mInterfaz.moverXY(25, 7);
@@ -838,13 +829,6 @@ void interfaz::menuPrincipal()
 							_cita.setFecha(dato);
 							_cita.setHora(hora);
 
-							_mInterfaz.moverXY(25, 6);
-							cout << "\033[100m\033[30m" << "Ingresa el costo de la cita: (En Colones)";
-							_mInterfaz.moverXY(25, 7);
-							cout << "\033[40m\033[37m" << cuadroIngresarTexto;
-							_mInterfaz.moverXY(25, 7);
-							_factura.setMonto(stoi(_mInterfaz.ingresarNumeros()));
-
 							cout << "\033[44m\033[30m";
 							
 							// Una vez que el usuario termina de ingresar los datos, se le mostrará un resumen con los datos
@@ -852,7 +836,7 @@ void interfaz::menuPrincipal()
 							cout << espacios << endl;
 							cout << cuadroLado << "\033[100m ." << cuadroBorde << ". \033[44m" << cuadroLado << endl;
 
-							for (int i = 0; i < 24; i++)
+							for (int i = 0; i < 18; i++)
 							{
 								cout << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
 							}
@@ -873,57 +857,39 @@ void interfaz::menuPrincipal()
 
 							cout << "\033[100m\033[30m";
 							_mInterfaz.moverXY(25, 6);
-							cout << "Codigo de la factura:";
-							_mInterfaz.moverXY(25, 7);
-							cout << _factura.getCodigo();
-
-							cout << "\033[100m\033[30m";
-							_mInterfaz.moverXY(25, 9);
 							cout << "Nombre del paciente:";
-							_mInterfaz.moverXY(25, 10);
+							_mInterfaz.moverXY(25, 7);
 							cout << paciente -> getNombre();
 
 							cout << "\033[100m\033[30m";
-							_mInterfaz.moverXY(25, 12);
+							_mInterfaz.moverXY(25, 9);
 							cout << "Nombre del doctor:";
-							_mInterfaz.moverXY(25, 13);
+							_mInterfaz.moverXY(25, 10);
 							cout << doctor -> getNombre();
 
 							cout << "\033[100m\033[30m";
-							_mInterfaz.moverXY(25, 15);
+							_mInterfaz.moverXY(25, 12);
 							cout << "Fecha de la cita:";
-							_mInterfaz.moverXY(25, 16);
+							_mInterfaz.moverXY(25, 13);
 							cout << "Dia: " << _cita.getFecha().substr(0, 2) << " - Mes: " << _cita.getFecha().substr(2, 2) << " - Año: " << _cita.getFecha().substr(4, 4);
 
 							cout << "\033[100m\033[30m";
-							_mInterfaz.moverXY(25, 18);
+							_mInterfaz.moverXY(25, 15);
 							cout << "Hora de la cita:";
-							_mInterfaz.moverXY(25, 19);
+							_mInterfaz.moverXY(25, 16);
 							cout << _cita.getHora();
 
-							cout << "\033[100m\033[30m";
-							_mInterfaz.moverXY(25, 21);
-							cout << "Costo total de la cita:";
-							_mInterfaz.moverXY(25, 22);
-							cout << _factura.getMonto();
-
 							// Se le preguntará si los datos ingresados son correctos
-							if (_mInterfaz.confirmarDatos("¿Los datos ingresados son correctos?", 24) == 1)
+							if (_mInterfaz.confirmarDatos("¿Los datos ingresados son correctos?", 18) == 1)
 							{
 								// Registramos la cita
 								cita = new citas(_cita.getCodigo(), _cita.getFecha(), _cita.getHora(), doctor, paciente);
 								arbolCita.registrarDatos(cita, _cita.getCodigo());
 								_archivo.guardarCita(arbolCita);
 
-								// Registramos la factura
-								factura = new facturas(_factura.getCodigo(), _cita.getFecha(), paciente, _factura.getMonto());
-								arbolFactura.registrarDatos(factura, _factura.getCodigo());
-								_archivo.guardarFactura(arbolFactura);
-
 								_cita.~citas();
 								_paciente.~pacientes();
 								_doctor.~doctores();
-								_factura.~facturas();
 								_mInterfaz.mostrarMensajeExito("¡La cita fue registrada con exito!");
 
 								break;
@@ -1068,6 +1034,15 @@ void interfaz::menuPrincipal()
 											_recetaMedica.setCodigo(to_string(_mInterfaz.generarCodigo()));
 										}
 
+										// Se generará un codigo para la factura
+										_factura.setCodigo(to_string(_mInterfaz.generarCodigo()));
+
+										// Si el codigo generado ya existe, se generará otro hasta que no salga repetido
+										while (arbolFactura.verificarDatos(_factura.getCodigo()))
+										{
+											_factura.setCodigo(to_string(_mInterfaz.generarCodigo()));
+										}
+
 										_mInterfaz.moverXY(25, 6);
 										cout << "\033[100m" << "Ingresa el diagnostico del paciente:";
 										_mInterfaz.moverXY(25, 7);
@@ -1142,13 +1117,22 @@ void interfaz::menuPrincipal()
 										getline(cin, dato);
 										_recetaMedica.setDosis(dato);
 
+										_mInterfaz.moverXY(0, 6);
+										cout << "\033[44m\033[30m" << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
+										_mInterfaz.moverXY(25, 6);
+										cout << "\033[100m\033[30m" << "Ingresa el costo de la cita: (En Colones)";
+										_mInterfaz.moverXY(25, 7);
+										cout << "\033[40m\033[37m" << cuadroIngresarTexto;
+										_mInterfaz.moverXY(25, 7);
+										_factura.setMonto(stoi(_mInterfaz.ingresarNumeros()));
+
 										cout << "\033[44m\033[30m";
 
 										system("cls");
 										cout << espacios << endl;
 										cout << cuadroLado << "\033[100m ." << cuadroBorde << ". \033[44m" << cuadroLado << endl;
 
-										for (int i = 0; i < 18; i++)
+										for (int i = 0; i < 24; i++)
 										{
 											cout << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
 										}
@@ -1165,10 +1149,23 @@ void interfaz::menuPrincipal()
 										cout << _recetaMedica.getCodigo();
 
 										cout << "\033[100m\033[30m";
+										_mInterfaz.moverXY(61, 3);
+										cout << "Codigo de la factura:";
+										_mInterfaz.moverXY(61, 4);
+										cout << _factura.getCodigo();
+
+										cout << "\033[100m\033[30m";
 										_mInterfaz.moverXY(25, 6);
 										cout << "Nombre del paciente:";
 										_mInterfaz.moverXY(25, 7);
-										cout << cita->getPaciente()->getNombre();
+										cout << cita -> getPaciente() -> getNombre();
+
+										cout << "\033[100m\033[30m";
+										_mInterfaz.moverXY(61, 6);
+										cout << "Costo de la cita:";
+										_mInterfaz.moverXY(61, 7);
+										// wcout permite inprimir caracteres la codificacion / formato UTF-8
+										wcout << colon << _factura.getMonto();
 
 										cout << "\033[100m\033[30m";
 										_mInterfaz.moverXY(25, 9);
@@ -1180,7 +1177,7 @@ void interfaz::menuPrincipal()
 										_mInterfaz.moverXY(25, 12);
 										cout << "Nombre del medicamento:";
 										_mInterfaz.moverXY(25, 13);
-										cout << medicamento->getNombre();
+										cout << medicamento -> getNombre();
 
 										cout << "\033[100m\033[30m";
 										_mInterfaz.moverXY(25, 15);
@@ -1189,27 +1186,32 @@ void interfaz::menuPrincipal()
 										cout << _recetaMedica.getCantidad();
 
 										cout << "\033[100m\033[30m";
-										_mInterfaz.moverXY(25, 15);
+										_mInterfaz.moverXY(25, 18);
 										cout << "Dosis del medicamento:";
-										_mInterfaz.moverXY(25, 16);
+										_mInterfaz.moverXY(25, 19);
 										cout << _recetaMedica.getDosis();
 
 										cout << "\033[100m\033[30m";
-										_mInterfaz.moverXY(25, 15);
+										_mInterfaz.moverXY(25, 21);
 										cout << "Doctor encargado:";
-										_mInterfaz.moverXY(25, 16);
-										cout << cita->getDoctor()->getNombre();
+										_mInterfaz.moverXY(25, 22);
+										cout << cita -> getDoctor() -> getNombre();
 
 										// Se le solicitará al usuario si los datos ingresados son correctos
-										if (_mInterfaz.confirmarDatos("¿Los datos ingresados son correctos?", 18) == 1)
+										if (_mInterfaz.confirmarDatos("¿Los datos ingresados son correctos?", 24) == 1)
 										{
+											// Se registra la factura
+											factura = new facturas(_factura.getCodigo(), cita -> getFecha(), cita -> getPaciente(), _factura.getMonto());
+											arbolFactura.registrarDatos(factura, _factura.getCodigo());
+											_archivo.guardarFactura(arbolFactura);
+
 											// Se crea un dato de receta medica
-											recetaMedica = new recetasMedicas(_recetaMedica.getCodigo(), cita->getPaciente(), _recetaMedica.getDiagnostico(), medicamento, _recetaMedica.getCantidad(), _recetaMedica.getDosis(), cita->getDoctor());
+											recetaMedica = new recetasMedicas(_recetaMedica.getCodigo(), cita -> getPaciente(), _recetaMedica.getDiagnostico(), medicamento, _recetaMedica.getCantidad(), _recetaMedica.getDosis(), cita->getDoctor());
 											arbolRecetaMedica.registrarDatos(recetaMedica, _recetaMedica.getCodigo());
 											_archivo.guardarRecetaMedica(arbolRecetaMedica);
 
 											// Se actualiza la cantidad en inventario del medicamento
-											medicamento->setCantidadInventario(medicamento->getCantidadInventario() - _recetaMedica.getCantidad());
+											medicamento -> setCantidadInventario(medicamento -> getCantidadInventario() - _recetaMedica.getCantidad());
 											_archivo.guardarMedicamento(arbolMedicamento);
 
 											// Se elimina la cita del sistema
@@ -1225,11 +1227,100 @@ void interfaz::menuPrincipal()
 								}
 								else
 								{
-									// Se elimina la cita del sistema
-									arbolCita.eliminarDatos(cita, cita -> getCodigo());
-									_archivo.guardarCita(arbolCita);
-									_cita.~citas();
-									_mInterfaz.mostrarMensajeExito("¡La cita fue atendida con exito!");
+									while (1)
+									{
+										system("cls");
+										cout << "\033[44m\033[30m" << espacios << endl;
+										cout << cuadroLado << "\033[100m ." << cuadroBorde << ". \033[44m" << cuadroLado << endl;
+
+										for (int i = 0; i < 9; i++)
+										{
+											cout << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
+										}
+
+										cout << cuadroLado << "\033[100m |" << cuadroBorde << "| \033[40m  \033[44m" << cuadroFinal << endl;
+										cout << cuadroLado << "\033[100m  " << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+										cout << cuadroLado << "  \033[40m" << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+										cout << "\033[44m\033[30m" << espacios;
+
+										_mInterfaz.moverXY(52, 4);
+										cout << "\033[100m" << "Atender Cita";
+
+										// Se generará un codigo para la factura
+										_factura.setCodigo(to_string(_mInterfaz.generarCodigo()));
+
+										// Si el codigo generado ya existe, se generará otro hasta que no salga repetido
+										while (arbolFactura.verificarDatos(_factura.getCodigo()))
+										{
+											_factura.setCodigo(to_string(_mInterfaz.generarCodigo()));
+										}
+
+										_mInterfaz.moverXY(25, 6);
+										cout << "\033[100m\033[30m" << "Ingresa el costo de la cita: (En Colones)";
+										_mInterfaz.moverXY(25, 7);
+										cout << "\033[40m\033[37m" << cuadroIngresarTexto;
+										_mInterfaz.moverXY(25, 7);
+										_factura.setMonto(stoi(_mInterfaz.ingresarNumeros()));
+
+										cout << "\033[44m\033[30m";
+
+										system("cls");
+										cout << espacios << endl;
+										cout << cuadroLado << "\033[100m ." << cuadroBorde << ". \033[44m" << cuadroLado << endl;
+
+										for (int i = 0; i < 15; i++)
+										{
+											cout << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal << endl;
+										}
+
+										cout << cuadroLado << "\033[100m |" << cuadroBorde << "| \033[40m  \033[44m" << cuadroFinal << endl;
+										cout << cuadroLado << "\033[100m  " << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+										cout << cuadroLado << "  \033[40m" << cuadroRelleno << "  \033[40m  \033[44m" << cuadroFinal << endl;
+										cout << "\033[44m\033[30m" << espacios;
+
+										cout << "\033[100m\033[30m";
+										_mInterfaz.moverXY(25, 3);
+										cout << "Codigo de la factura:";
+										_mInterfaz.moverXY(25, 4);
+										cout << _factura.getCodigo();
+
+										cout << "\033[100m\033[30m";
+										_mInterfaz.moverXY(25, 6);
+										cout << "Nombre del paciente:";
+										_mInterfaz.moverXY(25, 7);
+										cout << cita -> getPaciente() -> getNombre();
+
+										cout << "\033[100m\033[30m";
+										_mInterfaz.moverXY(25, 9);
+										cout << "Fecha de facturación:";
+										_mInterfaz.moverXY(25, 10);
+										cout << "Dia: " << cita -> getFecha().substr(0, 2) << " - Mes: " << cita -> getFecha().substr(2, 2) << " - Año: " << cita -> getFecha().substr(4, 4);
+
+										cout << "\033[100m\033[30m";
+										_mInterfaz.moverXY(25, 12);
+										cout << "Costo de la cita:";
+										_mInterfaz.moverXY(25, 13);
+										// wcout permite inprimir caracteres la codificacion / formato UTF-8
+										wcout << colon << _factura.getMonto();
+
+										if (_mInterfaz.confirmarDatos("¿Los datos ingresados son correctos?", 15) == 1)
+										{
+											// Se registra la factura
+											factura = new facturas(_factura.getCodigo(), cita -> getFecha(), cita -> getPaciente(), _factura.getMonto());
+											arbolFactura.registrarDatos(factura, _factura.getCodigo());
+											_archivo.guardarFactura(arbolFactura);
+
+											// Se elimina la cita del sistema
+											arbolCita.eliminarDatos(cita, cita -> getCodigo());
+											_archivo.guardarCita(arbolCita);
+
+											_cita.~citas();
+											_factura.~facturas();
+											_mInterfaz.mostrarMensajeExito("¡La cita fue atendida con exito!");
+
+											break;
+										}
+									}
 								}
 
 								break;
