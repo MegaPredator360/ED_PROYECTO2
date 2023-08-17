@@ -1,7 +1,7 @@
 #ifndef MEDICAMENTOS_H
 #define	MEDICAMENTOS_H
 
-#include "pacientes.h"
+#include "std.h"
 
 class medicamentos
 {

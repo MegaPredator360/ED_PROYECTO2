@@ -4,7 +4,7 @@
 #include "std.h"
 
 // Clases de datos
-#include "recetasMedicas.h"
+#include "facturas.h"
 
 // Arboles
 #include "arboles.h"

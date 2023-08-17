@@ -1,7 +1,9 @@
 #ifndef RECETASMEDICAS_H
 #define	RECETASMEDICAS_H
 
-#include "facturas.h"
+#include "medicamentos.h"
+#include "doctores.h"
+#include "pacientes.h"
 
 class recetasMedicas
 {
