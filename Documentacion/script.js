@@ -1,36 +1,22 @@
-const body = document.querySelector("body"),
-      nav = document.querySelector("nav"),
-      modeToggle = document.querySelector(".oscuro"),
-      searchToggle = document.querySelector(".searchToggle"),
-      sidebarOpen = document.querySelector(".sidebarOpen"),
-      siderbarClose = document.querySelector(".siderbarClose");
+// Para redirigir basado en un click
+function redirigirBoton1() {
+    var top = document.getElementById("titulo1").offsetTop - document.getElementById("navbar").offsetHeight - 10;
+    window.scrollTo({
+        top: top,
+        behavior: "smooth"
+    });
+}
 
-      let getMode = localStorage.getItem("mode");
-          if(getMode && getMode === "dark-mode"){
-            body.classList.add("dark");
-          }
+function redirigirBoton2() {
+    var top = document.getElementById("titulo2").offsetTop - document.getElementById("navbar").offsetHeight - 10;
+    window.scrollTo({
+        top: top,
+        behavior: "smooth"
+    });
+}
 
-
-      modeToggle.addEventListener("click" , () =>{
-        modeToggle.classList.toggle("active");
-        body.classList.toggle("dark");
-
-      
-        if(!body.classList.contains("dark")){
-            localStorage.setItem("mode" , "light-mode");
-        }else{
-            localStorage.setItem("mode" , "dark-mode");
-        }
-      });
-sidebarOpen.addEventListener("click" , () =>{
-    nav.classList.add("active");
-});
-
-body.addEventListener("click" , e =>{
-    let clickedElm = e.target;
-
-    if(!clickedElm.classList.contains("sidebarOpen") && !clickedElm.classList.contains("menu")){
-        nav.classList.remove("active");
-    }
-});
-
+// Modo Oscuro
+function toggleDarkMode() {
+    var element = document.body;
+    element.classList.toggle("darkMode");
+ }
