@@ -452,6 +452,7 @@ void interfaz::menuPrincipal()
 								doctor = new doctores(_doctor.getCedula(), _doctor.getNombre(), _doctor.getEspecialidad(), _doctor.getDireccion(), _doctor.getHoraInicio(), _doctor.getHoraFin(), _doctor.getTelefono());
 								arbolDoctor.registrarDatos(doctor, _doctor.getCedula());
 								_archivo.guardarDoctor(arbolDoctor);
+								_doctor.~doctores();
 								_mInterfaz.mostrarMensajeExito("¡El doctor fue ingresado con exito!");
 
 								break;
@@ -601,8 +602,8 @@ void interfaz::menuPrincipal()
 								paciente = new pacientes(_paciente.getCedula(), _paciente.getNombre(), _paciente.getDireccion(), _paciente.getTelefono());
 								arbolPaciente.registrarDatos(paciente, _paciente.getCedula());
 								_archivo.guardarPaciente(arbolPaciente);
+								_paciente.~pacientes();
 								_mInterfaz.mostrarMensajeExito("¡El paciente fue ingresado con exito!");
-
 								break;
 							}
 						}
@@ -720,6 +721,7 @@ void interfaz::menuPrincipal()
 								medicamento = new medicamentos(_medicamento.getCodigo(), _medicamento.getNombre(), _medicamento.getCantidadInventario());
 								arbolMedicamento.registrarDatos(medicamento, _medicamento.getCodigo());
 								_archivo.guardarMedicamento(arbolMedicamento);
+								_medicamento.~medicamentos();
 								_mInterfaz.mostrarMensajeExito("¡El medicamento fue ingresado con exito!");
 
 								break;
@@ -918,6 +920,10 @@ void interfaz::menuPrincipal()
 								arbolFactura.registrarDatos(factura, _factura.getCodigo());
 								_archivo.guardarFactura(arbolFactura);
 
+								_cita.~citas();
+								_paciente.~pacientes();
+								_doctor.~doctores();
+								_factura.~facturas();
 								_mInterfaz.mostrarMensajeExito("¡La cita fue registrada con exito!");
 
 								break;
@@ -1206,7 +1212,8 @@ void interfaz::menuPrincipal()
 										// Se elimina la cita del sistema
 										arbolCita.eliminarDatos(cita, cita -> getCodigo());
 										_archivo.guardarCita(arbolCita);
-
+										_cita.~citas();
+										_recetaMedica.~recetasMedicas();
 										_mInterfaz.mostrarMensajeExito("¡La cita fue atendida con exito!");
 
 										break;
@@ -1464,6 +1471,9 @@ void interfaz::menuPrincipal()
 										_archivo.guardarCita(arbolCita);
 										_mInterfaz.mostrarMensajeExito("¡La cita fue actualizada con exito!");
 
+										_cita.~citas();
+										_paciente.~pacientes();
+										_doctor.~doctores();
 										break;
 									}
 								}
@@ -1585,6 +1595,7 @@ void interfaz::menuPrincipal()
 								arbolCita.eliminarDatos(cita, cita -> getCodigo());
 								_archivo.guardarCita(arbolCita);
 								_mInterfaz.mostrarMensajeExito("¡La cita fue cancelada con exito!");
+								_cita.~citas();
 								break;
 							}
 						}
@@ -1691,6 +1702,7 @@ void interfaz::menuPrincipal()
 							// Se le preguntará al usuario si desea consultar otra factura
 							if (_mInterfaz.confirmarDatos("¿Deseas consultar otra factura?", 15) == 2)
 							{
+								_factura.~facturas();
 								break;
 							}
 						}
@@ -1815,6 +1827,7 @@ void interfaz::menuPrincipal()
 								// Se le preguntará al usuario si desea consultar otra receta medica
 								if (_mInterfaz.confirmarDatos("¿Deseas consultar otra receta medica?", 24) == 2)
 								{
+									_recetaMedica.~recetasMedicas();
 									break;
 								}
 							}
@@ -1842,9 +1855,6 @@ void interfaz::menuPrincipal()
 							{
 								throw exception("No hay doctores registrados en el sistema.");
 							}
-
-							// Se limpiará el vector en caso de ser usado anteriormente
-							listaCodigos.clear();
 
 							// Se obtendrá la lista de codigos en forma de In-Orden
 							arbolDoctor.mostrarArbol(listaCodigos);
@@ -1883,6 +1893,10 @@ void interfaz::menuPrincipal()
 								}
 							}
 							cout << "\033[44m\033[30m";
+
+							// Se limpiará el vector para ser usado nuevamente
+							listaCodigos.clear();
+
 							break;
 
 						case 2:
@@ -1891,8 +1905,6 @@ void interfaz::menuPrincipal()
 							{
 								throw exception("No hay pacientes registrados en el sistema.");
 							}
-
-							listaCodigos.clear();
 
 							arbolPaciente.mostrarArbol(listaCodigos);
 							cantidad = listaCodigos.size();
@@ -1929,6 +1941,10 @@ void interfaz::menuPrincipal()
 								}
 							}
 							cout << "\033[44m\033[30m";
+
+							// Se limpiará el vector para ser usado nuevamente
+							listaCodigos.clear();
+
 							break;
 
 						case 3:
@@ -1937,8 +1953,6 @@ void interfaz::menuPrincipal()
 							{
 								throw exception("No hay medicamentos registrados en el sistema.");
 							}
-
-							listaCodigos.clear();
 
 							arbolMedicamento.mostrarArbol(listaCodigos);
 							cantidad = listaCodigos.size();
@@ -1975,6 +1989,10 @@ void interfaz::menuPrincipal()
 								}
 							}
 							cout << "\033[44m\033[30m";
+
+							// Se limpiará el vector para ser usado nuevamente
+							listaCodigos.clear();
+
 							break;
 
 						case 4:
@@ -1983,8 +2001,6 @@ void interfaz::menuPrincipal()
 							{
 								throw exception("No hay cita registrados en el sistema.");
 							}
-
-							listaCodigos.clear();
 
 							arbolCita.mostrarArbol(listaCodigos);
 							cantidad = listaCodigos.size();
@@ -2021,6 +2037,10 @@ void interfaz::menuPrincipal()
 								}
 							}
 							cout << "\033[44m\033[30m";
+
+							// Se limpiará el vector para ser usado nuevamente
+							listaCodigos.clear();
+
 							break;
 
 						case 5:
@@ -2029,8 +2049,6 @@ void interfaz::menuPrincipal()
 							{
 								throw exception("No hay facturas registrados en el sistema.");
 							}
-
-							listaCodigos.clear();
 
 							arbolFactura.mostrarArbol(listaCodigos);
 							cantidad = listaCodigos.size();
@@ -2067,6 +2085,10 @@ void interfaz::menuPrincipal()
 								}
 							}
 							cout << "\033[44m\033[30m";
+
+							// Se limpiará el vector para ser usado nuevamente
+							listaCodigos.clear();
+
 							break;
 
 						case 6:
@@ -2075,8 +2097,6 @@ void interfaz::menuPrincipal()
 							{
 								throw exception("No hay recetas medicas registrados en el sistema.");
 							}
-
-							listaCodigos.clear();
 
 							arbolRecetaMedica.mostrarArbol(listaCodigos);
 							cantidad = listaCodigos.size();
@@ -2113,6 +2133,10 @@ void interfaz::menuPrincipal()
 								}
 							}
 							cout << "\033[44m\033[30m";
+
+							// Se limpiará el vector para ser usado nuevamente
+							listaCodigos.clear();
+
 							break;
 						}
 					}
@@ -2136,8 +2160,6 @@ void interfaz::menuPrincipal()
 							{
 								throw exception("No hay doctores registrados en el sistema.");
 							}
-
-							listaCodigos.clear();
 
 							// Se obtendrá la lista de codigos en forma de Pre-Orden
 							arbolDoctor.recorridoProfundidad(listaCodigos);
@@ -2175,6 +2197,10 @@ void interfaz::menuPrincipal()
 								}
 							}
 							cout << "\033[44m\033[30m";
+
+							// Se limpiará el vector para ser usado nuevamente
+							listaCodigos.clear();
+
 							break;
 
 						case 2:
@@ -2183,8 +2209,6 @@ void interfaz::menuPrincipal()
 							{
 								throw exception("No hay pacientes registrados en el sistema.");
 							}
-
-							listaCodigos.clear();
 
 							arbolPaciente.recorridoProfundidad(listaCodigos);
 							cantidad = listaCodigos.size();
@@ -2221,6 +2245,10 @@ void interfaz::menuPrincipal()
 								}
 							}
 							cout << "\033[44m\033[30m";
+
+							// Se limpiará el vector para ser usado nuevamente
+							listaCodigos.clear();
+
 							break;
 
 						case 3:
@@ -2229,8 +2257,6 @@ void interfaz::menuPrincipal()
 							{
 								throw exception("No hay medicamentos registrados en el sistema.");
 							}
-
-							listaCodigos.clear();
 
 							arbolMedicamento.recorridoProfundidad(listaCodigos);
 							cantidad = listaCodigos.size();
@@ -2267,6 +2293,10 @@ void interfaz::menuPrincipal()
 								}
 							}
 							cout << "\033[44m\033[30m";
+
+							// Se limpiará el vector para ser usado nuevamente
+							listaCodigos.clear();
+
 							break;
 
 						case 4:
@@ -2275,8 +2305,6 @@ void interfaz::menuPrincipal()
 							{
 								throw exception("No hay cita registrados en el sistema.");
 							}
-
-							listaCodigos.clear();
 
 							arbolCita.recorridoProfundidad(listaCodigos);
 							cantidad = listaCodigos.size();
@@ -2313,6 +2341,10 @@ void interfaz::menuPrincipal()
 								}
 							}
 							cout << "\033[44m\033[30m";
+
+							// Se limpiará el vector para ser usado nuevamente
+							listaCodigos.clear();
+
 							break;
 
 						case 5:
@@ -2321,8 +2353,6 @@ void interfaz::menuPrincipal()
 							{
 								throw exception("No hay facturas registrados en el sistema.");
 							}
-
-							listaCodigos.clear();
 
 							arbolFactura.recorridoProfundidad(listaCodigos);
 							cantidad = listaCodigos.size();
@@ -2359,6 +2389,10 @@ void interfaz::menuPrincipal()
 								}
 							}
 							cout << "\033[44m\033[30m";
+
+							// Se limpiará el vector para ser usado nuevamente
+							listaCodigos.clear();
+
 							break;
 
 						case 6:
@@ -2367,8 +2401,6 @@ void interfaz::menuPrincipal()
 							{
 								throw exception("No hay recetas medicas registrados en el sistema.");
 							}
-
-							listaCodigos.clear();
 
 							arbolRecetaMedica.recorridoProfundidad(listaCodigos);
 							cantidad = listaCodigos.size();
@@ -2405,6 +2437,10 @@ void interfaz::menuPrincipal()
 								}
 							}
 							cout << "\033[44m\033[30m";
+
+							// Se limpiará el vector para ser usado nuevamente
+							listaCodigos.clear();
+
 							break;
 						}
 					}
@@ -2428,8 +2464,6 @@ void interfaz::menuPrincipal()
 							{
 								throw exception("No hay doctores registrados en el sistema.");
 							}
-
-							listaCodigos.clear();
 
 							// Se obtendrá la lista de codigos para el recorrido por niveles
 							arbolDoctor.recorridoPorNiveles(listaCodigos);
@@ -2467,6 +2501,10 @@ void interfaz::menuPrincipal()
 								}
 							}
 							cout << "\033[44m\033[30m";
+
+							// Se limpiará el vector para ser usado nuevamente
+							listaCodigos.clear();
+
 							break;
 
 						case 2:
@@ -2475,8 +2513,6 @@ void interfaz::menuPrincipal()
 							{
 								throw exception("No hay pacientes registrados en el sistema.");
 							}
-
-							listaCodigos.clear();
 
 							arbolPaciente.recorridoPorNiveles(listaCodigos);
 							cantidad = listaCodigos.size();
@@ -2513,6 +2549,10 @@ void interfaz::menuPrincipal()
 								}
 							}
 							cout << "\033[44m\033[30m";
+
+							// Se limpiará el vector para ser usado nuevamente
+							listaCodigos.clear();
+
 							break;
 
 						case 3:
@@ -2521,8 +2561,6 @@ void interfaz::menuPrincipal()
 							{
 								throw exception("No hay medicamentos registrados en el sistema.");
 							}
-
-							listaCodigos.clear();
 
 							arbolMedicamento.recorridoPorNiveles(listaCodigos);
 							cantidad = listaCodigos.size();
@@ -2559,6 +2597,10 @@ void interfaz::menuPrincipal()
 								}
 							}
 							cout << "\033[44m\033[30m";
+
+							// Se limpiará el vector para ser usado nuevamente
+							listaCodigos.clear();
+
 							break;
 
 						case 4:
@@ -2567,8 +2609,6 @@ void interfaz::menuPrincipal()
 							{
 								throw exception("No hay cita registrados en el sistema.");
 							}
-
-							listaCodigos.clear();
 
 							arbolCita.recorridoPorNiveles(listaCodigos);
 							cantidad = listaCodigos.size();
@@ -2605,6 +2645,10 @@ void interfaz::menuPrincipal()
 								}
 							}
 							cout << "\033[44m\033[30m";
+
+							// Se limpiará el vector para ser usado nuevamente
+							listaCodigos.clear();
+
 							break;
 
 						case 5:
@@ -2613,8 +2657,6 @@ void interfaz::menuPrincipal()
 							{
 								throw exception("No hay facturas registrados en el sistema.");
 							}
-
-							listaCodigos.clear();
 
 							arbolFactura.recorridoPorNiveles(listaCodigos);
 							cantidad = listaCodigos.size();
@@ -2651,6 +2693,10 @@ void interfaz::menuPrincipal()
 								}
 							}
 							cout << "\033[44m\033[30m";
+
+							// Se limpiará el vector para ser usado nuevamente
+							listaCodigos.clear();
+
 							break;
 
 						case 6:
@@ -2659,8 +2705,6 @@ void interfaz::menuPrincipal()
 							{
 								throw exception("No hay recetas medicas registrados en el sistema.");
 							}
-
-							listaCodigos.clear();
 
 							arbolRecetaMedica.recorridoPorNiveles(listaCodigos);
 							cantidad = listaCodigos.size();
@@ -2697,6 +2741,10 @@ void interfaz::menuPrincipal()
 								}
 							}
 							cout << "\033[44m\033[30m";
+
+							// Se limpiará el vector para ser usado nuevamente
+							listaCodigos.clear();
+
 							break;
 						}
 					}

@@ -1,7 +1,7 @@
 #ifndef PACIENTES_H
 #define	PACIENTES_H
 
-#include "doctores.h"
+#include "std.h"
 
 class pacientes
 {

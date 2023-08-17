@@ -581,10 +581,6 @@ void metodoInterfaz::mostrarHoraCita(arboles<citas> _arbolCita, doctores* _docto
 
 		while (1)
 		{
-			// Se limpian los vectores en caso de ser usados anteriormente
-			horasDisponibles.clear();
-			citasRealizadas.clear();
-
 			moverXY(0, 6);
 			cout << "\033[44m\033[30m" << cuadroLado << "\033[100m |" << cuadroRelleno << "| \033[40m  \033[44m" << cuadroFinal;
 			moverXY(25, 6);
@@ -738,6 +734,9 @@ void metodoInterfaz::mostrarHoraCita(arboles<citas> _arbolCita, doctores* _docto
 		}
 		// Se igualará la hora selecciona para ser retornado
 		_hora = horasDisponibles[opcion];
+
+		horasDisponibles.clear();
+		citasRealizadas.clear();
 	}
 	catch (exception& e)
 	{

@@ -1,7 +1,7 @@
 #ifndef CITAS_H
 #define	CITAS_H
 
-#include "medicamentos.h"
+#include "recetasMedicas.h"
 
 class citas
 {
