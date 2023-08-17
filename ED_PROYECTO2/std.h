@@ -1,3 +1,6 @@
+#ifndef STD_H
+#define	STD_H
+
 #pragma once
 #include <iostream>			// Para interactuar con la consola
 #include <string>			// Para poder usar el tipo de dato "string"
@@ -14,8 +17,4 @@
 
 using namespace std;
 
-// Colores de Texto
-#define RED     "\033[31m"
-#define WHITE   "\033[0m"
-#define YELLOW	"\x1B[33m"
-#define GREEN	"\x1B[32m"
+#endif

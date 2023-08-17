@@ -1,3 +1,6 @@
+#ifndef CITAS_H
+#define	CITAS_H
+
 #include "medicamentos.h"
 
 class citas
@@ -40,3 +43,4 @@ public:
 	void setPaciente(pacientes* _pacientes);
 };
 
+#endif

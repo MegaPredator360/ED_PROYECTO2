@@ -1,3 +1,6 @@
+#ifndef DOCTORES_H
+#define	DOCTORES_H
+
 #include "std.h"
 
 class doctores
@@ -48,3 +51,4 @@ public:
 	void setTelefono(string _telefono);
 };
 
+#endif

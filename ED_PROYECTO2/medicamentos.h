@@ -1,3 +1,6 @@
+#ifndef MEDICAMENTOS_H
+#define	MEDICAMENTOS_H
+
 #include "pacientes.h"
 
 class medicamentos
@@ -32,3 +35,4 @@ public:
 	void setCantidadInventario(int _cantidadInventario);
 };
 
+#endif

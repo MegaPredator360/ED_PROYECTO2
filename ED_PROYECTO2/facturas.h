@@ -1,3 +1,6 @@
+#ifndef FACTURAS_H
+#define	FACTURAS_H
+
 #include "citas.h"
 
 class facturas
@@ -36,3 +39,4 @@ public:
 	void setMonto(int _monto);
 };
 
+#endif

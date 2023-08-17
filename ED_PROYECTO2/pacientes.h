@@ -1,3 +1,6 @@
+#ifndef PACIENTES_H
+#define	PACIENTES_H
+
 #include "doctores.h"
 
 class pacientes
@@ -36,3 +39,4 @@ public:
 	void setTelefono(string _telefono);
 };
 
+#endif

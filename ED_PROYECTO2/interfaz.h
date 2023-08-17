@@ -1,3 +1,6 @@
+#ifndef INTERFAZ_H
+#define	INTERFAZ_H
+
 // Validaciones en la interface
 #include "metodoInterfaz.h"
 
@@ -46,3 +49,4 @@ public:
 	void menuPrincipal();
 };
 
+#endif

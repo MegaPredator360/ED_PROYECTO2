@@ -1,3 +1,6 @@
+#ifndef ARCHIVOS_H
+#define	ARCHIVOS_H
+
 #include "std.h"
 
 // Clases de datos
@@ -29,3 +32,4 @@ public:
 	arboles<recetasMedicas> cargarReceta(arboles<pacientes> _arbolPaciente, arboles<medicamentos> _arbolMedicamento, arboles<doctores> _arbolDoctor);
 };
 
+#endif

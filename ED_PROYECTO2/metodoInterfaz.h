@@ -1,3 +1,6 @@
+#ifndef METODOINTERFAZ_H
+#define	METODOINTERFAZ_H
+
 // Archivos
 #include "archivos.h"
 
@@ -44,3 +47,4 @@ public:
 	int seleccionarArbol(string _opcion, int _posicion);
 };
 
+#endif

@@ -1,3 +1,6 @@
+#ifndef RECETASMEDICAS_H
+#define	RECETASMEDICAS_H
+
 #include "facturas.h"
 
 class recetasMedicas
@@ -48,3 +51,4 @@ public:
 	void setDoctor(doctores* _doctor);
 };
 
+#endif
