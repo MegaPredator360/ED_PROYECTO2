@@ -1,8 +1,6 @@
 #ifndef NODOS_H
 #define	NODOS_H
 
-#include "std.h"
-
 template <class T>
 class nodos
 {

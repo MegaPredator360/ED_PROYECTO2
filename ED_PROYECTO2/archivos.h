@@ -1,8 +1,6 @@
 #ifndef ARCHIVOS_H
 #define	ARCHIVOS_H
 
-#include "std.h"
-
 // Clases de datos
 #include "facturas.h"
 
