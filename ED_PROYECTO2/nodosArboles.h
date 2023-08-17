@@ -10,6 +10,9 @@ public:
     // Se registrarán los datos en el nodo, según el número de codigo / cedula
     void registrarDatos(nodos<T>*& _nodo, T* _dato, string _numero);
 
+    // Retornará un nodo en base a su numero de cedula / codigo
+    nodos<T>* buscarDatos(nodos<T>* _nodo, string _numero);
+
     // Se eliminará el nodo del arbol
     nodos<T>* eliminarDatos(nodos<T>* _nodo, T* _dato, string _numero);
 
@@ -72,6 +75,30 @@ void nodosArboles<T>::registrarDatos(nodos<T>*& _nodo, T* _dato, string _numero)
 
             // Se guardará ese dato nuevo en la derecha del nodo
             _nodo -> fijarDerecha(nodoNuevo);
+        }
+    }
+    catch (exception& e)
+    {
+        throw e;
+    }
+}
+
+template<class T>
+nodos<T>* nodosArboles<T>::buscarDatos(nodos<T>* _nodo, string _numero)
+{
+    try
+    {
+        if (_nodo == nullptr || _nodo -> obtenerCodigo() == _numero)
+        {
+            return _nodo;
+        }
+        else if (_numero < _nodo -> obtenerCodigo())
+        {
+            return buscarDatos(_nodo -> obtenerIzquierda(), _numero);
+        }
+        else
+        {
+            return buscarDatos(_nodo -> obtenerDerecha(), _numero);
         }
     }
     catch (exception& e)
